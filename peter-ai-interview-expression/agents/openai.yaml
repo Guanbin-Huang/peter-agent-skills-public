@@ -1,0 +1,6 @@
+interface:
+  display_name: "Peter Expression：简历与项目表达"
+  short_description: "简历写作与项目档案/口述稿双功能，融合ASu并按Agent/具身领域补证"
+  default_prompt: "Use $peter-ai-interview-expression to write or improve my resume for a target JD, or organize real project materials into a learning dossier and an evidence-based interview script. Select the requested output, share the same facts across outputs, and use the Agent or embodied domain only as a shared dimension."
+policy:
+  allow_implicit_invocation: true
