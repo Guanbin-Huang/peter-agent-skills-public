@@ -1,0 +1,102 @@
+[
+  {
+    "id": 1,
+    "prompt": "把这个横版口播剪好，直接给我抖音和视频号能发的成片。",
+    "expected": "首版 HTML 前先由 douyin-rough-cut 从原片完成 take 取舍、气口 0.30–0.40 秒且 <=0.5 秒、1.3x 单次应用、吞字/字幕文本/音画同步门禁；确认后最终复验；再汇合 1080x1920 封面、字幕、片尾并通过交付验收。"
+  },
+  {
+    "id": 2,
+    "prompt": "把评论区截图放进去，再加固定片尾，标题放在上面黑色区域。",
+    "expected": "截图位于正片画面中央而非黑边；标题使用上黑边两行布局；片尾无黑边和标题覆盖。"
+  },
+  {
+    "id": 3,
+    "prompt": "这条临时改成1.2倍速，其他都按默认来。",
+    "expected": "本次正片使用1.2倍速，其余竖屏黑边、标题和原速片尾规则保持；不把1.2写回长期默认。"
+  },
+  {
+    "id": 4,
+    "prompt": "我给你三段录好的口播和一份更长的逐字稿，直接剪成能发的视频。没有录到的文案不要硬补。",
+    "expected": "并行使用 flash 极速版 ASR；按真实口播语义连续性排序；参考稿只辅助结构；douyin-rough-cut 删除重说、口误、错误 take 和现场指令，首版 HTML 前完成气口、1.3x、吞字与同步；不默认抠图、换背景或降噪。"
+  },
+  {
+    "id": 5,
+    "prompt": "我给你一张 PeterHub 背景图。把环境底噪去掉，只保留说话人；42 秒画面做封面，正片 1.2 倍速，接标准片尾。",
+    "expected": "用户提供背景图即触发 RVM 人像抠图并换成该图，不再追问；逐源检查构图、切点重置 recurrent state 且不得套固定下沿保护区；本轮明确要求人声降噪；封面从无字幕清洁画面生成；正片音画同步 1.2 倍速；片尾原速且不套正片覆盖层。"
+  },
+  {
+    "id": 6,
+    "prompt": "正常剪就行，不要抠图、换背景和降噪。封面放在视频前五帧，最后给我体积小一点的发布版。",
+    "expected": "走默认快路径；关闭三个可选模块；封面覆盖第1-5帧且音频和总时长不变；最后一次 FFmpeg 编码优先使用 VideoToolbox H.264 压缩，失败时回退 libx264。"
+  },
+  {
+    "id": 7,
+    "prompt": "这版剪辑可以了，输出成品。",
+    "expected": "当前 HTML 粗剪已确认时，复用首版前已生成的 sourceKeeps/fineKeeps/upstream_bundle，对气口、切点、字幕文本和同步做最终复验；若未给封面标题则先由 douyin-cover 生成低成本候选；确认后从原片和同一 fineKeeps 一次生成高清正文、字幕、封面和片尾，最终执行完整交付验收。"
+  },
+  {
+    "id": 8,
+    "prompt": "输出最终产品，但这次不要片尾，封面标题就用我刚发的原话。",
+    "expected": "触发正式高清输出；默认包装被用户本轮明确覆盖，只加封面和字幕、不加片尾；封面标题严格使用用户原话；先做音频对齐、成品预检和1秒冒烟测试，再做一次高清编码。"
+  },
+  {
+    "id": 9,
+    "prompt": "刚才字幕冒烟样片已经通过，我只把封面标题从A改成B，继续输出成品。",
+    "expected": "更新封面缓存键并只重做封面静帧/前5帧片段；复用未变化的音频ASR、字幕主体和固定片尾缓存，不重新编码整个100秒主体；随后重新检查1/5/6帧并封装。"
+  },
+  {
+    "id": 10,
+    "prompt": "先用 AI剪口播给我做粗剪，粗剪确认后再把过长气口收紧，最后输出正式成片。",
+    "expected": "douyin-rough-cut 在首版 HTML 前产出 sourceKeeps/fineKeeps、处理过长气口和1.3x并完成吞字/同步验收；用户确认后只做最终复验；AI剪口播再从同一 upstream_bundle 并行汇合字幕、封面、B-roll/贴片，最终通过完整解码与源相对时序闸门。"
+  },
+  {
+    "id": "preview-v2-clock-entry",
+    "prompt": "四段视频加逐字稿，先确定顺序直接给HTML；上次口型不同步而且网页还在播旧片，以后避免。",
+    "expected": "3–4 parallel source lanes; freeze one EDL; subtitle/audio and real speed-sample prerequisites join before encode; source timing rejects old chain and real PTS/audio offsets; actual player bytes match accepted media; preserve comments."
+  },
+  {
+    "id": "incremental-coverage",
+    "prompt": "我已经确认0到60秒看完了，除了20秒和43秒的两条B-roll弹出动效comment都没问题；后面还没看。我继续往后看，你先改。告诉我现在做什么、怎样交付。",
+    "expected": "只保留确认范围内无改动部分；两条批注成批，只做局部低清结果；最多两路局部任务，一个时间线主写者；不替换用户正在看的版本；不把后面没批注当通过；不生成整片或高清。"
+  },
+  {
+    "id": "incremental-revisions",
+    "prompt": "第一批还在运行。我把20秒的comment改了，又在22秒加一条，要求删掉一小句；第二批在90秒，仍然是对旧Preview打的点。怎么处理，才不会重复剪或者错位？",
+    "expected": "旧评论版本失效；20和22秒合并上下文；保留正在记录的评论；90秒绑定旧版和原片区间，不直接减秒；源EDL只由主执行者修改；删句音画同步重建，其他缓存按依赖保留。"
+  },
+  {
+    "id": "incremental-completion",
+    "prompt": "目前前一分钟的两个修改片段都通过了，但我还没看后面。现在只有一条新的comment；另外全片字幕颜色统一换一下。能直接出完整视频吗，剩下一条怎么办？假设当前网页只有原来的手动提交按钮。",
+    "expected": "前面局部通过不等于整片通过；全局规则先主会话处理并失效受影响缓存和审批；一条可立即处理或本轮标完提交，不强迫凑两条；不把尚未实现的自动触发当成已启用；当前页用现有提交入口或主会话分批，不改写活跃评论；全片明确审核完加全部批注通过才整片输出。"
+  },
+  {
+    "id": "four-core-subskills",
+    "prompt": "把 AI剪口播拆成 B-roll、封面、字幕、粗剪四个 sub-skill，后面能串联也能并联。",
+    "expected": "AI剪口播保留总控；douyin-rough-cut 串行冻结 EDL/media/speed/timing；随后 xiaolan-broll、douyin-cover、douyin-captions 在独立目录并行；最后核对 SHA 后汇合 HTML Preview。"
+  },
+  {
+    "id": "rough-first-parallel-visuals",
+    "prompt": "七段双角色口播直接剪，B-roll、封面和字幕可以一起做吗？",
+    "expected": "先由 douyin-rough-cut 冻结最后一次完整正确 take、气口、1.3x 和同步时间线；上游 SHA 冻结后，B-roll/人物贴片、封面、字幕才并行，均不得改 EDL。"
+  },
+  {
+    "id": "preedit-infer-card",
+    "prompt": "我发给你一份逐字稿和七段视频，你自己判断怎么剪。",
+    "expected": "先只读探测素材与 ASR，自主判断单人口播、双角色对话或多人访谈并说明证据；展示包含形式、B-roll、人物贴片和默认交付的剪辑启动卡；等待用户回复按推荐或改选项，确认前不写 EDL、不正式粗剪。"
+  },
+  {
+    "id": "one-actor-dual-role",
+    "prompt": "学长和学弟都是我一个人分开录的，衣服不一样。你看素材判断，B-roll 先别直接做。",
+    "expected": "判断为 dual_role_dialogue 而不是单人口播；推荐保护问答反应并开启人物贴片；给出 none/light/structured B-roll 选项并等确认，不能把模型推荐当成 B-roll 已启用。"
+  },
+  {
+    "id": "accept-recommendation",
+    "prompt": "按你的推荐来。",
+    "expected": "把 preedit_decision.status 更新为 confirmed，decision_source=accepted_recommendation；随后才允许 douyin-rough-cut 写唯一 content EDL，并按已确认开关启动或跳过 B-roll 分支。"
+  },
+  {
+    "id": "explicit-no-broll",
+    "prompt": "这是双角色对话，不要 B-roll，人物贴片保留。",
+    "expected": "记录 user_explicit、format_profile=dual_role_dialogue、broll.mode=none、broll.enabled=false、role_chips.enabled=true；不再重复提问，允许粗剪并保持 B-roll 分支关闭、人物贴片分支开启。"
+  }
+]

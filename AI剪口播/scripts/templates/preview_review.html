@@ -1,0 +1,1004 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Preview 批注</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0b0d10; --panel:#14171c; --panel2:#1b1f26; --text:#f3f4f6; --muted:#9ca3af; --line:#303641; --blue:#4f8cff; --orange:#ff9d3d; --green:#3ddc97; --red:#ff6767; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:radial-gradient(circle at 20% -10%,#1c2942 0,transparent 32%),var(--bg); color:var(--text); font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; }
+    button,input,textarea,select { font:inherit; }
+    button { cursor:pointer; }
+    .app { min-height:100vh; display:grid; grid-template-rows:auto 1fr; }
+    header { position:sticky; top:0; z-index:20; display:flex; align-items:center; justify-content:space-between; gap:16px; padding:12px 20px; background:rgba(11,13,16,.9); backdrop-filter:blur(18px); border-bottom:1px solid var(--line); }
+    .title { min-width:0; }
+    h1 { margin:0; font-size:16px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+    .hint { color:var(--muted); font-size:12px; margin-top:4px; }
+    kbd { background:#252a33; border:1px solid #414958; border-bottom-width:2px; border-radius:5px; padding:1px 6px; color:#fff; }
+    .save-state { font-size:12px; color:var(--green); white-space:nowrap; }
+    main { display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:18px; padding:18px; max-width:1500px; width:100%; margin:0 auto; }
+    .viewer,.sidebar { background:rgba(20,23,28,.92); border:1px solid var(--line); border-radius:16px; box-shadow:0 20px 60px rgba(0,0,0,.25); }
+    .viewer { padding:16px; min-width:0; outline:none; transition:border-color .15s,box-shadow .15s; }
+    .viewer.hotkey-active { border-color:var(--blue); box-shadow:0 0 0 3px #4f8cff26,0 20px 60px rgba(0,0,0,.25); }
+    .video-wrap { display:flex; justify-content:center; min-height:0; background:#050607; border-radius:12px; overflow:hidden; }
+    video { display:block; max-width:100%; width:auto; height:min(69vh,760px); background:#000; }
+    .transport { display:flex; flex-wrap:wrap; align-items:center; gap:10px; padding-top:12px; }
+    .transport button,.ghost { border:1px solid var(--line); color:var(--text); background:var(--panel2); border-radius:9px; padding:8px 11px; }
+    .transport button:hover,.ghost:hover { border-color:#596274; }
+    .clock { font-variant-numeric:tabular-nums; font-weight:700; min-width:120px; }
+    .rail { position:relative; height:34px; margin-top:12px; background:#232832; border-radius:8px; overflow:visible; cursor:pointer; }
+    .rail-progress { position:absolute; inset:0 auto 0 0; width:0; border-radius:8px; background:linear-gradient(90deg,rgba(79,140,255,.22),rgba(79,140,255,.06)); pointer-events:none; }
+    .playhead { position:absolute; top:-4px; bottom:-4px; width:2px; background:var(--blue); pointer-events:none; }
+    .review-band { position:absolute; top:4px; height:26px; min-width:2px; border-radius:6px; background:rgba(79,140,255,.16); border:1px solid rgba(122,168,255,.42); pointer-events:none; }
+    .review-band.resolved { background:rgba(61,220,151,.10); border-color:rgba(61,220,151,.30); }
+    .scope-band { position:absolute; top:8px; height:18px; min-width:2px; border-radius:5px; background:rgba(255,157,61,.34); border:1px solid rgba(255,189,122,.72); pointer-events:none; z-index:1; }
+    .scope-band.resolved { background:rgba(61,220,151,.18); border-color:rgba(61,220,151,.48); }
+    .scope-band.draft { background:rgba(255,157,61,.38); border-style:dashed; }
+    .pin { position:absolute; top:3px; width:4px; height:28px; transform:translateX(-50%); background:#fff; border:0; border-radius:4px; box-shadow:0 0 0 2px var(--orange),0 2px 8px #0008; padding:0; z-index:2; }
+    .pin.resolved { background:var(--green); opacity:.65; }
+    .legend { display:flex; justify-content:space-between; color:var(--muted); font-size:11px; margin-top:6px; }
+    .keyboard-state { color:var(--muted); }
+    .viewer.hotkey-active .keyboard-state { color:var(--green); font-weight:700; }
+    .primary { border:0; background:var(--blue); color:white; font-weight:750; border-radius:10px; padding:10px 16px; }
+    .mark-btn { margin-left:auto; background:var(--orange)!important; color:#15100b!important; font-weight:800; border:0!important; }
+    .transport button:disabled { opacity:.5; cursor:not-allowed; }
+    .cover-panel { margin-top:12px; padding:12px; border:1px solid var(--line); border-radius:12px; background:#11171f; }
+    .cover-summary { display:flex; align-items:center; gap:12px; }
+    .cover-preview { display:block; flex:0 0 auto; }
+    .cover-preview[hidden],.cover-download[hidden],.cover-designer[hidden],.cover-candidates[hidden] { display:none; }
+    .cover-preview img { display:block; width:54px; height:72px; object-fit:contain; background:#050607; border-radius:5px; }
+    .cover-details { min-width:0; flex:1; }
+    .cover-status { font-size:12px; line-height:1.5; overflow-wrap:anywhere; }
+    .cover-status.failed { color:var(--red); }
+    .cover-time { margin-top:3px; color:var(--muted); font-size:11px; font-variant-numeric:tabular-nums; }
+    .cover-download { color:#9fc0ff; font-size:12px; white-space:nowrap; }
+    .cover-designer { margin-top:12px; padding-top:12px; border-top:1px solid #2a3340; }
+    .cover-form { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:10px; }
+    .cover-field { display:grid; gap:5px; color:#cbd2dc; font-size:11px; }
+    .cover-field input { width:100%; min-width:0; border:1px solid #414a58; border-radius:8px; background:#0b0f14; color:#fff; padding:9px 10px; outline:none; }
+    .cover-field input:focus { border-color:var(--blue); box-shadow:0 0 0 3px #4f8cff22; }
+    .cover-field small { color:var(--muted); }
+    .cover-style-label { margin:11px 0 7px; color:#cbd2dc; font-size:11px; }
+    .cover-styles { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px; }
+    .cover-style { display:grid; gap:3px; text-align:left; border:1px solid #3b4554; border-radius:9px; background:#171d25; color:#e7ebf1; padding:9px 10px; }
+    .cover-style strong { font-size:12px; }
+    .cover-style span { color:var(--muted); font-size:10px; line-height:1.4; }
+    .cover-style.active { border-color:#77a6ff; background:#182a47; box-shadow:0 0 0 2px #4f8cff20; }
+    .cover-style.active strong { color:#bcd2ff; }
+    .cover-designer-actions { display:flex; align-items:center; flex-wrap:wrap; gap:9px; margin-top:11px; }
+    .cover-generate { border:0; border-radius:9px; background:var(--blue); color:#fff; padding:9px 13px; font-weight:750; }
+    .cover-generate:disabled,.cover-style:disabled,.cover-candidate button:disabled { opacity:.5; cursor:not-allowed; }
+    .cover-design-status { color:var(--muted); font-size:11px; line-height:1.45; }
+    .cover-design-status.failed { color:var(--red); }
+    .cover-candidates { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:12px; }
+    .cover-candidate { min-width:0; padding:9px; border:1px solid #343e4b; border-radius:10px; background:#0c1117; }
+    .cover-candidate.selected { border-color:var(--green); box-shadow:0 0 0 2px #3ddc9722; }
+    .cover-candidate-image { display:block; overflow:hidden; border-radius:7px; background:#050607; }
+    .cover-candidate-image img { display:block; width:100%; aspect-ratio:9/16; object-fit:contain; }
+    .cover-candidate-head { display:flex; align-items:center; justify-content:space-between; gap:7px; margin:8px 0 7px; font-size:11px; }
+    .cover-selected-tag { color:var(--green); font-size:10px; font-weight:750; }
+    .cover-candidate-actions { display:flex; flex-wrap:wrap; gap:7px; }
+    .cover-candidate-actions button,.cover-candidate-actions a { border:1px solid #40506a; border-radius:7px; background:#1a2636; color:#dce8ff; padding:6px 8px; font-size:11px; text-decoration:none; }
+    .cover-candidate.selected .cover-candidate-actions button { border-color:#3f7d61; background:#20533d; color:#dff8eb; }
+    .sidebar { padding:15px; min-height:calc(100vh - 92px); display:flex; flex-direction:column; }
+    .sidebar-head { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    .sidebar h2 { margin:0; font-size:16px; }
+    .count { color:var(--muted); font-size:12px; }
+    .editor { margin:12px 0; padding:12px; background:#20252e; border:1px solid #404858; border-radius:12px; display:none; }
+    .editor.active { display:block; }
+    .editor-time { font-variant-numeric:tabular-nums; color:#dbe7ff; font-weight:800; margin-bottom:10px; }
+    .categories { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:9px; }
+    .category { border:1px solid #454d5c; background:#16191f; color:#d9dde6; padding:6px 8px; border-radius:999px; font-size:12px; }
+    .category.active { border-color:var(--orange); color:#ffbd7a; background:#352416; }
+    .scope-toggle-row { display:flex; align-items:center; gap:9px; margin:0 0 9px; }
+    .scope-toggle { border:1px solid #4b5563; background:#151922; color:#d7dce5; border-radius:9px; padding:7px 10px; font-size:12px; font-weight:800; }
+    .scope-toggle.active { border-color:#b58cff; background:#2b1f43; color:#dcc8ff; box-shadow:0 0 0 2px #a56cff22; }
+    .scope-toggle kbd { margin-right:5px; }
+    .scope-toggle-help { color:var(--muted); font-size:11px; line-height:1.35; }
+    .global-tag { color:#dcc8ff; background:#2b1f43; border:1px solid #7654a8; border-radius:999px; font-size:11px; padding:3px 7px; }
+    textarea { width:100%; resize:vertical; min-height:92px; border:1px solid #454d5c; border-radius:9px; background:#101318; color:#fff; padding:10px; outline:none; }
+    textarea:focus { border-color:var(--blue); box-shadow:0 0 0 3px #4f8cff22; }
+    .input-hint { margin-top:6px; color:var(--muted); font-size:11px; }
+    .scope-readout { margin-top:9px; padding:9px 10px; border-radius:9px; background:#161b22; border:1px solid #3c4554; color:#dce6f8; font-size:12px; line-height:1.55; font-variant-numeric:tabular-nums; }
+    .scope-readout strong { color:#ffbd7a; }
+    .scope-note { display:block; color:var(--muted); }
+    .editor-actions { display:flex; gap:8px; justify-content:flex-end; margin-top:10px; }
+    .markers { display:flex; flex-direction:column; gap:8px; overflow:auto; padding-right:2px; }
+    .empty { color:var(--muted); text-align:center; padding:44px 12px; border:1px dashed #38404d; border-radius:12px; line-height:1.7; }
+    .card { border:1px solid #333a46; border-radius:11px; padding:10px; background:#181c22; }
+    .card.selected { border-color:var(--blue); box-shadow:0 0 0 2px #4f8cff22; }
+    .card-top { display:flex; align-items:center; gap:7px; }
+    .time-btn { border:0; padding:0; background:none; color:#9fc0ff; font-weight:800; font-variant-numeric:tabular-nums; }
+    .source-time { color:var(--muted); font-size:11px; }
+    .scope-time { color:#ffc487; font-size:11px; margin-top:6px; font-variant-numeric:tabular-nums; }
+    .tag { margin-left:auto; color:#ffbd7a; background:#392615; border-radius:999px; font-size:11px; padding:3px 7px; }
+    .comment { margin:8px 0; white-space:pre-wrap; line-height:1.5; font-size:14px; }
+    .card-actions { display:flex; flex-wrap:wrap; gap:6px; }
+    .card-actions button { border:0; background:#272c35; color:#d7dbe3; border-radius:7px; padding:5px 8px; font-size:12px; }
+    .danger { color:#ff9d9d!important; }
+    .toolbar { display:flex; gap:7px; margin-bottom:10px; }
+    .toolbar button { flex:1; }
+    .codex-panel { margin:0 0 10px; padding:10px; border:1px solid #4b386d; border-radius:11px; background:linear-gradient(135deg,#21172f,#151922); }
+    .codex-controls { display:flex; justify-content:flex-end; margin-top:8px; }
+    .codex-help { color:#e4d8f5; font-size:12px; line-height:1.5; }
+    .codex-results { margin-top:8px; color:#a9ddb5; font-size:12px; line-height:1.6; max-height:180px; overflow:auto; }
+    .codex-results a { color:#afcaff; }
+    .codex-results ul { margin:3px 0 0; padding-left:18px; }
+    .codex-secondary { width:auto; border:1px solid #3b4654; border-radius:9px; background:#18202a; color:#e9edf3; padding:9px 10px; font-weight:700; }
+    .codex-status { margin-top:7px; color:#c8b5e4; font-size:11px; line-height:1.45; white-space:pre-wrap; overflow-wrap:anywhere; max-height:160px; overflow:auto; }
+    .codex-status.done { color:var(--green); }
+    .codex-status.failed { color:#ff9d9d; }
+    .codex-live { white-space:normal; }
+    .codex-live-head { display:flex; justify-content:space-between; gap:8px; color:#e4d8f5; font-variant-numeric:tabular-nums; }
+    .codex-live-head strong { color:#fff; }
+    .codex-live-current { margin-top:7px; color:#f0e8fb; font-size:12px; font-weight:750; line-height:1.45; }
+    .codex-live-fresh { margin-top:3px; color:#a998bf; }
+    .codex-live-fresh.stale { color:#ffc477; }
+    .codex-progress { position:relative; height:5px; margin-top:8px; overflow:hidden; border-radius:999px; background:#3b2c50; }
+    .codex-progress > i { display:block; height:100%; border-radius:inherit; background:linear-gradient(90deg,#8b5bd0,#d2a5ff); transition:width .35s ease; }
+    .codex-progress.indeterminate > i { width:38%; animation:codex-slide 1.25s ease-in-out infinite; }
+    .codex-activity { display:grid; gap:4px; margin:9px 0 0; padding:0; list-style:none; }
+    .codex-activity li { position:relative; padding-left:13px; color:#bfb0d4; line-height:1.4; }
+    .codex-activity li::before { content:''; position:absolute; left:1px; top:.48em; width:5px; height:5px; border-radius:50%; background:#7753a7; }
+    .codex-activity li:last-child { color:#eee5fa; }
+    .codex-activity li:last-child::before { background:#c899ff; box-shadow:0 0 7px #b87cff; }
+    @keyframes codex-slide { from { transform:translateX(-110%); } to { transform:translateX(270%); } }
+    .edit-timeline { margin-top:16px; padding:13px; border:1px solid #2c3440; border-radius:13px; background:linear-gradient(180deg,#10141a,#0b0e12); box-shadow:inset 0 1px 0 #ffffff08; }
+    .timeline-head { display:flex; align-items:flex-start; justify-content:space-between; gap:12px; }
+    .timeline-title { display:flex; align-items:center; gap:8px; margin:0; font-size:14px; }
+    .timeline-badge { color:#7ce8ea; background:#113538; border:1px solid #235b60; border-radius:999px; padding:2px 7px; font-size:10px; font-weight:800; }
+    .timeline-help { color:var(--muted); font-size:11px; margin-top:5px; }
+    .timeline-tools { display:flex; flex-wrap:wrap; justify-content:flex-end; gap:6px; }
+    .timeline-tools button { border:1px solid #35404c; border-radius:7px; background:#1a2028; color:#e9edf3; padding:6px 8px; font-size:11px; }
+    .timeline-tools button:hover { border-color:#52cbd0; background:#1d2b32; }
+    .timeline-tools button.danger-tool:hover { border-color:#ff7070; background:#341e22; }
+    .timeline-tools button:disabled { opacity:.35; cursor:not-allowed; }
+    .timeline-tools kbd { margin-right:4px; color:#7ce8ea; }
+    .timeline-meta { display:flex; flex-wrap:wrap; justify-content:space-between; gap:8px; margin:11px 0 7px; color:#b5bdc9; font-size:11px; font-variant-numeric:tabular-nums; }
+    .timeline-save { color:var(--green); }
+    .overview-label,.output-label { display:flex; align-items:center; justify-content:space-between; gap:8px; color:#8f9aaa; font-size:10px; margin:7px 0 4px; }
+    .source-overview { position:relative; height:15px; overflow:hidden; border-radius:4px; background:#262c35; cursor:pointer; }
+    .overview-clip { position:absolute; top:2px; bottom:2px; min-width:2px; border-radius:2px; background:#29777b; box-shadow:inset 0 0 0 1px #4fd3d7aa; }
+    .overview-playhead { position:absolute; top:-2px; bottom:-2px; width:2px; background:#fff; box-shadow:0 0 0 1px #101318,0 0 8px #6ff5f8; pointer-events:none; z-index:3; }
+    .timeline-scroll { overflow-x:auto; overflow-y:hidden; border:1px solid #28313c; border-radius:8px; background:#07090c; scrollbar-color:#4e5b69 #171c23; }
+    .timeline-canvas { position:relative; height:112px; min-width:100%; }
+    .timeline-ruler { position:absolute; left:0; right:0; top:0; height:27px; border-bottom:1px solid #242c35; pointer-events:none; }
+    .ruler-tick { position:absolute; top:0; height:27px; border-left:1px solid #3b4653; color:#7f8996; font-size:9px; padding-left:4px; padding-top:5px; font-variant-numeric:tabular-nums; }
+    .timeline-clips { position:absolute; left:0; right:0; top:34px; height:65px; }
+    .timeline-clip { position:absolute; top:0; height:64px; min-width:4px; overflow:hidden; border:2px solid #1b777b; border-radius:5px; background:#174c50; cursor:pointer; box-shadow:0 4px 14px #0009; }
+    .timeline-clip:hover { border-color:#55d9de; }
+    .timeline-clip.selected { border-color:#ffce72; box-shadow:0 0 0 2px #ffce7233,0 5px 18px #000c; }
+    .clip-filmstrip { position:absolute; inset:0; display:flex; opacity:.86; }
+    .clip-thumb { flex:1 0 46px; min-width:0; background:linear-gradient(135deg,#265c63,#18363c); background-size:cover; background-position:center; border-right:1px solid #07121499; }
+    .clip-overlay { position:absolute; inset:auto 0 0; height:21px; display:flex; align-items:center; justify-content:space-between; gap:6px; padding:0 6px; background:linear-gradient(180deg,transparent,#06272be8); color:#ecffff; font-size:9px; font-weight:750; white-space:nowrap; overflow:hidden; }
+    .cut-playhead { position:absolute; top:22px; bottom:2px; width:2px; background:#f4fbff; box-shadow:0 0 8px #73edf0; pointer-events:none; z-index:8; }
+    .cut-playhead::before { content:''; position:absolute; top:-4px; left:50%; width:9px; height:7px; transform:translateX(-50%); border-radius:2px 2px 5px 5px; background:#65e5e9; }
+    .zoom-tools { display:flex; gap:4px; }
+    .zoom-tools button { border:1px solid #303a46; background:#161b22; color:#cbd3de; border-radius:5px; padding:1px 7px; }
+    .timeline-empty { color:#84909d; padding:45px 12px; text-align:center; }
+    .thumb-video { display:none; }
+    .toast { position:fixed; left:50%; bottom:24px; transform:translateX(-50%) translateY(20px); opacity:0; transition:.2s; background:#eef4ff; color:#10151f; padding:9px 14px; border-radius:999px; font-size:13px; font-weight:700; z-index:50; pointer-events:none; }
+    .toast.show { transform:translateX(-50%) translateY(0); opacity:1; }
+    @media (max-width:900px) { main { grid-template-columns:1fr; padding:10px; } .sidebar { min-height:0; } video { height:min(62vh,680px); } header .hint { display:none; } .timeline-head { flex-direction:column; } .timeline-tools { justify-content:flex-start; } }
+    @media (max-width:560px) { .cover-summary { align-items:flex-start; flex-wrap:wrap; } .cover-details { min-width:180px; } .cover-form,.cover-styles,.cover-candidates { grid-template-columns:1fr; } .cover-download { margin-left:66px; } }
+
+    .completed-group { margin-top:18px; border:1px solid #34564c; border-radius:12px; padding:12px; background:#12221d; }
+    .completed-group summary { cursor:pointer; color:var(--green); font-size:15px; font-weight:750; }
+    .completed-group summary span { float:right; font-size:12px; }
+    .completed-note { margin:12px 0; color:var(--muted); font-size:12px; line-height:1.6; }
+    .marker-outcome { margin-top:10px; font-size:12px; color:var(--orange); }
+    .marker-outcome.done { color:var(--green); }
+    .marker-outcome a { display:inline-block; margin:8px 8px 0 0; color:#a7c8ff; }
+    .edit-application { margin:12px 0; padding:12px; border:1px solid #34634f; border-radius:11px; background:#13251e; }
+    .edit-application[hidden],.edit-review[hidden] { display:none; }
+    .edit-application-status { color:#daefe4; font-size:12px; line-height:1.6; white-space:pre-wrap; }
+    .edit-application-status.failed { color:#ffb2a9; }
+    .edit-application-actions,.edit-review-actions { display:flex; flex-wrap:wrap; gap:7px; margin-top:9px; }
+    .edit-application button,.edit-review button,.card-actions .accept-edit { border:1px solid #4a7d64; border-radius:8px; background:#23664a; color:#fff; padding:7px 10px; font-size:12px; font-weight:750; }
+    .edit-application button:disabled,.edit-review button:disabled,.card-actions button:disabled { opacity:.5; cursor:not-allowed; }
+    .edit-application .secondary,.edit-review .secondary { border-color:#3b4654; background:#202832; color:#d7dbe3; }
+    .edit-playing { color:#a5b9af; font-size:11px; margin-top:5px; }
+    .edit-review { margin-bottom:12px; padding:11px; border:1px solid #4c6f99; border-radius:11px; background:#141e2b; }
+    .edit-review-head { display:flex; align-items:center; justify-content:space-between; gap:10px; margin-bottom:8px; font-size:13px; }
+    .edit-review video { width:100%; height:300px; object-fit:contain; border-radius:8px; }
+    .edit-review-note { margin-top:7px; font-size:11px; line-height:1.5; color:#b8c9de; white-space:pre-wrap; }
+  </style>
+</head>
+<body>
+<div class="app">
+  <header>
+    <div class="title"><h1 id="title">Preview 批注</h1><div class="hint"><kbd>Space</kbd> 播放　<kbd>M</kbd> 批注　<kbd>C</kbd> 设置封面　<kbd>G</kbd> 全局检查　<kbd>E</kbd> 分割　<kbd>A</kbd>/<kbd>S</kbd> 左右裁剪　<kbd>D</kbd> 删除片段</div></div>
+    <div class="save-state" id="saveState">正在加载…</div>
+  </header>
+  <main>
+    <section class="viewer" id="viewer" tabindex="0" aria-label="视频快捷键区域">
+      <div class="video-wrap"><video id="video" controls preload="metadata"></video></div>
+      <section class="edit-application" id="editApplication" aria-label="验收并应用到完整视频" hidden>
+        <div class="edit-application-status" id="editApplicationStatus" role="status" aria-live="polite"></div>
+        <div class="edit-playing" id="editPlaying">正在看：原版全片</div>
+        <div class="edit-application-actions"><button id="playAppliedBtn" type="button" hidden>播放完整新版</button><button id="retryApplyBtn" type="button" hidden>重试合成</button><button class="secondary" id="playOriginalBtn" type="button" hidden>切回原版</button></div>
+      </section>
+      <div class="transport">
+        <button id="playBtn">▶ 播放</button>
+        <button data-seek="-2">−2s</button><button data-seek="2">+2s</button>
+        <span class="clock"><span id="now">00:00.0</span> / <span id="duration">00:00.0</span></span>
+        <button class="mark-btn" id="markBtn">M　添加批注</button>
+        <button id="coverBtn" type="button" title="C：从原片提取当前帧，只保留 A-roll" aria-keyshortcuts="C" disabled><kbd>C</kbd> 设置本帧为封面</button>
+      </div>
+      <section class="cover-panel" id="coverPanel" aria-label="A-roll 封面" aria-busy="false">
+        <div class="cover-summary">
+          <a class="cover-preview" id="coverPreview" target="_blank" rel="noopener" hidden><img id="coverImage" alt="选中的纯 A-roll 封面底图，无字幕和 B-roll"></a>
+          <div class="cover-details"><div class="cover-status" id="coverStatus" role="status" aria-live="polite">尚未选择封面 · 只提取 A-roll 原片，不含字幕和 B-roll</div><div class="cover-time" id="coverTime"></div></div>
+          <a class="cover-download" id="coverDownload" download="cover-base.png" hidden>下载底图</a>
+        </div>
+        <section class="cover-designer" id="coverDesigner" aria-label="封面标题与样式" hidden>
+          <div class="cover-form">
+            <label class="cover-field">封面标题
+              <input id="coverTitleInput" type="text" maxlength="80" autocomplete="off" placeholder="例如：拿 offer 简单">
+            </label>
+            <label class="cover-field">蓝色副标题 <small>可不填</small>
+              <input id="coverSubtitleInput" type="text" maxlength="80" autocomplete="off" placeholder="例如：成为拿 offer 的人，很难">
+            </label>
+          </div>
+          <div class="cover-style-label">封面样式</div>
+          <div class="cover-styles" id="coverStyles" role="radiogroup" aria-label="封面样式">
+            <button class="cover-style active" id="coverStylePanel" type="button" role="radio" aria-checked="true" data-cover-style="translucent-title-panel"><strong>半透明标题底板</strong><span>白色主标题＋橙色副标题；自动保护完整词组，不拆成孤字</span></button>
+            <button class="cover-style" id="coverStyleSmiley" type="button" role="radio" aria-checked="false" data-cover-style="smiley-bold"><strong>得意黑大字</strong><span>白色正标题＋橙色副标题；标题块分开，完整词组不跨行</span></button>
+          </div>
+          <div class="cover-designer-actions">
+            <button class="cover-generate" id="coverGenerateBtn" type="button">生成两张候选</button>
+            <span class="cover-design-status" id="coverDesignStatus" role="status" aria-live="polite">默认使用半透明标题底板</span>
+          </div>
+          <div class="cover-candidates" id="coverCandidates" aria-label="封面候选" hidden></div>
+        </section>
+      </section>
+      <div class="rail" id="rail" title="点击跳转"><div class="rail-progress" id="railProgress"></div><div id="pins"></div><div class="playhead" id="playhead"></div></div>
+      <div class="legend"><span>白线＝M 点　蓝色＝回顾 M−6～M+4　橙色＝处理 M−3～M+3</span><span class="keyboard-state" id="keyboardState">点击视频框，激活快捷键</span><span>绿色＝已解决</span></div>
+      <section class="edit-timeline" id="editTimeline" aria-label="剪映式试剪时间线">
+        <div class="timeline-head">
+          <div><h2 class="timeline-title">试剪时间线 <span class="timeline-badge">非破坏预览</span></h2><div class="timeline-help">点选片段后操作；播放会自动跳过被裁掉的部分，原 Preview 文件不会改变。</div></div>
+          <div class="timeline-tools">
+            <button data-timeline-action="split" title="在播放头处分割当前片段"><kbd>E</kbd>分割</button>
+            <button data-timeline-action="trim-left" title="删除当前片段左边缘到播放头"><kbd>A</kbd>向左裁剪</button>
+            <button data-timeline-action="trim-right" title="删除播放头到当前片段右边缘"><kbd>S</kbd>向右裁剪</button>
+            <button class="danger-tool" data-timeline-action="delete" title="删除当前选中的整个片段"><kbd>D</kbd>删除片段</button>
+            <button id="timelineUndo" title="撤销上一步">↶ 撤销</button>
+            <button id="timelineReset" title="恢复完整 Preview">重置</button>
+          </div>
+        </div>
+        <div class="timeline-meta"><span id="timelineStats">等待视频加载…</span><span class="timeline-save" id="timelineSave">时间线未加载</span></div>
+        <div class="overview-label"><span>原始 Preview 轴 · 暗处为已裁掉</span><span id="sourceClock"></span></div>
+        <div class="source-overview" id="sourceOverview" title="点击跳转原始 Preview 时间"><div id="overviewClips"></div><div class="overview-playhead" id="overviewPlayhead"></div></div>
+        <div class="output-label"><span>成片预览轴 · 片段自动吸附</span><span class="zoom-tools"><button id="zoomOut" title="缩小时间线">−</button><button id="zoomIn" title="放大时间线">＋</button></span></div>
+        <div class="timeline-scroll" id="timelineScroll"><div class="timeline-canvas" id="timelineCanvas"><div class="timeline-ruler" id="timelineRuler"></div><div class="timeline-clips" id="timelineClips"></div><div class="cut-playhead" id="cutPlayhead"></div></div></div>
+      </section>
+    </section>
+    <aside class="sidebar">
+      <div class="sidebar-head"><h2>修改批注</h2><span class="count" id="count">0 条</span></div>
+      <div class="editor" id="editor">
+        <div class="editor-time" id="editorTime"></div>
+        <div class="categories" id="categories"></div>
+        <div class="scope-toggle-row"><button class="scope-toggle" id="globalToggle" type="button" aria-pressed="false"><kbd>G</kbd><span id="globalToggleLabel">非全局</span></button><span class="scope-toggle-help" id="globalToggleHelp">只检查 M 点附近的回顾和处理窗口</span></div>
+        <textarea id="comment" placeholder="例如：‘简历’和‘包装’之间空太久，这里剪短一点。"></textarea>
+        <div class="input-hint"><kbd>Enter</kbd> 保存并回到视频　<kbd>Shift</kbd>+<kbd>Enter</kbd> 换行</div>
+        <div class="scope-readout" id="scopeReadout"></div>
+        <div class="editor-actions"><button class="ghost" id="cancelBtn">取消</button><button class="primary" id="saveBtn">保存批注　Enter</button></div>
+      </div>
+      <div class="toolbar"><button class="ghost" id="copyBtn">复制清单</button><button class="ghost" id="exportBtn">导出 JSON</button></div>
+      <div class="codex-panel"><div class="codex-help">两条自动修改，结尾剩一条也处理。你可以继续看视频。</div><div class="codex-status" id="codexStatus" role="status" aria-live="polite">正在连接自动修改…</div><div class="codex-results" id="codexResults" hidden></div><div class="codex-controls"><button class="codex-secondary" id="codexPauseBtn" type="button">暂停自动修改</button></div></div>
+      <section class="edit-review" id="editReview" aria-label="这一条的改后片段" hidden>
+        <div class="edit-review-head"><strong id="editReviewTitle">看修改</strong><button class="secondary" id="closeEditReviewBtn" type="button">收起</button></div>
+        <video id="editReviewVideo" controls preload="metadata" playsinline></video>
+        <div class="edit-review-note" id="editReviewNote"></div>
+        <div class="edit-review-actions"><button id="reviewAcceptBtn" type="button">通过并应用</button><button class="secondary" id="reviewReviseBtn" type="button">继续修改</button></div>
+      </section>
+      <div class="markers" id="markers"></div>
+    </aside>
+  </main>
+</div>
+<div class="toast" id="toast"></div>
+<script src="/preview_timeline.js"></script>
+<script>
+(() => {
+  const $ = s => document.querySelector(s);
+  const video=$('#video'), viewer=$('#viewer'), rail=$('#rail'), pins=$('#pins'), markersEl=$('#markers'), editor=$('#editor'), comment=$('#comment');
+  const timelineApi=window.PreviewTimeline;
+  const timelineScroll=$('#timelineScroll'), timelineCanvas=$('#timelineCanvas'), timelineClips=$('#timelineClips');
+  const categories=['这里短一点','这里留长一点','删掉这段','听不清／气口','字幕／文字','其他'];
+  const DEFAULT_CATEGORY='其他';
+  const REVIEW_BEFORE=6, REVIEW_AFTER=4, ACTION_BEFORE=3, ACTION_AFTER=3;
+  let config={timelineMap:[]}, state={version:1,video:'',markers:[]}, draft=null, loopStop=null;
+  let annotationScopeMode='local';
+  let codexJobState='idle', codexPollTimer=null, codexStatusVersion=0, codexPaused=false, codexPauseBusy=false, lastCodexStatus={state:'idle'};
+  let persistenceQueue=Promise.resolve(), commentSaveVersion=0, savedCommentVersion=0, timelineSaveVersion=0, savedTimelineVersion=0;
+  let reviewAtEnd=false, reviewEndGeneration=0, lastFinishedSaveVersion=-1;
+  const DEFAULT_COVER_DESIGN={title:'',subtitle:'',style:'translucent-title-panel'};
+  const COVER_STYLES=new Set(['translucent-title-panel','smiley-bold']);
+  let coverSelection=null, coverBusy=false, coverRequestVersion=0, coverDesign={...DEFAULT_COVER_DESIGN}, coverCandidates=[], coverDesignBusy=false;
+  let editApplication=null, editPollTimer=null, editStatusVersion=0, editAcceptBusy=null, editRetryBusy=false, editApplicationError='', editErrorRevision=null;
+  let editCandidateSignature='', selectedEdit=null, playingVersionId=null, versionSwitchBusy=false, baseVideoDuration=0;
+  const invalidatedEditRevisions=new Map();
+  let savedTimeline=null, timelineState={version:1,video:'',sourceDuration:0,clips:[]}, timelineHistory=[], selectedClipId=null, timelineSaveTimer=null, pixelsPerSecond=8, thumbnails=[], playbackClipId=null, timelineReady=false, internalTimelineSeek=false;
+  const fmt = t => { t=Math.max(0,Number(t)||0); const m=Math.floor(t/60), s=t-m*60; return `${String(m).padStart(2,'0')}:${s.toFixed(1).padStart(4,'0')}`; };
+  const mapSource = t => { const segments=config.timelineMap||[]; for(let i=0;i<segments.length;i++){const seg=segments[i],isLast=i===segments.length-1;if(t>=seg.previewStart&&(t<seg.previewEnd||(isLast&&t<=seg.previewEnd+.05)))return seg.sourceStart+(t-seg.previewStart)*seg.speed;} return null; };
+  const windowOf = (marker,kind) => {
+    const isReview=kind==='review', defaultBefore=isReview?REVIEW_BEFORE:ACTION_BEFORE, defaultAfter=isReview?REVIEW_AFTER:ACTION_AFTER;
+    const beforeKey=isReview?'reviewBefore':'actionBefore',afterKey=isReview?'reviewAfter':'actionAfter';
+    const before=Number.isFinite(Number(marker[beforeKey]))?Number(marker[beforeKey]):defaultBefore;
+    const after=Number.isFinite(Number(marker[afterKey]))?Number(marker[afterKey]):defaultAfter;
+    const duration=Number.isFinite(video.duration)?video.duration:Infinity;
+    return {before,after,start:Math.max(0,marker.previewTime-before),end:Math.min(duration,marker.previewTime+after)};
+  };
+  const mapSourceRanges = (start,end) => (config.timelineMap||[]).flatMap(seg=>{
+    const previewStart=Math.max(start,seg.previewStart),previewEnd=Math.min(end,seg.previewEnd);
+    if(previewEnd<=previewStart) return [];
+    return [{previewStart,previewEnd,sourceStart:seg.sourceStart+(previewStart-seg.previewStart)*seg.speed,sourceEnd:seg.sourceStart+(previewEnd-seg.previewStart)*seg.speed}];
+  });
+  function applyScope(marker){
+    const review=windowOf(marker,'review'),action=windowOf(marker,'action');
+    marker.reviewBefore=review.before; marker.reviewAfter=review.after; marker.reviewPreviewStart=review.start; marker.reviewPreviewEnd=review.end; marker.reviewSourceRanges=mapSourceRanges(review.start,review.end);
+    marker.actionBefore=action.before; marker.actionAfter=action.after; marker.actionPreviewStart=action.start; marker.actionPreviewEnd=action.end; marker.actionSourceRanges=mapSourceRanges(action.start,action.end);
+    // 旧消费者继续读取 scope/sourceRanges 时，得到的是新的“处理窗口”。
+    marker.scopeBefore=action.before; marker.scopeAfter=action.after; marker.scopePreviewStart=action.start; marker.scopePreviewEnd=action.end; marker.sourceRanges=marker.actionSourceRanges;
+    marker.windowBefore=review.before; marker.windowAfter=review.after; marker.scopeMode=marker.scopeMode==='global'||marker.global===true?'global':'local'; marker.global=marker.scopeMode==='global'; return marker;
+  }
+  const toast = msg => { $('#toast').textContent=msg; $('#toast').classList.add('show'); setTimeout(()=>$('#toast').classList.remove('show'),1400); };
+  const isTyping = el => el && (el.matches('input,textarea,select') || el.isContentEditable);
+  let viewerHotkeysActive=false;
+  function activateViewer(){ viewerHotkeysActive=true; viewer.classList.add('hotkey-active'); $('#keyboardState').textContent='快捷键已激活'; viewer.focus({preventScroll:true}); }
+  function deactivateViewer(){ viewerHotkeysActive=false; viewer.classList.remove('hotkey-active'); $('#keyboardState').textContent='点击视频框，激活快捷键'; }
+  function updateCoverButton(){
+    $('#coverBtn').disabled=coverBusy||video.readyState<2||video.seeking||!Number.isFinite(video.duration)||video.duration<=0;
+    $('#coverPanel').setAttribute('aria-busy',String(coverBusy||coverDesignBusy));
+    $('#coverGenerateBtn').disabled=!coverSelection||coverDesignBusy;
+    $('#coverStylePanel').disabled=coverDesignBusy;
+    $('#coverStyleSmiley').disabled=coverDesignBusy;
+  }
+  function coverStatus(message,failed=false){
+    $('#coverStatus').textContent=message;
+    $('#coverStatus').classList.toggle('failed',failed);
+  }
+  function renderCover(cover){
+    coverSelection=cover;
+    $('#coverPreview').hidden=!cover;
+    $('#coverDownload').hidden=!cover;
+    $('#coverDesigner').hidden=!cover;
+    $('#coverTime').textContent=cover?`Preview ${fmt(cover.previewTime)} · 原片 ${fmt(cover.sourceTime)}`:'';
+    if(cover){
+      $('#coverImage').src=cover.imageUrl;
+      $('#coverPreview').href=cover.imageUrl;
+      $('#coverDownload').href=cover.imageUrl;
+      coverStatus('已设置封面 · 纯 A-roll，无字幕和 B-roll');
+    }else{
+      $('#coverImage').removeAttribute('src');
+      $('#coverPreview').removeAttribute('href');
+      $('#coverDownload').removeAttribute('href');
+      coverStatus('尚未选择封面 · 只提取 A-roll 原片，不含字幕和 B-roll');
+    }
+    updateCoverButton();
+  }
+  function normalizeCoverDesign(value={}){
+    const style=COVER_STYLES.has(value?.style)?value.style:DEFAULT_COVER_DESIGN.style;
+    return {...value,title:typeof value?.title==='string'?value.title:'',subtitle:typeof value?.subtitle==='string'?value.subtitle:'',style};
+  }
+  function coverDesignStatus(message,failed=false){
+    $('#coverDesignStatus').textContent=message;
+    $('#coverDesignStatus').classList.toggle('failed',failed);
+  }
+  function renderCoverDesign(design=coverDesign){
+    coverDesign=normalizeCoverDesign(design);
+    $('#coverTitleInput').value=coverDesign.title;
+    $('#coverSubtitleInput').value=coverDesign.subtitle;
+    for(const [id,style] of [['coverStylePanel','translucent-title-panel'],['coverStyleSmiley','smiley-bold']]){
+      const active=coverDesign.style===style,button=$('#'+id);
+      button.classList.toggle('active',active);button.setAttribute('aria-checked',String(active));
+    }
+  }
+  function coverDesignFromInputs(){
+    return normalizeCoverDesign({...coverDesign,title:$('#coverTitleInput').value.trim(),subtitle:$('#coverSubtitleInput').value.trim()});
+  }
+  function renderCoverCandidates(candidates=coverCandidates){
+    coverCandidates=Array.isArray(candidates)?candidates:[];
+    const box=$('#coverCandidates');box.hidden=!coverCandidates.length;
+    box.innerHTML=coverCandidates.map(candidate=>{
+      const id=escapeHtml(candidate.id||''),style=escapeHtml(candidate.style||''),label=escapeHtml(candidate.label||(candidate.style==='smiley-bold'?'得意黑大字':'半透明标题底板')),url=escapeHtml(candidate.imageUrl||''),selected=Boolean(candidate.selected);
+      return `<article class="cover-candidate${selected?' selected':''}" data-candidate-id="${id}" data-cover-style="${style}"><a class="cover-candidate-image" href="${url}" target="_blank" rel="noopener"><img src="${url}" alt="${label}封面候选"></a><div class="cover-candidate-head"><strong>${label}</strong>${selected?'<span class="cover-selected-tag">已采用</span>':''}</div><div class="cover-candidate-actions"><button type="button" data-cover-action="select" data-candidate-id="${id}"${selected?' disabled':''}>${selected?'已采用':'采用此封面'}</button><a href="${url}" download="cover-${style||id}.png">下载 PNG</a></div></article>`;
+    }).join('');
+  }
+  async function saveCoverDesign(){
+    if(!coverSelection||coverDesignBusy)return false;
+    const next=coverDesignFromInputs();coverDesign=next;coverDesignBusy=true;updateCoverButton();coverDesignStatus('正在保存标题和样式…');
+    try{
+      const response=await fetch('/api/cover/design',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(next)}),result=await response.json();
+      if(!response.ok)throw new Error(result.error||`HTTP ${response.status}`);
+      renderCoverDesign(result.design||next);renderCoverCandidates(result.candidates||result.design?.candidates||[]);coverDesignStatus('已保存标题和样式');return true;
+    }catch(error){coverDesignStatus(`保存失败：${error.message}`,true);return false;}
+    finally{coverDesignBusy=false;updateCoverButton();}
+  }
+  async function chooseCoverStyle(style){
+    if(coverDesignBusy||!COVER_STYLES.has(style))return;
+    coverDesign={...coverDesignFromInputs(),style};renderCoverDesign(coverDesign);await saveCoverDesign();
+  }
+  async function generateCoverCandidates(){
+    if(!coverSelection||coverDesignBusy)return;
+    const next=coverDesignFromInputs();
+    if(!next.title){coverDesignStatus('请先输入封面标题',true);$('#coverTitleInput').focus();return;}
+    coverDesign=next;coverDesignBusy=true;updateCoverButton();coverDesignStatus('正在生成两张封面候选…');
+    try{
+      const response=await fetch('/api/cover/candidates',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(next)}),result=await response.json();
+      if(!response.ok||!result.success)throw new Error(result.error||`HTTP ${response.status}`);
+      renderCoverDesign(result.design||next);renderCoverCandidates(result.candidates);coverDesignStatus(`已生成 ${coverCandidates.length} 张候选，请选择采用`);
+    }catch(error){coverDesignStatus(`生成失败：${error.message}`,true);}
+    finally{coverDesignBusy=false;updateCoverButton();}
+  }
+  async function selectCoverCandidate(id){
+    if(!id||coverDesignBusy)return;
+    coverDesignBusy=true;updateCoverButton();coverDesignStatus('正在采用这张封面…');
+    try{
+      const response=await fetch('/api/cover/select-candidate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id})}),result=await response.json();
+      if(!response.ok)throw new Error(result.error||`HTTP ${response.status}`);
+      if(result.design)renderCoverDesign(result.design);renderCoverCandidates(result.candidates);coverDesignStatus('已采用，输出成品时将使用这张封面');toast('已采用封面');
+    }catch(error){coverDesignStatus(`采用失败：${error.message}`,true);}
+    finally{coverDesignBusy=false;updateCoverButton();}
+  }
+  async function loadCover(){
+    const requestVersion=coverRequestVersion;
+    try{
+      const response=await fetch('/api/cover');
+      const result=await response.json();
+      if(!response.ok)throw new Error(result.error||`HTTP ${response.status}`);
+      if(requestVersion===coverRequestVersion){renderCover(result.cover||null);renderCoverDesign(result.design||DEFAULT_COVER_DESIGN);renderCoverCandidates(result.candidates||result.design?.candidates||[]);}
+    }catch(error){
+      if(requestVersion===coverRequestVersion)coverStatus(`封面读取失败：${error.message}`,true);
+    }
+  }
+  async function setCurrentFrameAsCover(){
+    if(coverBusy)return;
+    updateCoverButton();
+    if($('#coverBtn').disabled){toast('请等待视频当前帧加载完成');return;}
+    video.pause();
+    const previewTime=video.currentTime;
+    if(!Number.isFinite(previewTime)||previewTime<0)return;
+    coverBusy=true;coverRequestVersion+=1;updateCoverButton();
+    coverStatus(`正在提取 ${fmt(previewTime)} 的 A-roll 原片帧…`);
+    try{
+      const response=await fetch('/api/cover',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({previewTime})});
+      const result=await response.json();
+      if(!response.ok||!result.success||!result.cover)throw new Error(result.error||`HTTP ${response.status}`);
+      renderCover(result.cover);
+      if(result.design)renderCoverDesign(result.design);
+      renderCoverCandidates(result.candidates||[]);
+      coverDesignStatus('已选定底图，请输入标题并生成两张候选');
+      toast('已设置纯 A-roll 封面');
+    }catch(error){
+      coverStatus(`设置封面失败：${error.message}${coverSelection?' · 已保留上次封面':''}`,true);
+    }finally{
+      coverBusy=false;updateCoverButton();
+    }
+  }
+  function togglePlayback(){
+    if(!video.paused){ video.pause(); return; }
+    if(timelineReady){
+      let clip=timelineApi.clipAt(timelineState.clips,video.currentTime,selectedClipId);
+      if(!clip){ clip=timelineState.clips.find(c=>c.sourceStart>video.currentTime)||timelineState.clips[0]; if(clip)setTime(clip.sourceStart,1); }
+      else if(video.currentTime>=clip.sourceEnd-.04){ const index=timelineState.clips.findIndex(c=>c.id===clip.id),next=timelineState.clips[index+1]||timelineState.clips[0]; if(next)setTime(next.sourceStart,1); }
+      playbackClipId=(timelineApi.clipAt(timelineState.clips,video.currentTime)||timelineState.clips[0])?.id||null;
+    }
+    video.play().catch(()=>{});
+  }
+  function setTime(t,direction=0){
+    let target=Math.max(0,Math.min(video.duration||Infinity,t));
+    if(timelineReady&&!timelineApi.clipAt(timelineState.clips,target)){
+      const next=timelineState.clips.find(c=>c.sourceStart>target),previous=[...timelineState.clips].reverse().find(c=>c.sourceEnd<target);
+      target=direction<0&&previous?Math.max(previous.sourceStart,previous.sourceEnd-.02):next?next.sourceStart:previous?Math.max(previous.sourceStart,previous.sourceEnd-.02):target;
+    }
+    playbackClipId=timelineReady?(timelineApi.clipAt(timelineState.clips,target)?.id||null):null;
+    internalTimelineSeek=true; video.currentTime=target; setTimeout(()=>{internalTimelineSeek=false;},0);
+  }
+  function openDraft(marker){
+    video.pause(); loopStop=null;
+    draft=applyScope(marker?JSON.parse(JSON.stringify(marker)):{id:`m-${Date.now()}-${Math.random().toString(16).slice(2)}`,previewTime:video.currentTime,sourceTime:mapSource(video.currentTime),category:DEFAULT_CATEGORY,comment:'',scopeMode:annotationScopeMode,global:annotationScopeMode==='global',reviewBefore:REVIEW_BEFORE,reviewAfter:REVIEW_AFTER,actionBefore:ACTION_BEFORE,actionAfter:ACTION_AFTER,resolved:false,createdAt:new Date().toISOString()});
+    annotationScopeMode=draft.scopeMode;
+    $('#editorTime').textContent=`Preview ${fmt(draft.previewTime)}${draft.sourceTime==null?'':`　·　原片 ${fmt(draft.sourceTime)}`}`;
+    comment.value=draft.comment||'';
+    $('#categories').innerHTML=categories.map(c=>`<button class="category${c===draft.category?' active':''}" data-category="${c}">${c}</button>`).join('');
+    updateScopeModeUi();
+    editor.classList.add('active'); setTimeout(()=>comment.focus(),0); render();
+  }
+  function updateScopeModeUi(){
+    const global=annotationScopeMode==='global',button=$('#globalToggle');
+    button.classList.toggle('active',global); button.setAttribute('aria-pressed',String(global)); $('#globalToggleLabel').textContent=global?'全局':'非全局';
+    $('#globalToggleHelp').textContent=global?'检查整条视频的重复、逻辑和位置关系':'只检查 M 点附近的回顾和处理窗口';
+    if(draft){const review=windowOf(draft,'review'),action=windowOf(draft,'action');$('#scopeReadout').innerHTML=global?`<strong>全局检查</strong>　M ${fmt(draft.previewTime)} 仅作问题锚点<span class="scope-note">处理前必须通读完整逐字稿并检查全片结构；可删除、提出修改，或调整到其他位置。局部回顾 ${fmt(review.start)}–${fmt(review.end)} / 处理 ${fmt(action.start)}–${fmt(action.end)} 只帮助定位。</span>`:`<strong>先回顾</strong>　${fmt(review.start)} → ${fmt(review.end)}（M−6～M+4）<br><strong>再处理</strong>　${fmt(action.start)} → ${fmt(action.end)}（M−3～M+3）<span class="scope-note">结合回顾窗口的语义和逐字稿，在处理窗口内判断怎么改；不代表机械删除整段。</span>`;}
+    $('#keyboardState').textContent=`快捷键已激活 · ${global?'全局':'非全局'}`;
+  }
+  function toggleScopeMode(){annotationScopeMode=annotationScopeMode==='global'?'local':'global';if(draft){draft.scopeMode=annotationScopeMode;draft.global=annotationScopeMode==='global';}updateScopeModeUi();render();toast(annotationScopeMode==='global'?'已切换为全局检查':'已切换为非全局检查');}
+  function closeDraft(){ draft=null; editor.classList.remove('active'); render(); activateViewer(); }
+  function enqueuePersistence(operation){
+    // Timeline and comment snapshots share one writer, preserving save order.
+    persistenceQueue=persistenceQueue.then(operation,operation); return persistenceQueue;
+  }
+  function timelineSnapshot(){
+    return JSON.stringify({...timelineState,video:config.title||'',sourceDuration:video.duration,updatedAt:new Date().toISOString()});
+  }
+  async function writeTimeline(snapshot,version){
+    $('#timelineSave').textContent='时间线保存中…'; $('#timelineSave').style.color='var(--orange)';
+    const r=await fetch('/api/timeline',{method:'POST',headers:{'Content-Type':'application/json'},body:snapshot});
+    const out=await r.json(); if(!r.ok)throw new Error(out.error||'时间线保存失败');
+    savedTimelineVersion=version;
+    if(version===timelineSaveVersion){timelineState.updatedAt=out.updatedAt;$('#timelineSave').textContent=`已自动保存 · ${JSON.parse(snapshot).clips.length} 个片段`;$('#timelineSave').style.color='var(--green)';}
+  }
+  function persist(){
+    clearTimeout(timelineSaveTimer); timelineSaveTimer=null;
+    const snapshot=JSON.stringify(state),version=++commentSaveVersion;
+    const timeline=timelineReady?timelineSnapshot():null,timelineVersion=timeline?++timelineSaveVersion:timelineSaveVersion;
+    $('#saveState').textContent='保存中…'; $('#saveState').style.color='var(--orange)';
+    return enqueuePersistence(async()=>{
+      try {
+        // Persist trial cuts first: POST comments may start a full pair immediately.
+        if(timeline)await writeTimeline(timeline,timelineVersion);
+        const r=await fetch('/api/comments',{method:'POST',headers:{'Content-Type':'application/json'},body:snapshot});
+        const out=await r.json(); if(!r.ok)throw new Error(out.error||'批注保存失败');
+        savedCommentVersion=version;
+        if(version===commentSaveVersion){state.updatedAt=out.updatedAt;$('#saveState').textContent=`已自动保存 · ${JSON.parse(snapshot).markers.length} 条`;$('#saveState').style.color='var(--green)';toast(config.codexCallbackEnabled?(codexPaused?'建议已保存，自动修改已暂停':(out.incremental?.pendingMarkerIds?.length===1&&!reviewAtEnd?'已保存1条，再记1条就自动修改':'建议已保存，你可以继续看视频')):'建议已保存');}
+        // Do not refresh before persistence; that can miss the idle-to-running transition.
+        void refreshCodexStatus(); if(reviewAtEnd)void queueReviewFinished(); return true;
+      }catch(e){
+        if(version===commentSaveVersion){$('#saveState').textContent='保存失败，请勿关闭页面';$('#saveState').style.color='var(--red)';toast(`保存失败：${e.message}`);}
+        return false;
+      }
+    });
+  }
+  function reviewEndTime(){return timelineReady&&timelineState.clips.length?timelineState.clips[timelineState.clips.length-1].sourceEnd:video.duration;}
+  function resetReviewEndWhenSeeking(){
+    if(reviewAtEnd&&video.currentTime<reviewEndTime()-.05){reviewAtEnd=false;reviewEndGeneration++;lastFinishedSaveVersion=-1;}
+  }
+  function queueReviewFinished(){
+    if(!config.codexCallbackEnabled||!reviewAtEnd||lastFinishedSaveVersion===commentSaveVersion)return Promise.resolve(false);
+    if(timelineSaveTimer!==null)void persistTimeline();
+    const version=commentSaveVersion,timelineVersion=timelineSaveVersion,generation=reviewEndGeneration,previewTime=video.currentTime;
+    lastFinishedSaveVersion=version;
+    return enqueuePersistence(async()=>{
+      if(!reviewAtEnd||generation!==reviewEndGeneration)return false;
+      // An unsaved final comment must not flush an older server snapshot.
+      if(savedCommentVersion<version||savedTimelineVersion<timelineVersion){lastFinishedSaveVersion=-1;return false;}
+      try{
+        const r=await fetch('/api/review-finished',{method:'POST',headers:{'Content-Type':'application/json','X-Codex-Callback-Token':config.codexCallbackToken},body:JSON.stringify({previewTime})});
+        const out=await r.json();if(!r.ok)throw new Error(out.error||'结尾建议提交失败');
+        void refreshCodexStatus();return true;
+      }catch(e){if(generation===reviewEndGeneration)lastFinishedSaveVersion=-1;toast(`结尾建议处理失败：${e.message}`);return false;}
+    });
+  }
+  function markReviewFinished(){if(versionSwitchBusy)return;reviewAtEnd=true;void queueReviewFinished();}
+  function queuePersist(){return persist();}
+  function persistTimeline(){
+    clearTimeout(timelineSaveTimer); timelineSaveTimer=null;
+    const snapshot=timelineSnapshot(),version=++timelineSaveVersion;
+    return enqueuePersistence(async()=>{
+      try{await writeTimeline(snapshot,version);return true;}
+      catch(e){if(version===timelineSaveVersion){$('#timelineSave').textContent='时间线保存失败';$('#timelineSave').style.color='var(--red)';toast(`时间线保存失败：${e.message}`);}return false;}
+    });
+  }
+  function queueTimelinePersist(){ clearTimeout(timelineSaveTimer); timelineSaveTimer=setTimeout(()=>{timelineSaveTimer=null;void persistTimeline();},180); }
+  function formatElapsed(seconds){seconds=Math.max(0,Number(seconds)||0);const h=Math.floor(seconds/3600),m=Math.floor(seconds%3600/60),s=Math.floor(seconds%60);return h?`${h}:${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`:`${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;}
+  function runningStatusHtml(status){
+    const p=status.progress||{},step=Number(p.step),total=Number(p.totalSteps),hasStep=Number.isFinite(step)&&Number.isFinite(total)&&total>0;
+    const width=hasStep?Math.max(4,Math.min(100,step/total*100)):38;
+    const latest=Date.parse(p.latestActivityAt||status.updatedAt||status.startedAt||''),age=Number.isFinite(latest)?Math.max(0,Math.floor((Date.now()-latest)/1000)):null;
+    const freshness=age==null?'等待第一条进度':age<5?'刚刚有更新':age<60?`${age} 秒前更新`:`${Math.floor(age/60)} 分钟前更新 · 仍在运行`;
+    const items=Array.isArray(p.activity)?p.activity.slice(-5):[];
+    return `<div class="codex-live"><div class="codex-live-head"><strong>${hasStep?`真实进度 ${step}/${total}`:'执行中'}</strong><span>已运行 ${formatElapsed(p.elapsedSeconds)}</span></div><div class="codex-progress${hasStep?'':' indeterminate'}"><i style="width:${width}%"></i></div><div class="codex-live-current">当前：${escapeHtml(p.current||'正在启动并读取批注')}</div><div class="codex-live-fresh${age!=null&&age>=60?' stale':''}">${escapeHtml(freshness)}</div>${items.length?`<ul class="codex-activity">${items.map(item=>`<li>${escapeHtml(item.text)}</li>`).join('')}</ul>`:''}</div>`;
+  }
+  let completedGroupOpen=false, markerGroupSignature='';
+  function commentProgress(status){
+    const inc=status?.incremental||{},latest=new Map();
+    for(const batch of Array.isArray(inc.batches)?inc.batches:[]){
+      for(const marker of Array.isArray(batch.markers)?batch.markers:[])latest.set(marker.id,{...marker,state:batch.state,outputUrls:batch.outputUrls});
+    }
+    for(const id of inc.pendingMarkerIds||[]){if(latest.get(id)?.state!=='running')latest.set(id,{...(latest.get(id)||{}),id,state:'queued'});}
+    const count=(...kinds)=>[...latest.values()].filter(marker=>kinds.includes(marker.state)).length;
+    return {byId:latest,running:count('running'),waiting:count('queued'),done:count('completed','ready_for_review'),check:count('failed','stale'),completed:[...latest.values()].filter(marker=>['completed','ready_for_review'].includes(marker.state))};
+  }
+  function incrementalSummary(status){
+    const p=commentProgress(status),parts=[];
+    if(status?.incremental?.paused)parts.push('自动修改已暂停');
+    if(p.running)parts.push(`正在修改 ${p.running} 条`);
+    if(p.waiting)parts.push(p.waiting===1&&!reviewAtEnd&&!status?.incremental?.paused?'已保存1条，再记1条就自动修改':`等待处理 ${p.waiting} 条`);
+    if(p.done)parts.push(`已改好 ${p.done} 条`);
+    if(p.check)parts.push(`需检查 ${p.check} 条`);
+    return parts.join(' · ')||'两条自动修改，结尾剩一条也处理';
+  }
+  function resultLinks(marker){
+    const urls=(Array.isArray(marker.outputUrls)?marker.outputUrls:[]).filter(url=>typeof url==='string'&&/^\/(?!\/)/.test(url)&&!/[\\\x00-\x20]/.test(url));
+    return urls.map((url,index)=>` <a href="${escapeHtml(url)}" target="_blank" rel="noopener">查看修改${urls.length>1?' '+(index+1):''}</a>`).join('');
+  }
+  const localMediaUrl=url=>typeof url==='string'&&/^\/(?!\/)/.test(url)&&!/[\\\x00-\x20]/.test(url);
+  function editCandidate(marker){
+    const candidate=editApplication?.candidates?.find(item=>item.markerId===marker.id);
+    if(!candidate)return null;
+    if(invalidatedEditRevisions.get(marker.id)===candidate.revisionId)return {...candidate,status:'stale',canAccept:false,reason:'批注已更新，等待重新修改'};
+    return candidate;
+  }
+
+  function markerOutcome(marker){
+    const candidate=editCandidate(marker);
+    if(candidate){
+      const done=['ready','accepted','applied','stale'].includes(candidate.status)&&localMediaUrl(candidate.clipUrl);
+      const label=candidate.status==='stale'?'旧修改 · 已被更新版本替代':candidate.status==='applied'?'已应用到全片':candidate.status==='accepted'?(editApplication?.state==='failed'?'已通过 · 合成待重试':'已通过 · 合成中'):'已改好 · 待验收';
+      return {done,label,links:'',candidate};
+    }
+    const job=commentProgress(lastCodexStatus).byId.get(marker.id);
+    const changed=job&&((job.comment!=null&&job.comment!==marker.comment)||(job.previewTime!=null&&Math.abs(job.previewTime-marker.previewTime)>.001));
+    const retry=changed||['queued','running','failed','stale','cancelled','superseded'].includes(job?.state);
+    const links=job?resultLinks(job):'';
+    const ready=!retry&&['completed','ready_for_review'].includes(job?.state)&&Boolean(links);
+    const done=!retry&&(ready||Boolean(marker.resolved));
+    const label=done?(marker.resolved?'已标为解决 · 尚未验收合入':'已改好 · 待验收'):changed?'已更新 · 待重新处理':job?.state==='running'?'正在修改':job?.state==='queued'?'等待修改':['failed','stale'].includes(job?.state)?'需要重新处理':'待处理';
+    return {done,label,links:done?links:''};
+  }
+  function completedMarkerGroup(cards,count){
+    return count?`<details class="completed-group" id="completedGroup"${completedGroupOpen?' open':''}><summary>已改好 <span>${count} 条</span></summary><div class="completed-note">Edit 记录库：保留原批注、时间点、修改结果、改后片段与验收记录，用于后续判断剪辑偏好、迭代 Skill。已改好不等于已认可；点击「通过并应用」才算验收。${playingVersionId?'当前正在播放完整新版。':'当前播放器仍为原版全片。'}</div>${cards}</details>`:'';
+  }
+
+  function renderApplicationPanel(){
+    const panel=$('#editApplication'),status=$('#editApplicationStatus'),play=$('#playAppliedBtn'),retry=$('#retryApplyBtn');
+    panel.hidden=!editApplication;
+    if(!editApplication)return;
+    const application=editApplication,version=application.activeVersion,accepted=application.acceptedMarkerIds?.length||0;
+    const ready=application.state==='ready'&&version?.identityTimeline===true&&localMediaUrl(version.videoUrl);
+    let text='先看这一条修改，觉得 OK 后点「通过并应用」，后台会合成完整新版。';
+    if(application.state==='rendering'){
+      const frames=Number(application.job?.progressFrames),total=Number(application.job?.totalFrames);
+      text=`已通过 ${accepted} 条 · 正在合成完整新版${Number.isFinite(frames)&&Number.isFinite(total)&&total>0?`（${frames}/${total} 帧）`:''}\n你可以继续看，不会刷新页面或切换正在播放的视频。`;
+    }else if(application.state==='ready'){
+      text=ready?(playingVersionId===version.id?'完整新版已应用，所有已通过修改都在对应位置。':'完整新版已就绪 · 点「播放完整新版」后，从当前位置继续。'):'新版时间线需要检查，当前播放版本保持不变。';
+    }else if(application.state==='failed')text=`全片合成失败：${application.job?.error||application.message||'请重试'}\n已通过的记录已保留，当前播放版本不变。`;
+    if(editApplicationError)text=editApplicationError;
+    if(versionSwitchBusy)text='正在切换视频，保留当前位置和批注…';
+    status.textContent=text;status.classList.toggle('failed',Boolean(editApplicationError)||application.state==='failed');
+    $('#editPlaying').textContent=playingVersionId?'正在看：完整新版':'正在看：原版全片';
+    play.hidden=!ready||playingVersionId===version?.id;play.disabled=versionSwitchBusy||video.readyState<1||!Number.isFinite(video.duration)||video.duration<=0;
+    retry.hidden=application.state!=='failed';retry.disabled=editRetryBusy||versionSwitchBusy;retry.textContent=editRetryBusy?'正在重试…':'重试合成';
+    $('#playOriginalBtn').hidden=!playingVersionId;$('#playOriginalBtn').disabled=versionSwitchBusy;
+    renderEditReviewActions();
+  }
+  function renderEditApplication(application){
+    editApplication=application&&Array.isArray(application.candidates)?application:null;
+    if(editErrorRevision&&editApplication?.candidates.some(candidate=>candidate.markerId===editErrorRevision.markerId&&candidate.revisionId===editErrorRevision.revisionId&&['accepted','applied'].includes(candidate.status))){editErrorRevision=null;editApplicationError='';}
+    const signature=JSON.stringify([editApplication?.state,editApplication?.candidates]);
+    if(signature!==editCandidateSignature){editCandidateSignature=signature;render();}
+    renderApplicationPanel();
+  }
+  async function refreshEditApplication(){
+    clearTimeout(editPollTimer);editPollTimer=null;const version=++editStatusVersion;let available=true;
+    try{
+      const r=await fetch('/api/edit-application');
+      if(r.status===404){available=false;if(version===editStatusVersion)renderEditApplication(null);return;}
+      if(!r.ok)throw new Error('验收进度连接暂时中断');
+      const application=await r.json();if(version===editStatusVersion)renderEditApplication(application);
+    }catch(_){/* A missing or temporarily offline application API must not break comments. */}
+    finally{if(version===editStatusVersion&&available)editPollTimer=setTimeout(refreshEditApplication,2600);}
+  }
+  function renderEditReviewActions(){
+    if(!selectedEdit)return;
+    const marker=state.markers.find(item=>item.id===selectedEdit.markerId),candidate=marker&&editCandidate(marker),same=candidate?.revisionId===selectedEdit.revisionId;
+    const accept=$('#reviewAcceptBtn');accept.disabled=Boolean(editAcceptBusy)||!same||!candidate.canAccept||candidate.status!=='ready';
+    accept.textContent=editAcceptBusy===marker?.id?'正在提交…':same&&['accepted','applied'].includes(candidate.status)?'已通过':'通过并应用';
+    $('#reviewReviseBtn').disabled=!marker;
+  }
+  async function showEditClip(marker){
+    const candidate=editCandidate(marker);if(!candidate||!localMediaUrl(candidate.clipUrl)){toast('这条修改还没有可播放的片段');return;}
+    video.pause();loopStop=null;deactivateViewer();
+    selectedEdit={markerId:marker.id,revisionId:candidate.revisionId};
+    $('#editReviewTitle').textContent=`${fmt(marker.previewTime)} · ${candidate.status==='stale'?'旧版修改':'改后片段'}`;
+    $('#editReviewNote').textContent=candidate.status==='stale'?(candidate.reason||'这条已有更新版本，旧片段只保留记录。'):(candidate.summary||'看完觉得 OK，点击「通过并应用」。主播放器暂时仍保留原版本。');
+    $('#editReview').hidden=false;const player=$('#editReviewVideo');player.src=candidate.clipUrl;renderEditReviewActions();
+    $('#editReview').scrollIntoView?.({block:'nearest'});
+    try{await player.play();}catch(_){toast('片段已打开，点击播放查看');}
+  }
+  function closeEditReview(){const player=$('#editReviewVideo');player.pause();$('#editReview').hidden=true;selectedEdit=null;}
+  async function flushBeforeApplication(){
+    if(draft){toast('先保存或取消正在编辑的批注');return false;}
+    if(timelineSaveTimer!==null)await persistTimeline();
+    await persistenceQueue;
+    if(draft||savedCommentVersion<commentSaveVersion||savedTimelineVersion<timelineSaveVersion){toast('请先把批注和时间线保存成功');return false;}
+    return true;
+  }
+  async function acceptEdit(marker){
+    if(editAcceptBusy||versionSwitchBusy)return false;
+    const candidate=editCandidate(marker);
+    if(!candidate?.canAccept||candidate.status!=='ready'||!localMediaUrl(candidate.clipUrl)){toast(candidate?.reason||'请等待这条修改完成');return false;}
+    editAcceptBusy=marker.id;render();renderEditReviewActions();
+    try{
+      if(!await flushBeforeApplication())return false;
+      const current=editCandidate(marker);if(current?.revisionId!==candidate.revisionId||!current.canAccept)throw new Error('修改已经更新，请先查看最新片段');
+      clearTimeout(editPollTimer);editPollTimer=null;++editStatusVersion; // A poll begun before this acceptance must not restore the older state.
+      const r=await fetch('/api/edit-accept',{method:'POST',headers:{'Content-Type':'application/json','X-Codex-Callback-Token':config.codexCallbackToken},body:JSON.stringify({markerId:marker.id,revisionId:candidate.revisionId})});
+      const out=await r.json();if(!r.ok||out.success!==true){if(r.status===409)void refreshEditApplication();throw new Error(out.error||'验收提交失败，请重试');}
+      editApplicationError='';editErrorRevision=null;renderEditApplication(out);toast('已验收，后台正在合成完整新版');return true;
+    }catch(e){editErrorRevision={markerId:marker.id,revisionId:candidate.revisionId};editApplicationError=`验收未成功：${e.message}`;renderApplicationPanel();toast(editApplicationError);return false;}
+    finally{editAcceptBusy=null;render();renderEditReviewActions();clearTimeout(editPollTimer);editPollTimer=setTimeout(refreshEditApplication,2600);}
+  }
+  async function retryApplication(){
+    if(editRetryBusy||versionSwitchBusy)return false;editRetryBusy=true;renderApplicationPanel();
+    try{
+      if(!await flushBeforeApplication())return false;
+      clearTimeout(editPollTimer);editPollTimer=null;++editStatusVersion;
+      const r=await fetch('/api/edit-retry',{method:'POST',headers:{'Content-Type':'application/json','X-Codex-Callback-Token':config.codexCallbackToken},body:'{}'}),out=await r.json();
+      if(!r.ok||out.success!==true)throw new Error(out.error||'合成重试失败');
+      editApplicationError='';renderEditApplication(out);return true;
+    }catch(e){editApplicationError=`合成未启动：${e.message}`;toast(editApplicationError);return false;}
+    finally{editRetryBusy=false;renderApplicationPanel();clearTimeout(editPollTimer);editPollTimer=setTimeout(refreshEditApplication,2600);}
+  }
+  function loadMainVideo(url,time,rate){
+    return new Promise((resolve,reject)=>{
+      let metadata=false,finished=false;
+      const events=['loadedmetadata','loadeddata','seeked','error'];
+      const cleanup=()=>{clearTimeout(timer);for(const name of events)video.removeEventListener(name,onEvent);};
+      const finish=error=>{if(finished)return;finished=true;cleanup();error?reject(error):resolve();};
+      const onEvent=event=>{
+        if(event.type==='error')return finish(new Error('视频加载失败'));
+        if(!metadata){
+          if(video.readyState<1)return;
+          if(!Number.isFinite(video.duration)||Math.abs(video.duration-baseVideoDuration)>.1)return finish(new Error('新版时长与基准时间线不一致'));
+          metadata=true;video.playbackRate=rate;video.currentTime=Math.max(0,Math.min(time,video.duration));
+        }
+        if(video.readyState>=2&&!video.seeking&&Math.abs(video.currentTime-Math.min(time,video.duration))<.05)finish();
+      };
+      const timer=setTimeout(()=>finish(new Error('视频加载超时')),15000);
+      for(const name of events)video.addEventListener(name,onEvent);
+      video.src=url;video.load();
+    });
+  }
+  async function switchMainVersion(original=false){
+    if(versionSwitchBusy)return false;
+    const version=editApplication?.activeVersion;
+    if(!original&&(editApplication?.state!=='ready'||!version?.identityTimeline||!localMediaUrl(version.videoUrl))){toast('完整新版还没有就绪');return false;}
+    if(video.readyState<1||!Number.isFinite(video.duration)||video.duration<=0){toast('等待当前视频加载后再切换');return false;}
+    if(!await flushBeforeApplication()||versionSwitchBusy)return false;
+    if(!original&&(editApplication?.state!=='ready'||editApplication.activeVersion?.id!==version.id)){toast('完整版本正在更新，请就绪后再切换');return false;}
+    const before={src:video.src,time:video.currentTime,paused:video.paused,rate:video.playbackRate||1,versionId:playingVersionId};
+    const target=original?config.videoUrl:version.videoUrl;
+    if(!baseVideoDuration)baseVideoDuration=video.duration;
+    versionSwitchBusy=true;video.pause();$('#editReviewVideo').pause();loopStop=null;$('#markBtn').disabled=true;renderApplicationPanel();
+    let success=false;
+    try{await loadMainVideo(target,before.time,before.rate);playingVersionId=original?null:version.id;editApplicationError='';success=true;}
+    catch(e){
+      let restored=false;
+      try{await loadMainVideo(before.src,before.time,before.rate);restored=true;}catch(_){/* Keep the prior URL and all annotations even if the connection is offline. */}
+      playingVersionId=before.versionId;editApplicationError=`切换未成功：${e.message}；${restored?'已恢复原播放版本。':'原版本链接和批注已保留，点击播放重试。'}`;toast(editApplicationError);
+    }finally{
+      versionSwitchBusy=false;$('#markBtn').disabled=false;renderApplicationPanel();render();updatePlayhead();
+      if(!before.paused)try{await video.play();}catch(_){toast('视频已加载，点击播放继续');}
+    }
+    return success;
+  }
+
+  function renderCodexStatus(status){
+    const pause=$('#codexPauseBtn'),box=$('#codexStatus'),results=$('#codexResults'),enabled=Boolean(config.codexCallbackEnabled);
+    lastCodexStatus=status;
+    const groupSignature=JSON.stringify([...commentProgress(status).byId]);
+    if(groupSignature!==markerGroupSignature){markerGroupSignature=groupSignature;render();}
+    codexJobState=status?.state||'idle'; codexPaused=Boolean(status?.incremental?.paused);
+    box.classList.toggle('done',codexJobState==='completed'); box.classList.toggle('failed',codexJobState==='failed');
+    pause.textContent=codexPaused?'继续自动修改':'暂停自动修改';pause.disabled=!enabled||codexPauseBusy;pause.setAttribute('aria-pressed',String(codexPaused));
+    if(!enabled){box.textContent=config.codexCallbackReason||status?.disabledReason||'自动修改尚未连接';results.hidden=true;return;}
+    const summary=incrementalSummary(status),completed=commentProgress(status).completed;
+    results.hidden=true; results.innerHTML=''; // Completed cards live only in the collapsible archive.
+    if(codexJobState==='running'){box.innerHTML=`<div>${escapeHtml(summary)}</div>`+runningStatusHtml(status);return;}
+    if(codexJobState==='failed'){box.textContent=`${summary}\n这条修改需要检查：${status.error||'请检查修改结果'}；后面的建议会继续处理。`;return;}
+    box.textContent=summary+(codexPaused?'\n新建议仍会保存；继续后自动处理。':'\n你可以继续看视频，不用等待。');
+  }
+  async function refreshCodexStatus(){
+    clearTimeout(codexPollTimer);const version=++codexStatusVersion;
+    try{const r=await fetch('/api/codex-status');if(!r.ok)throw new Error('连接暂时中断');const status=await r.json();if(version===codexStatusVersion)renderCodexStatus(status);}
+    catch(e){if(version===codexStatusVersion){$('#codexStatus').textContent='修改进度暂时未连接，正在自动重连。';}}
+    finally{if(version===codexStatusVersion&&config.codexCallbackEnabled)codexPollTimer=setTimeout(refreshCodexStatus,2200);}
+  }
+  async function toggleCodexPause(){
+    if(!config.codexCallbackEnabled||codexPauseBusy)return;
+    const paused=!codexPaused;codexPauseBusy=true;$('#codexPauseBtn').disabled=true;
+    try{
+      const r=await fetch('/api/codex-pause',{method:'POST',headers:{'Content-Type':'application/json','X-Codex-Callback-Token':config.codexCallbackToken},body:JSON.stringify({paused})});
+      const out=await r.json();if(!r.ok)throw new Error(out.error||'切换失败');renderCodexStatus({...lastCodexStatus,incremental:out.incremental});toast(paused?'已暂停自动修改，当前修改会继续完成':'已继续自动修改');
+    }catch(e){toast(`切换失败：${e.message}`);}
+    finally{codexPauseBusy=false;$('#codexPauseBtn').disabled=false;void refreshCodexStatus();}
+  }
+  const cloneTimelineClips=()=>timelineState.clips.map(clip=>({...clip}));
+  function pushTimelineHistory(){ timelineHistory.push(cloneTimelineClips()); if(timelineHistory.length>100)timelineHistory.shift(); }
+  function preferredClipAtPlayhead(){
+    const selected=timelineState.clips.find(c=>c.id===selectedClipId);
+    return selected&&video.currentTime>=selected.sourceStart-.001&&video.currentTime<=selected.sourceEnd+.001?selected.id:null;
+  }
+  function performTimelineAction(action){
+    if(!timelineReady)return; video.pause(); loopStop=null;
+    const time=video.currentTime,preferred=preferredClipAtPlayhead();
+    let result;
+    if(action==='split')result=timelineApi.splitAt(timelineState.clips,time,preferred);
+    if(action==='trim-left')result=timelineApi.trimLeftAt(timelineState.clips,time,preferred);
+    if(action==='trim-right')result=timelineApi.trimRightAt(timelineState.clips,time,preferred);
+    if(action==='delete')result=timelineApi.deleteClip(timelineState.clips,selectedClipId||timelineApi.clipAt(timelineState.clips,time)?.id,time);
+    if(!result?.changed){ toast(action==='delete'&&timelineState.clips.length===1?'至少保留一个片段':'播放头需要位于片段内部'); return; }
+    pushTimelineHistory(); timelineState.clips=result.clips; selectedClipId=result.selectedId||timelineState.clips[0]?.id||null;
+    const selected=timelineState.clips.find(c=>c.id===selectedClipId);
+    if(action==='delete'&&selected)setTime(selected.sourceStart,1);
+    if(action==='trim-right'&&selected)setTime(Math.min(time,selected.sourceEnd-.02),-1);
+    renderTimeline(); queueTimelinePersist();
+    toast(({split:'已分割片段','trim-left':'已向左裁剪','trim-right':'已向右裁剪',delete:'已删除片段'})[action]);
+  }
+  function undoTimeline(){
+    const previous=timelineHistory.pop(); if(!previous){toast('没有可撤销的操作');return;}
+    timelineState.clips=previous; selectedClipId=timelineApi.clipAt(previous,video.currentTime)?.id||previous[0]?.id||null; renderTimeline(); queueTimelinePersist(); toast('已撤销');
+  }
+  function resetTimeline(){
+    if(!timelineReady||!confirm('恢复完整 Preview 时间线？当前试剪仍可用撤销找回。'))return;
+    pushTimelineHistory(); timelineState=timelineApi.initialTimeline(video.duration,config.title||''); selectedClipId=timelineState.clips[0]?.id||null; setTime(0); renderTimeline(); queueTimelinePersist(); toast('已恢复完整 Preview');
+  }
+  function thumbnailFor(sourceTime){
+    if(!thumbnails.length)return '';
+    return thumbnails.reduce((best,item)=>Math.abs(item.time-sourceTime)<Math.abs(best.time-sourceTime)?item:best,thumbnails[0]).url;
+  }
+  function renderTimeline(){
+    if(!timelineReady||!video.duration)return;
+    const clips=timelineState.clips,total=timelineApi.keptDuration(clips),removed=Math.max(0,video.duration-total),canvasWidth=Math.max(timelineScroll.clientWidth-2,total*pixelsPerSecond);
+    timelineCanvas.style.width=`${canvasWidth}px`;
+    $('#timelineStats').textContent=`${clips.length} 个片段　·　成片 ${fmt(total)}　·　已裁 ${fmt(removed)}`;
+    $('#timelineUndo').disabled=!timelineHistory.length;
+    $('#overviewClips').innerHTML=clips.map(c=>`<div class="overview-clip" data-id="${escapeHtml(c.id)}" style="left:${c.sourceStart/video.duration*100}%;width:${(c.sourceEnd-c.sourceStart)/video.duration*100}%"></div>`).join('');
+    const tickSeconds=pixelsPerSecond<4?30:pixelsPerSecond<8?15:5,ticks=[];
+    for(let t=0;t<=total+.001;t+=tickSeconds)ticks.push(`<span class="ruler-tick" style="left:${t*pixelsPerSecond}px">${fmt(t)}</span>`);
+    $('#timelineRuler').innerHTML=ticks.join('');
+    let outputCursor=0;
+    timelineClips.innerHTML=clips.map((clip,index)=>{
+      const length=clip.sourceEnd-clip.sourceStart,left=outputCursor*pixelsPerSecond,width=Math.max(4,length*pixelsPerSecond); outputCursor+=length;
+      const cells=Math.max(1,Math.ceil(width/46)),thumbs=[];
+      for(let i=0;i<cells;i++){const sourceTime=clip.sourceStart+(i+.5)/cells*length,url=thumbnailFor(sourceTime);thumbs.push(`<span class="clip-thumb"${url?` style="background-image:url('${url}')"`:''}></span>`);}
+      return `<div class="timeline-clip${clip.id===selectedClipId?' selected':''}" data-id="${escapeHtml(clip.id)}" style="left:${left}px;width:${width}px"><div class="clip-filmstrip">${thumbs.join('')}</div><div class="clip-overlay"><span>片段 ${index+1}</span><span>${fmt(clip.sourceStart)}–${fmt(clip.sourceEnd)}</span></div></div>`;
+    }).join('');
+    updateTimelinePlayhead();
+  }
+  function updateTimelinePlayhead(){
+    if(!timelineReady||!video.duration)return;
+    const outputTime=timelineApi.sourceToOutput(timelineState.clips,video.currentTime),x=outputTime*pixelsPerSecond;
+    $('#cutPlayhead').style.left=`${x}px`; $('#overviewPlayhead').style.left=`${video.currentTime/video.duration*100}%`;
+    $('#sourceClock').textContent=`原始 ${fmt(video.currentTime)}　·　成片 ${fmt(outputTime)}`;
+    if(!video.paused&&(x<timelineScroll.scrollLeft+24||x>timelineScroll.scrollLeft+timelineScroll.clientWidth-24))timelineScroll.scrollLeft=Math.max(0,x-timelineScroll.clientWidth*.35);
+  }
+  async function generateTimelineThumbnails(){
+    if(!video.duration||thumbnails.length)return;
+    const sampler=document.createElement('video'); sampler.className='thumb-video'; sampler.muted=true; sampler.preload='auto'; sampler.src=config.videoUrl; document.body.appendChild(sampler);
+    const once=(name,timeout=5000)=>new Promise((resolve,reject)=>{const timer=setTimeout(()=>{cleanup();reject(new Error(name+' timeout'));},timeout),done=()=>{cleanup();resolve();},cleanup=()=>{clearTimeout(timer);sampler.removeEventListener(name,done);};sampler.addEventListener(name,done,{once:true});});
+    try{
+      if(sampler.readyState<1)await once('loadedmetadata');
+      const count=Math.min(32,Math.max(12,Math.ceil(video.duration/15))),canvas=document.createElement('canvas'),ctx=canvas.getContext('2d'); canvas.width=64;canvas.height=64;
+      for(let i=0;i<count;i++){
+        const time=Math.min(video.duration-.05,i/(count-1)*video.duration); sampler.currentTime=Math.max(0,time); await once('seeked');
+        const sw=sampler.videoWidth,sh=sampler.videoHeight,size=Math.min(sw,sh),sx=(sw-size)/2,sy=(sh-size)/2;ctx.drawImage(sampler,sx,sy,size,size,0,0,64,64);thumbnails.push({time,url:canvas.toDataURL('image/jpeg',.55)});
+      }
+      renderTimeline();
+    }catch(_){ /* 缩略图失败不影响剪辑操作。 */ }
+    sampler.removeAttribute('src'); sampler.load(); sampler.remove();
+  }
+  function initializeTimeline(){
+    const duration=video.duration,savedClips=timelineApi.normalizeClips(savedTimeline?.clips,duration),sameVideo=!savedTimeline?.video||savedTimeline.video===(config.title||''),sameSource=sameVideo&&Number.isFinite(Number(savedTimeline?.sourceDuration))&&Math.abs(Number(savedTimeline.sourceDuration)-duration)<.5;
+    timelineState=sameSource&&savedClips.length?{version:1,video:config.title||'',sourceDuration:duration,clips:savedClips}:timelineApi.initialTimeline(duration,config.title||'');
+    selectedClipId=timelineApi.clipAt(timelineState.clips,video.currentTime)?.id||timelineState.clips[0]?.id||null; timelineReady=true; $('#timelineSave').textContent=sameSource&&savedClips.length?'已加载试剪':'已建立完整时间线'; renderTimeline();
+    if(!(sameSource&&savedClips.length))queueTimelinePersist(); generateTimelineThumbnails();
+  }
+  function saveDraft(){
+    if(!draft) return; draft.comment=comment.value.trim(); applyScope(draft); draft.updatedAt=new Date().toISOString();
+    const previous=state.markers.find(m=>m.id===draft.id),candidate=previous&&editCandidate(previous);
+    if(candidate&&(previous.comment!==draft.comment||Math.abs(previous.previewTime-draft.previewTime)>.001||previous.scopeMode!==draft.scopeMode||previous.category!==draft.category))invalidatedEditRevisions.set(draft.id,candidate.revisionId);
+    const i=state.markers.findIndex(m=>m.id===draft.id); if(i>=0) state.markers[i]=draft; else state.markers.push(draft);
+    state.markers.sort((a,b)=>a.previewTime-b.previewTime); closeDraft(); return queuePersist();
+  }
+  function loop(marker){
+    const {start,end}=windowOf(marker,'review'); setTime(start); loopStop=end; video.play();
+  }
+  function render(){
+    const duration=video.duration||0;
+    const done=state.markers.filter(m=>markerOutcome(m).done),pending=state.markers.filter(m=>!markerOutcome(m).done);
+    $('#count').textContent=`${pending.length} 待处理 · ${done.length} 已改好`;
+    const draftIsNew=draft&&!state.markers.some(m=>m.id===draft.id), timelineMarkers=draftIsNew?[...state.markers,draft]:state.markers.map(m=>draft&&m.id===draft.id?draft:m);
+    pins.innerHTML=timelineMarkers.map(m=>{const review=windowOf(m,'review'),action=windowOf(m,'action'),reviewLeft=duration?review.start/duration*100:0,reviewWidth=duration?(review.end-review.start)/duration*100:0,actionLeft=duration?action.start/duration*100:0,actionWidth=duration?(action.end-action.start)/duration*100:0,isDraft=draft&&draft.id===m.id;return `<div class="review-band${m.resolved?' resolved':''}" style="left:${reviewLeft}%;width:${reviewWidth}%"></div><div class="scope-band${m.resolved?' resolved':''}${isDraft?' draft':''}" style="left:${actionLeft}%;width:${actionWidth}%"></div><button class="pin${m.resolved?' resolved':''}" data-id="${m.id}" style="left:${duration?m.previewTime/duration*100:0}%" title="${m.scopeMode==='global'?'全局 · ':''}M ${fmt(m.previewTime)} · 回顾 ${fmt(review.start)}–${fmt(review.end)} · 处理 ${fmt(action.start)}–${fmt(action.end)} · ${escapeHtml(m.comment||m.category)}"></button>`;}).join('');
+    if(!state.markers.length){ markersEl.innerHTML='<div class="empty">播放时按 <kbd>M</kbd><br>在当前时间添加第一条批注</div>'; return; }
+    const markerCard=m=>{
+      const review=windowOf(m,'review'),action=windowOf(m,'action'),outcome=markerOutcome(m),candidate=outcome.candidate;
+      const mapped=candidate&&localMediaUrl(candidate.clipUrl);
+      const acceptance=mapped?`<button data-action="watch">${candidate.status==='stale'?'看旧修改':'看修改'}</button><button class="accept-edit" data-action="accept"${editAcceptBusy||!candidate.canAccept||candidate.status!=='ready'?' disabled':''}>${editAcceptBusy===m.id?'正在提交…':['accepted','applied'].includes(candidate.status)?'已通过':'通过并应用'}</button>`:'';
+      const actions=mapped?`${acceptance}<button data-action="edit">继续修改</button>`:`<button data-action="edit">编辑</button><button data-action="resolve">${m.resolved?'恢复待处理':'标为已解决'}</button>`;
+      return `<article class="card${draft&&draft.id===m.id?' selected':''}" data-id="${escapeHtml(m.id)}"><div class="card-top"><button class="time-btn" data-action="seek">M ${fmt(m.previewTime)}</button>${m.sourceTime==null?'':`<span class="source-time">原片 ${fmt(m.sourceTime)}</span>`}${m.scopeMode==='global'?'<span class="global-tag">全局</span>':''}<span class="tag">${escapeHtml(m.category)}</span></div><div class="scope-time">${m.scopeMode==='global'?'全局检查 · 当前窗口仅定位':'回顾 '+fmt(review.start)+' → '+fmt(review.end)+'　·　处理 '+fmt(action.start)+' → '+fmt(action.end)}</div><div class="comment">${escapeHtml(m.comment||'（未写评论）')}</div><div class="marker-outcome${outcome.done?' done':''}"><strong>${escapeHtml(outcome.label)}</strong>${outcome.links?'<br>'+outcome.links:''}${candidate?.reason?`<div>${escapeHtml(candidate.reason)}</div>`:''}</div><div class="card-actions">${actions}<button data-action="loop">${playingVersionId?'回顾上下文':outcome.done?'回看原版 10 秒':'回顾这 10 秒'}</button><button class="danger" data-action="delete">删除</button></div></article>`;
+    };
+    markersEl.innerHTML=(pending.length?pending.map(markerCard).join(''):'<div class="empty">暂无待处理批注<br>已改好的内容收在下方</div>')+completedMarkerGroup(done.map(markerCard).join(''),done.length);
+  }
+  const escapeHtml=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+  function enforceTimelinePlayback(){
+    if(!timelineReady||video.paused)return;
+    let index=timelineApi.findClipIndex(timelineState.clips,video.currentTime,playbackClipId);
+    if(index<0){
+      const next=timelineState.clips.find(c=>c.sourceStart>video.currentTime);
+      if(next){playbackClipId=next.id;setTime(next.sourceStart,1);}else{video.pause();markReviewFinished();}
+      return;
+    }
+    const clip=timelineState.clips[index]; playbackClipId=clip.id;
+    if(video.currentTime>=clip.sourceEnd-.035){
+      const next=timelineState.clips[index+1];
+      if(!next){video.pause();setTime(Math.max(clip.sourceStart,clip.sourceEnd-.02),-1);markReviewFinished();return;}
+      playbackClipId=next.id;
+      if(next.sourceStart>clip.sourceEnd+.01)setTime(next.sourceStart,1);
+    }
+  }
+  function updatePlayhead(){ if(versionSwitchBusy)return;resetReviewEndWhenSeeking(); const d=video.duration||1,p=video.currentTime/d*100; $('#now').textContent=fmt(video.currentTime); $('#railProgress').style.width=`${p}%`; $('#playhead').style.left=`${p}%`; $('#playBtn').textContent=video.paused?'▶ 播放':'❚❚ 暂停'; if(loopStop!=null&&video.currentTime>=loopStop){ video.pause(); loopStop=null; } enforceTimelinePlayback(); updateTimelinePlayhead(); }
+  async function init(){
+    [config,state,savedTimeline]=await Promise.all([fetch('/api/config').then(r=>r.json()),fetch('/api/comments').then(r=>r.json()),fetch('/api/timeline').then(r=>r.json())]); state.markers=Array.isArray(state.markers)?state.markers.map(applyScope):[]; state.video=config.title||''; $('#title').textContent=config.title||'Preview 批注'; video.src=config.videoUrl; $('#saveState').textContent=`已加载 · ${state.markers.length} 条`; render();await Promise.all([refreshCodexStatus(),refreshEditApplication()]);
+  }
+  $('#coverBtn').onclick=setCurrentFrameAsCover;
+  $('#coverStylePanel').onclick=()=>chooseCoverStyle('translucent-title-panel');
+  $('#coverStyleSmiley').onclick=()=>chooseCoverStyle('smiley-bold');
+  $('#coverTitleInput').addEventListener('change',saveCoverDesign);
+  $('#coverSubtitleInput').addEventListener('change',saveCoverDesign);
+  $('#coverGenerateBtn').onclick=generateCoverCandidates;
+  $('#coverCandidates').onclick=e=>{const control=e.target.closest('[data-cover-action="select"]');if(control)selectCoverCandidate(control.dataset.candidateId);};
+  ['loadeddata','seeked','seeking','emptied','error'].forEach(event=>video.addEventListener(event,updateCoverButton));
+  $('#markBtn').onclick=()=>openDraft(); $('#playBtn').onclick=togglePlayback; document.querySelectorAll('[data-seek]').forEach(b=>b.onclick=()=>{const delta=Number(b.dataset.seek);setTime(video.currentTime+delta,Math.sign(delta));});
+  $('#categories').onclick=e=>{ const b=e.target.closest('[data-category]'); if(!b||!draft)return; draft.category=b.dataset.category; document.querySelectorAll('.category').forEach(x=>x.classList.toggle('active',x.dataset.category===draft.category)); };
+  $('#globalToggle').onclick=toggleScopeMode;
+  $('#codexPauseBtn').onclick=toggleCodexPause;
+  $('#playAppliedBtn').onclick=()=>switchMainVersion();$('#playOriginalBtn').onclick=()=>switchMainVersion(true);$('#retryApplyBtn').onclick=retryApplication;
+  $('#closeEditReviewBtn').onclick=closeEditReview;
+  $('#reviewAcceptBtn').onclick=()=>{const marker=state.markers.find(m=>m.id===selectedEdit?.markerId);return marker&&acceptEdit(marker);};
+  $('#reviewReviseBtn').onclick=()=>{const marker=state.markers.find(m=>m.id===selectedEdit?.markerId);closeEditReview();if(marker)openDraft(marker);};
+  $('#saveBtn').onclick=saveDraft; $('#cancelBtn').onclick=closeDraft;
+  markersEl.addEventListener('toggle',e=>{if(e.target.id==='completedGroup')completedGroupOpen=e.target.open;},true);
+  markersEl.onclick=e=>{ const card=e.target.closest('.card'); if(!card||versionSwitchBusy)return; const m=state.markers.find(x=>x.id===card.dataset.id);if(!m)return; const action=e.target.closest('[data-action]')?.dataset.action; if(action==='watch')return showEditClip(m);if(action==='accept')return acceptEdit(m);if(action==='seek')setTime(m.previewTime); if(action==='loop')loop(m); if(action==='edit')openDraft(m); if(action==='resolve'){m.resolved=!m.resolved;render();return queuePersist();} if(action==='delete'&&confirm(`删除 ${fmt(m.previewTime)} 的批注？`)){state.markers=state.markers.filter(x=>x.id!==m.id);render();return queuePersist();} };
+  pins.onclick=e=>{const b=e.target.closest('[data-id]');if(!b)return;const m=state.markers.find(x=>x.id===b.dataset.id)||(draft&&draft.id===b.dataset.id?draft:null);if(!m)return;setTime(m.previewTime);openDraft(m);};
+  rail.onclick=e=>{if(e.target.closest('.pin'))return;const r=rail.getBoundingClientRect();setTime((e.clientX-r.left)/r.width*video.duration);};
+  document.querySelectorAll('[data-timeline-action]').forEach(button=>button.onclick=()=>performTimelineAction(button.dataset.timelineAction));
+  $('#timelineUndo').onclick=undoTimeline; $('#timelineReset').onclick=resetTimeline;
+  $('#zoomOut').onclick=()=>{pixelsPerSecond=Math.max(2,pixelsPerSecond/1.5);renderTimeline();}; $('#zoomIn').onclick=()=>{pixelsPerSecond=Math.min(24,pixelsPerSecond*1.5);renderTimeline();};
+  timelineClips.onclick=e=>{const clipEl=e.target.closest('.timeline-clip');if(!clipEl)return;const clip=timelineState.clips.find(c=>c.id===clipEl.dataset.id);if(!clip)return;const rect=clipEl.getBoundingClientRect(),ratio=Math.max(0,Math.min(1,(e.clientX-rect.left)/rect.width));selectedClipId=clip.id;setTime(clip.sourceStart+ratio*(clip.sourceEnd-clip.sourceStart));renderTimeline();activateViewer();};
+  $('#timelineRuler').parentElement.addEventListener('click',e=>{if(e.target.closest('.timeline-clip'))return;const rect=timelineCanvas.getBoundingClientRect(),outputTime=Math.max(0,(e.clientX-rect.left)/pixelsPerSecond);setTime(timelineApi.outputToSource(timelineState.clips,outputTime));selectedClipId=timelineApi.clipAt(timelineState.clips,video.currentTime)?.id||selectedClipId;renderTimeline();activateViewer();});
+  $('#sourceOverview').onclick=e=>{const rect=$('#sourceOverview').getBoundingClientRect(),target=(e.clientX-rect.left)/rect.width*video.duration;setTime(target,Math.sign(target-video.currentTime));selectedClipId=timelineApi.clipAt(timelineState.clips,target)?.id||selectedClipId;renderTimeline();activateViewer();};
+  video.addEventListener('loadedmetadata',()=>{$('#duration').textContent=fmt(video.duration);if(!baseVideoDuration)baseVideoDuration=video.duration;if(!timelineReady&&!versionSwitchBusy)initializeTimeline();else renderTimeline();render();renderApplicationPanel();}); video.addEventListener('timeupdate',updatePlayhead); video.addEventListener('play',()=>{$('#editReviewVideo').pause();playbackClipId=timelineApi.clipAt(timelineState.clips,video.currentTime,selectedClipId)?.id||null;updatePlayhead();}); video.addEventListener('pause',updatePlayhead);
+  video.addEventListener('ended',markReviewFinished);
+  video.addEventListener('seeking',()=>{if(versionSwitchBusy)return;resetReviewEndWhenSeeking();if(internalTimelineSeek||!timelineReady)return;const clip=timelineApi.clipAt(timelineState.clips,video.currentTime);if(!clip)setTime(video.currentTime);else playbackClipId=clip.id;});
+  viewer.addEventListener('pointerdown',()=>{viewerHotkeysActive=true;viewer.classList.add('hotkey-active');$('#keyboardState').textContent='快捷键已激活';},true);
+  document.addEventListener('pointerdown',e=>{if(!viewer.contains(e.target)&&!editor.contains(e.target))deactivateViewer();},true);
+  window.addEventListener('keydown',e=>{
+    if(versionSwitchBusy)return;
+    if(isTyping(e.target)){
+      if(e.target===comment&&e.code==='KeyG'&&!e.shiftKey&&!e.metaKey&&!e.ctrlKey&&!e.altKey&&!e.isComposing){e.preventDefault();toggleScopeMode();return;}
+      if(e.target===comment&&e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();saveDraft();return;}
+      if(e.key==='Escape'){e.preventDefault();closeDraft();}
+      return;
+    }
+    if(!viewerHotkeysActive||e.repeat)return;
+    if(e.code==='KeyC'){
+      if(e.metaKey||e.ctrlKey||e.altKey||e.isComposing||e.keyCode===229)return;
+      e.preventDefault();e.stopPropagation();setCurrentFrameAsCover();return;
+    }
+    if((e.metaKey||e.ctrlKey)&&e.code==='KeyZ'){e.preventDefault();undoTimeline();return;}
+    const handled=['Space','KeyM','KeyG','KeyJ','KeyL','BracketLeft','BracketRight','KeyE','KeyA','KeyS','KeyD'].includes(e.code);
+    if(!handled)return;
+    e.preventDefault();e.stopPropagation();
+    if(e.code==='Space')togglePlayback();
+    if(e.code==='KeyM'){video.pause();openDraft();}
+    if(e.code==='KeyG')toggleScopeMode();
+    if(e.code==='KeyJ')setTime(video.currentTime-2,-1);
+    if(e.code==='KeyL')setTime(video.currentTime+2,1);
+    if(e.code==='BracketLeft')setTime(video.currentTime-.1,-1);
+    if(e.code==='BracketRight')setTime(video.currentTime+.1,1);
+    if(e.code==='KeyE')performTimelineAction('split');
+    if(e.code==='KeyA')performTimelineAction('trim-left');
+    if(e.code==='KeyS')performTimelineAction('trim-right');
+    if(e.code==='KeyD')performTimelineAction('delete');
+  },true);
+  $('#copyBtn').onclick=async()=>{const text=state.markers.map((m,i)=>{const review=windowOf(m,'review'),action=windowOf(m,'action');return `${i+1}. M ${fmt(m.previewTime)} · ${m.scopeMode==='global'?'全局检查':'回顾 '+fmt(review.start)+'–'+fmt(review.end)+' · 处理 '+fmt(action.start)+'–'+fmt(action.end)}${m.sourceTime==null?'':` / 原片 M ${fmt(m.sourceTime)}`} [${m.category}] ${m.comment}`;}).join('\n');await navigator.clipboard.writeText(text);toast('批注清单已复制');};
+  $('#exportBtn').onclick=()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='preview_comments.json';a.click();URL.revokeObjectURL(a.href);};
+  loadCover();
+  init().catch(e=>{$('#saveState').textContent=`加载失败：${e.message}`;$('#saveState').style.color='var(--red)';});
+})();
+</script>
+</body>
+</html>
