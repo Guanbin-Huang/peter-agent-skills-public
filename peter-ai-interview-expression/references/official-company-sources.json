@@ -18,7 +18,22 @@
       "page_title": "Unitree Robotics；unitree_sdk2",
       "note": "官方组织标 Hangzhou China 并链接 unitree.com；SDK README 已读到安装、构建与示例；文档中心标题已读，正文为 JS。兼跟 UnifoLM，但不把 SDK 等同基础模型报告。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://support.unitree.com/home/zh/developer",
+            "read_status": "navigation_only",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "cn-agibot",
@@ -34,7 +49,15 @@
       "page_title": "AgiBot Research — Building General-purpose Embodied Intelligence；Genie Envisioner v1.0",
       "note": "研究主页直接链接 AgibotTech，仓库自述 official implementation；已读 README、版本更新、训练/推理入口。研究门户实时正文只呈现介绍，项目列表可从一手索引读取。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "cn-galbot",
@@ -50,7 +73,15 @@
       "page_title": "二次开发产品手册 | Galbot Developer Platform；Galbot 银河通用机器人公司介绍",
       "note": "公司官网直接链接 developer.galbot.com；已读高低层 SDK、感知/规划/控制/导航/交互等开发能力描述。GraspVLA、WAM 等名称在官网技术介绍中核对；该概览不是 GraspVLA 全文报告。本轮未核实官方 GitHub。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "cn-ubtech",
@@ -66,7 +97,15 @@
       "page_title": "UBTECH Walker S Industrial Humanoid Robot | For Multi-task Industrial Scenarios",
       "note": "已读语义导航、3D 点云、6D 位姿、ROSA 2.0 等官方产品说明；研究门户 research-mobile.ubtrobot.com 实时为空壳。未将产品说明或投资者报告称作工程博客，未核实公开官方仓库。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "cn-fourier",
@@ -82,7 +121,15 @@
       "page_title": "Fourier；Fourier-GRX-N1 SDK | 开发文档；开发者指南 | Fourier 文档中心",
       "note": "官方组织自述 Shanghai/China 并链接 fftai.com、fourierintelligence.com；组织页直接链接 SDK 文档。Aurora 指南已读 FSM、摇杆与 DDS 接口。support-old 是旧文档域，持续监控时区分新 SDK 与旧本体。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "cn-leju",
@@ -98,7 +145,15 @@
       "page_title": "LejuRobotics/kuavo-ros-opensource；如何使用 / 接口文档",
       "note": "已读编译、MPC/WBC、MuJoCo/Gazebo、运动控制接口；README 链接乐聚资源域、推荐 GitCode 与 Gitee。官网 Kuavo 文档路径在索引可读，实时抓取出错，故监控索引使用已读 GitHub。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "cn-dobot",
@@ -114,7 +169,15 @@
       "page_title": "Dobot Team；Dobot Quad SDK",
       "note": "组织页链接 dobot-robots.com；已读 Rover X1 SDK 的 gRPC/DDS 双层架构、环境与示例。此处具体材料是四足/轮足 SDK，不误写成人形 Atom 报告。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "cn-robotera",
@@ -130,7 +193,22 @@
       "page_title": "北京星动纪元 | 行业唯一软硬件全栈自研具身智能；STAR1 High Capability Humanoid Robot",
       "note": "官网实时是 JS 壳，标题核对；官方域 STAR1 PDF HTTP 200、2 页，已渲染并目视核对第 1 页标题与 robotera.com 联系信息。此为产品彩页，不是技术报告；官网索引显示 ERA-42 与文档中心，但深层研究正文和官方 GitHub 未核实。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 0,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://www.robotera.com/",
+            "read_status": "navigation_only",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "cn-astribot",
@@ -146,7 +224,15 @@
       "page_title": "SmoothRL: Efficient Online RL During Asynchronous Execution；SmoothRL: Online Reinforcement Learning During Asynchronous Execution",
       "note": "官网明确 founded in Shenzhen；旧 /en/research/SmoothRL URL 只有 meta-refresh，应使用已验证 /en/AI/SmoothRL/。已读异步 action chunk、执行区梯度、真人干预、真机评估；官网直接链接 arXiv 报告，已读摘要。亦核对 Lumo-1 页面，未核实官方 GitHub。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "cn-xpeng",
@@ -162,7 +248,22 @@
       "page_title": "XPENG - Official Website | XPENG Motors；XPENG Next-Gen IRON",
       "note": "已读 IRON 官方 VLT/VLA/VLM、Turing 芯片、结构与手部介绍；保留为小鹏旗下机器人业务而非独立模型实验室。未核实机器人专属公开 SDK、GitHub 或技术报告。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 0,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://www.xpeng.com/technology/ai_robot_iron",
+            "read_status": "js_shell_or_empty",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "us-figure",
@@ -178,7 +279,28 @@
       "page_title": "News | Figure；Helix 2.5: Zero-Shot 30-Home Generalization",
       "note": "已读 2026-09-17 文章及 2025-02-20 Helix 架构文。官网 NEWS 混合研究和公司新闻，需分类过滤。2.5 的 zero-shot 指未见家庭/物体，不意味着未做任何任务微调；报告仍含在其他环境收集的任务数据。未核实公开 Helix 官方仓库。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "recent_materials": [
+        {
+          "id": "material-04b4433654fb4020",
+          "title": "Introducing Index: Building The World’s Largest and Most Diverse Physical Dataset",
+          "url": "https://www.figure.ai/news/introducing-index",
+          "publication_date": "2026-08-25",
+          "classification": "old_backfill",
+          "source_type": "官方研究工程文章",
+          "reading_status": "body_read",
+          "technical_summary": "Index从人类真实操作视频构建Helix训练数据。五阶段处理包括技术/视觉/语义过滤、用户级欺诈抽审、视频片段embedding去重、任务配额与embedding聚类再平衡、分层文本caption。文章用每千小时的任务/物体/环境多样性指标描述覆盖，而非仅计总时长。",
+          "limitations": "2026-08-25旧文补录，不是本周新发布。Figure专属管线；文章没有开放数据、权重、完整训练配方或可复现泛化增益实验；“最大”及采集规模为公司自述，不能作为独立排名。"
+        }
+      ],
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "us-pi",
@@ -202,7 +324,22 @@
           "status": "访问403；待重试，不算已读",
           "checked_at": "2026-10-02"
         }
-      ]
+      ],
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://www.pi.website/blog",
+            "read_status": "failed",
+            "http_status": 429,
+            "error": "HTTP 429"
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "us-skild",
@@ -218,7 +355,15 @@
       "page_title": "Blog | Skild AI；Physical Self-Play",
       "note": "已读 2026-09-23 self-play 文章及 Building the general-purpose robotic brain。正文包含 Isaac Sim、自我对抗和 sim-to-real 描述；该博客不是完整可复现训练报告，也未核实公开官方代码/权重。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "us-tesla",
@@ -234,7 +379,22 @@
       "page_title": "AI & Robotics | Tesla",
       "note": "已读 Optimus 软件栈与 AI 工程方向；页面多数具体训练数字来自汽车 FSD，不移植到 Optimus。未核实公开 Optimus SDK、权重或 technical report，故不将此页视为机器人工程博客。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 0,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://www.tesla.com/AI",
+            "read_status": "failed",
+            "http_status": 403,
+            "error": "HTTP 403"
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "us-agility",
@@ -250,7 +410,15 @@
       "page_title": "Humanoid Robotics Resources | Agility；Agility and AI",
       "note": "已读 2026-03-16 文章的 cognition/skills/controls 三层、示范学习、仿真、全身控制模型；企业版权名仍 Agility Robotics, Inc.。资料库含外部媒体，监控只接纳其自写材料；未核实公开官方模型仓库。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "us-boston-dynamics",
@@ -266,7 +434,22 @@
       "page_title": "Blogs | Boston Dynamics；Making Atlas See the World；Spot SDK — Spot 5.2.0 documentation",
       "note": "已读 Atlas 感知文的物体位姿、视觉与运动学时序处理；公司官网直接链接开发者文档，Spot 仓库已读。Atlas 技术研究与 Spot SDK 是不同本体，不能混作 Atlas 开源；地域按美国运营公司，不按控股股东国籍。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://bostondynamics.com/blog/",
+            "read_status": "js_shell_or_empty",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "us-apptronik",
@@ -282,7 +465,15 @@
       "page_title": "Apptronik - Home；Apptronik - Apollo 2",
       "note": "旧 /apollo 已返回 404，应使用官网实际链接 /apollo/apollo-2。已读模块化本体、Artemis、Fleet Connect、执行器与 Google DeepMind 合作描述；尚未核实公开工程博客/SDK/官方模型仓库。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "us-nvidia",
@@ -306,7 +497,15 @@
           "status": "目录正文已读",
           "checked_at": "2026-10-02"
         }
-      ]
+      ],
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "us-google",
@@ -330,7 +529,15 @@
           "status": "目录正文已读；筛选机器人",
           "checked_at": "2026-10-02"
         }
-      ]
+      ],
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "us-amazon",
@@ -346,7 +553,15 @@
       "page_title": "Robotics | Research Areas - Amazon Science；Amazon builds first foundation model for multirobot coordination",
       "note": "已读 DeepFleet 的 robot-centric、robot-floor、image-floor、graph-floor 模型表示与协调任务；Amazon Science 主站含跨业务研究，需筛选机器人作者/主题。是 Amazon 业务，不是单列独立公司；未核实 DeepFleet 公开权重/SDK。",
       "checked_at": "2026-10-02",
-      "domain": "embodied"
+      "domain": "embodied",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-alibaba",
@@ -361,7 +576,15 @@
       "verification_status": "正文与代码抽查",
       "checked_at": "2026-10-02",
       "note": "Qwen-Agent涵盖Function Calling、MCP、RAG；抽查工具调用说明和assistant示例；未运行代码。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-tencent",
@@ -376,7 +599,15 @@
       "verification_status": "README正文抽查；外链文档访问失败",
       "checked_at": "2026-10-02",
       "note": "WeKnora将知识库RAG、多步Agent和Wiki分层，README提供sandbox、MCP、memory、Langfuse说明；weknora.weixin.qq.com/docs未读出，本索引未写入失败URL。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-baidu",
@@ -391,7 +622,22 @@
       "verification_status": "目录与SDK README核对；最佳实践正文待深读",
       "checked_at": "2026-10-02",
       "note": "千帆文档目录确认RAG/Agent/工作流开发；Deep Research最佳实践页面打开，但本轮未完整读出正文；SDK已打开。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://ai.baidu.com/ai-doc/index/AppBuilder",
+            "read_status": "encoding_error_or_overview",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-bytedance",
@@ -406,7 +652,15 @@
       "verification_status": "README正文抽查；独立文档站访问失败",
       "checked_at": "2026-10-02",
       "note": "Coze Studio文档明确prompt/RAG/plugin/workflow及Go+React/TypeScript架构；docs.coze.cn未读出，保留官方README开发指南。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-huawei",
@@ -421,7 +675,22 @@
       "verification_status": "技术指南正文抽查",
       "checked_at": "2026-10-02",
       "note": "AgentArts SDK部署文档更新于2026-09-24；描述本地Agent部署到运行时及LangGraph/LangChain/Google ADK模板；本轮未确认官方对应GitHub仓库。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 0,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://support.huaweicloud.com/agentarts/index.html",
+            "read_status": "js_shell_or_empty",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-zhipu",
@@ -436,7 +705,15 @@
       "verification_status": "README正文抽查；独立API文档访问失败",
       "checked_at": "2026-10-02",
       "note": "Open-AutoGLM提供屏幕感知、规划、ADB/HDC执行框架和环境准备；docs.bigmodel.cn本轮未读出，不写入失败URL。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-minimax",
@@ -451,7 +728,15 @@
       "verification_status": "技术指南正文抽查",
       "checked_at": "2026-10-02",
       "note": "旧M2指南已跳转M3 Tool Use & Interleaved Thinking；抽查tools/tool_calls及完整返回消息保留要求；M1研究README只作基础历史材料，不当作最新型号。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-moonshot",
@@ -466,7 +751,15 @@
       "verification_status": "README正文抽查；技术博客仅确认入口",
       "checked_at": "2026-10-02",
       "note": "README明确工具使用、agentic coding与工具任务评估；Kimi-K2技术博客打开返回0行，本轮不标记已读博客/technical report全文；代表材料为历史基础研究，非最新型号断言。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-deepseek",
@@ -481,7 +774,15 @@
       "verification_status": "技术指南正文抽查（直接HTTP）；web读取超时",
       "checked_at": "2026-10-02",
       "note": "直接HTTP获取200并核对Tool Calls标题和get_weather→tool result→最终回复示例；旧function_calling URL现返回First API Call，已改索引。不是已确认的独立Agent框架主厂商；未阅读全文技术报告。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-jd",
@@ -496,7 +797,15 @@
       "verification_status": "README正文抽查；部署指南打开",
       "checked_at": "2026-10-02",
       "note": "JoyAgent-JDGenie README描述端到端多Agent产品、报告/代码/PPT/文件子Agent；未实际部署，不把README榜单自述当作独立验证。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-openai",
@@ -519,7 +828,22 @@
           "status": "目录正文已读",
           "checked_at": "2026-10-02"
         }
-      ]
+      ],
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 4,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://openai.com/research/index/",
+            "read_status": "failed",
+            "http_status": 403,
+            "error": "HTTP 403"
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-anthropic",
@@ -534,7 +858,28 @@
       "verification_status": "代表博客正文抽查；目录与SDK核对",
       "checked_at": "2026-10-02",
       "note": "2026-04-08 Managed Agents技术文讨论session/harness/sandbox解耦与故障恢复；另核对Building effective agents并识别其历史工具说明已过时。",
-      "domain": "agent"
+      "domain": "agent",
+      "recent_materials": [
+        {
+          "id": "material-64af1d1a2fd48283",
+          "title": "How we contain Claude across products",
+          "url": "https://www.anthropic.com/engineering/how-we-contain-claude",
+          "publication_date": "2026-05-25",
+          "classification": "old_backfill",
+          "source_type": "official_engineering_article",
+          "reading_status": "body_read",
+          "technical_summary": "按产品用户与环境采用 gVisor 临时容器、本机 OS sandbox、挂载受控工作区的 VM 三种隔离模式；把模型概率防护、执行环境边界及工具输入区分。代理身份使用宿主保存凭据、guest scoped session token；出网不只看域名，还校验请求身份和能力。Trace/OTLP用于审计，正文复盘自建代理与配置加载边界失效。",
+          "limitations": "厂商自身架构和内部遥测，不应直接泛化为任意 Agent 的效果；VM 隔离牺牲宿主 EDR 可见性，pull OTLP 不等于实时监控；域名白名单、模型分类器及工具审计各自不充分。"
+        }
+      ],
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-google",
@@ -549,7 +894,15 @@
       "verification_status": "代表博客正文抽查；目录与代码入口核对",
       "checked_at": "2026-10-02",
       "note": "ADK材料描述多Agent、工具、状态、评估及部署；旧google.github.io/adk-docs当前跳转adk.dev，索引保存当前入口。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-microsoft",
@@ -564,7 +917,15 @@
       "verification_status": "技术文档正文抽查",
       "checked_at": "2026-10-02",
       "note": "Agent Framework文档覆盖Agent/workflow、会话、MCP与provider；文档明确为AutoGen/Semantic Kernel后继，本轮不只追踪旧AutoGen。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-amazon",
@@ -579,7 +940,28 @@
       "verification_status": "代表博客正文抽查；目录和仓库核对",
       "checked_at": "2026-10-02",
       "note": "Strands发布文描述model-driven agent loop、MCP与multi-agent工具；旧sdk-python仓库当前重定向harness-sdk，保存实测当前仓库；发布文中的未来时态不当作现状。",
-      "domain": "agent"
+      "domain": "agent",
+      "recent_materials": [
+        {
+          "id": "material-1f5ece945a261307",
+          "title": "Introducing Strands Decider 2B: a small, open source, decision model",
+          "url": "https://strandsagents.com/blog/introducing-strands-decider/",
+          "publication_date": "2026-10-01",
+          "classification": "old_backfill",
+          "source_type": "official_engineering_article",
+          "reading_status": "body_read",
+          "technical_summary": "以 Qwen3.5-2B 为 torso，移除语言生成头，换为约百万参数 pointer head，在候选位置与 answer 位置隐藏状态之间评分，配 rank-16 LoRA。一次并行前向给固定选项和概率，正文同时报告 JevBench accuracy、Brier 校准和延迟；before_tool_call 可将小模型判定转为 Proceed/Deny/Confirm/Guide。",
+          "limitations": "固定选项决策，不生成代码/摘要；复杂问题弱于推理模型。115ms RTX3090、153ms M3 为官方小任务实验，不是本项目实测；演示阈值手设，概率不保证业务准确率。"
+        }
+      ],
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-meta",
@@ -594,7 +976,15 @@
       "verification_status": "代表文章正文抽查；工程目录核对",
       "checked_at": "2026-10-02",
       "note": "Meta官方历史文章介绍Llama Stack；原meta-llama/llama-stack现跳转ogx-ai/ogx，不直接认作当前Meta官方仓库。本索引追Meta工程博客与仍在Meta组织下的llama-models。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-salesforce",
@@ -609,7 +999,28 @@
       "verification_status": "文档正文抽查；目录与样例README核对",
       "checked_at": "2026-10-02",
       "note": "Agentforce指南列出客服Agent与不同构建界面；Coral Cloud是官方虚构酒店示例，不是真实客户上线案例。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://developer.salesforce.com/developer-centers/agentforce",
+            "read_status": "failed",
+            "http_status": 403,
+            "error": "HTTP 403"
+          },
+          {
+            "url": "https://developer.salesforce.com/docs/ai/agentforce/guide",
+            "read_status": "failed",
+            "http_status": 403,
+            "error": "HTTP 403"
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-servicenow",
@@ -624,7 +1035,22 @@
       "verification_status": "README正文抽查；研究目录核对",
       "checked_at": "2026-10-02",
       "note": "AgentLab用BrowserGym组织web-agent开发/大规模实验/评测与复现；其研究框架不等同于商业Now Assist已部署产品。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://www.servicenow.com/research/",
+            "read_status": "failed",
+            "http_status": null,
+            "error": "ReadTimeout: HTTPSConnectionPool(host='www.servicenow.com', port=443): Read timed out. (read timeout=22)"
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-databricks",
@@ -639,7 +1065,15 @@
       "verification_status": "技术文档正文抽查；仓库入口核对",
       "checked_at": "2026-10-02",
       "note": "旧Mosaic AI Agent Framework文档已跳转当前agents目录；当前内容覆盖自定义/监督Agent、Unity Catalog、MCP、MLflow tracing；本轮不把cookbook全部Notebook标为已读。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-doordash",
@@ -654,7 +1088,22 @@
       "verification_status": "代表工程正文抽查；目录核对",
       "checked_at": "2026-10-02",
       "note": "2026-07-24文章描述实际Ask DoorDash的Gateway→Orchestrator→domain agent、ADK/A2A/MCP、skills、会话/记忆/产物及评估发布；保留为业务落地层，不与模型厂商按同一维度排名。",
-      "domain": "agent"
+      "domain": "agent",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 0,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://careersatdoordash.com/engineering-blog/",
+            "read_status": "failed",
+            "http_status": 403,
+            "error": "HTTP 403"
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-xsquare",
@@ -672,7 +1121,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters_or_core_entity": "深圳",
-      "country_evidence_url": "https://x2robot.com/"
+      "country_evidence_url": "https://x2robot.com/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-limx",
@@ -690,7 +1147,28 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters_or_core_entity": "深圳",
-      "country_evidence_url": "https://www.limxdynamics.com/zh"
+      "country_evidence_url": "https://www.limxdynamics.com/zh",
+      "recent_materials": [
+        {
+          "id": "material-66566f7d866b1dbf",
+          "title": "已知项目的旧报告补读：FluxVLA 数据契约与评测证据边界",
+          "url": "https://arxiv.org/html/2609.17210v1",
+          "publication_date": "2026-09-15",
+          "classification": "old_backfill",
+          "source_type": "一手技术报告相关章节正文；官方README补充对照",
+          "reading_status": "body_read",
+          "technical_summary": "报告§3.1–3.2将runner与operator解耦，把完整模型状态、解析配置和推理元数据一起交付；数据使用LeRobot兼容Parquet与视频，episode窗口不跨边界，padding由mask处理，训练统计随checkpoint复用于评测/部署。§5.2–5.4明确LIBERO与RoboCasa结果不是受控模型排行榜：预训练、数据预算和协议不匹配；推理Hz不等于端到端控制Hz，随机权重head数值一致性不等于完整checkpoint闭环任务一致性。README补充动作坐标/delta/终止padding变化后重算统计的工程操作。",
+          "limitations": "已知项目的旧报告补读，v1为2026-09-15，非10月2日后发布；仅实际读取§3.1–3.2、§5.1–5.4及README相关段落，不声称通读全文。报告明确部分结果为project-reported而非独立重跑；表格训练和评测预算不齐，缺失不确定区间不能视作零方差。加速数据缺完整时序/预热/功耗等统一协议，head随机权重测试不足证明checkpoint等价；本轮未复现或执行机器人代码/真机。未读具体commit/PR，不称仓库新变更。"
+        }
+      ],
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-galaxea",
@@ -708,7 +1186,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters_or_core_entity": "北京",
-      "country_evidence_url": "https://galaxea-ai.com/cn/about"
+      "country_evidence_url": "https://galaxea-ai.com/cn/about",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-noematrix",
@@ -726,7 +1212,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters_or_core_entity": "上海",
-      "country_evidence_url": "https://www.noematrix.ai/about"
+      "country_evidence_url": "https://www.noematrix.ai/about",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-spirit",
@@ -744,7 +1238,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters_or_core_entity": "中国，北京/杭州/深圳研发运营",
-      "country_evidence_url": "https://spirit-ai.com/about"
+      "country_evidence_url": "https://spirit-ai.com/about",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-ai2robotics",
@@ -762,7 +1264,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters_or_core_entity": "深圳",
-      "country_evidence_url": "https://ai2robotics.com/introduce/"
+      "country_evidence_url": "https://ai2robotics.com/introduce/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-dexmal",
@@ -780,7 +1290,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters_or_core_entity": "北京",
-      "country_evidence_url": "https://www.dexmal.com/"
+      "country_evidence_url": "https://www.dexmal.com/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-psibot",
@@ -798,7 +1316,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters_or_core_entity": "上海",
-      "country_evidence_url": "https://www.psibot.ai/"
+      "country_evidence_url": "https://www.psibot.ai/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-magiclab",
@@ -816,7 +1342,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters_or_core_entity": "无锡",
-      "country_evidence_url": "https://www.magiclab.top/en"
+      "country_evidence_url": "https://www.magiclab.top/en",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-linkerbot",
@@ -834,7 +1368,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters_or_core_entity": "北京",
-      "country_evidence_url": "https://www.linkerhand.com/"
+      "country_evidence_url": "https://www.linkerhand.com/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-paxini",
@@ -852,7 +1394,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters_or_core_entity": "深圳",
-      "country_evidence_url": "https://www.paxini.com/cn/about"
+      "country_evidence_url": "https://www.paxini.com/cn/about",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-engineai",
@@ -870,7 +1420,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters_or_core_entity": "深圳",
-      "country_evidence_url": "https://www.engineai.com.cn/about-us"
+      "country_evidence_url": "https://www.engineai.com.cn/about-us",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-booster",
@@ -888,7 +1446,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters_or_core_entity": "北京",
-      "country_evidence_url": "https://www.booster.tech/zh/about-us/"
+      "country_evidence_url": "https://www.booster.tech/zh/about-us/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-noetix",
@@ -906,7 +1472,22 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters_or_core_entity": "北京",
-      "country_evidence_url": "https://www.noetixrobotics.com/about/"
+      "country_evidence_url": "https://www.noetixrobotics.com/about/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 0,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://www.noetixrobotics.com/about/",
+            "read_status": "navigation_only",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-daimon",
@@ -924,7 +1505,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters_or_core_entity": "深圳（另有香港主体）",
-      "country_evidence_url": "https://www.dmrobot.com/about/"
+      "country_evidence_url": "https://www.dmrobot.com/about/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-mechmind",
@@ -942,7 +1531,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters_or_core_entity": "中国（北京/上海/雄安，全球分支）",
-      "country_evidence_url": "https://www.mech-mind.com.cn/"
+      "country_evidence_url": "https://www.mech-mind.com.cn/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-songying",
@@ -960,7 +1557,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters_or_core_entity": "上海",
-      "country_evidence_url": "https://www.orca3d.cn/"
+      "country_evidence_url": "https://www.orca3d.cn/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-unix",
@@ -978,7 +1583,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters_or_core_entity": "苏州",
-      "country_evidence_url": "https://www.unix-group.ai/cn"
+      "country_evidence_url": "https://www.unix-group.ai/cn",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-casbot",
@@ -996,7 +1609,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters_or_core_entity": "北京",
-      "country_evidence_url": "https://www.casbot.tech/"
+      "country_evidence_url": "https://www.casbot.tech/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-cn-deeprobotics",
@@ -1014,7 +1635,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters_or_core_entity": "杭州",
-      "country_evidence_url": "https://www.deeprobotics.cn/en/index/company.html"
+      "country_evidence_url": "https://www.deeprobotics.cn/en/index/company.html",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-dexterity",
@@ -1032,7 +1661,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters": "Redwood City, California",
-      "headquarters_source_url": "https://dexterity.ai/about"
+      "headquarters_source_url": "https://dexterity.ai/about",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-dyna",
@@ -1050,7 +1687,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters": "Redwood City, California",
-      "headquarters_source_url": "https://www.dyna.co/careers"
+      "headquarters_source_url": "https://www.dyna.co/careers",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-generalist",
@@ -1068,7 +1713,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters": "San Mateo, California",
-      "headquarters_source_url": "https://www.linkedin.com/company/generalistai"
+      "headquarters_source_url": "https://www.linkedin.com/company/generalistai",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-field-ai",
@@ -1086,7 +1739,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "Irvine, California",
-      "headquarters_source_url": "https://jobs.lever.co/field-ai/cd7e8721-b105-49c2-b3a3-4308447f0fb0"
+      "headquarters_source_url": "https://jobs.lever.co/field-ai/cd7e8721-b105-49c2-b3a3-4308447f0fb0",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-sunday",
@@ -1104,7 +1765,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters": "Redwood City, California",
-      "headquarters_source_url": "https://www.linkedin.com/company/sundayrobotics"
+      "headquarters_source_url": "https://www.linkedin.com/company/sundayrobotics",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-1x",
@@ -1122,7 +1791,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters": "Palo Alto, California",
-      "headquarters_source_url": "https://www.1x.tech/discover/palo-alto-hq"
+      "headquarters_source_url": "https://www.1x.tech/discover/palo-alto-hq",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-roboforce",
@@ -1140,7 +1817,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "Milpitas, California",
-      "headquarters_source_url": "https://www.linkedin.com/company/roboforce-ai"
+      "headquarters_source_url": "https://www.linkedin.com/company/roboforce-ai",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-nuro",
@@ -1158,7 +1843,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters": "Mountain View, California",
-      "headquarters_source_url": "https://www.nuro.ai/early-career"
+      "headquarters_source_url": "https://www.nuro.ai/early-career",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-carbon",
@@ -1176,7 +1869,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "Seattle, Washington",
-      "headquarters_source_url": "https://carbonrobotics.com/company"
+      "headquarters_source_url": "https://carbonrobotics.com/company",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-gecko",
@@ -1194,7 +1895,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "Pittsburgh, Pennsylvania",
-      "headquarters_source_url": "https://www.geckorobotics.com/about-us"
+      "headquarters_source_url": "https://www.geckorobotics.com/about-us",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-graymatter",
@@ -1212,7 +1921,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "Los Angeles, California",
-      "headquarters_source_url": "https://factory.graymatter-robotics.com/lp/visit/"
+      "headquarters_source_url": "https://factory.graymatter-robotics.com/lp/visit/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-plus-one",
@@ -1230,7 +1947,22 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "San Antonio, Texas",
-      "headquarters_source_url": "https://www.plusonerobotics.com/videos/msc-automated-packing-application"
+      "headquarters_source_url": "https://www.plusonerobotics.com/videos/msc-automated-packing-application",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 0,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://www.plusonerobotics.com/pick-one",
+            "read_status": "js_shell_or_empty",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-locus",
@@ -1248,7 +1980,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "Wilmington, Massachusetts",
-      "headquarters_source_url": "https://locusrobotics.com/company/careers"
+      "headquarters_source_url": "https://locusrobotics.com/company/careers",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-realtime",
@@ -1266,7 +2006,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "Boston, Massachusetts",
-      "headquarters_source_url": "https://rtr.ai/contact/"
+      "headquarters_source_url": "https://rtr.ai/contact/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-pickle",
@@ -1284,7 +2032,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "Charlestown, Massachusetts",
-      "headquarters_source_url": "https://www.picklerobot.com/careers"
+      "headquarters_source_url": "https://www.picklerobot.com/careers",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-standard-bots",
@@ -1302,7 +2058,22 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "Glen Cove, New York（公司地址）",
-      "headquarters_source_url": "https://standardbots.com/terms-of-service"
+      "headquarters_source_url": "https://standardbots.com/terms-of-service",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://docs.standardbots.com/docs/latest/-/rest-api/routes/movement/position",
+            "read_status": "js_shell_or_empty",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-bright-machines",
@@ -1320,7 +2091,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "San Francisco, California",
-      "headquarters_source_url": "https://www.brightmachines.com/llm/"
+      "headquarters_source_url": "https://www.brightmachines.com/llm/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-chef",
@@ -1338,7 +2117,15 @@
       "tier": "A",
       "domain": "embodied",
       "headquarters": "San Francisco, California",
-      "headquarters_source_url": "https://www.chefrobotics.ai/events/sf-tech-week"
+      "headquarters_source_url": "https://www.chefrobotics.ai/events/sf-tech-week",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-serve",
@@ -1356,7 +2143,15 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "California（Redwood City→San Carlos迁址需续核）",
-      "headquarters_source_url": "https://ir.serverobotics.com/static-files/512f3220-c391-4a2e-89a6-1db57d6ba099"
+      "headquarters_source_url": "https://ir.serverobotics.com/static-files/512f3220-c391-4a2e-89a6-1db57d6ba099",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "embodied-us-tutor",
@@ -1374,7 +2169,28 @@
       "tier": "B",
       "domain": "embodied",
       "headquarters": "Watertown, Massachusetts",
-      "headquarters_source_url": "https://tutorintelligence.com/about"
+      "headquarters_source_url": "https://tutorintelligence.com/about",
+      "recent_materials": [
+        {
+          "id": "material-129bc2bc19b73840",
+          "title": "Data Factory 1 Technical Report",
+          "url": "https://cdn.prod.website-files.com/68fa203de60162c631624d70/69f3b223d5ec2d664d4a497c_5441a2fae0791729c87f025e68f26443_tutor_intelligence_data_factory_1_technical_report.pdf",
+          "publication_date": null,
+          "classification": "date_unconfirmed",
+          "source_type": "官方技术报告 PDF",
+          "reading_status": "body_read",
+          "technical_summary": "DF1 以100台双臂Sonny支持1:1示范与1:N纠错监督。Ti0使用Qwen3-VL-4B及flow-matching动作头；速度归一化通过两阶段重采样处理跨示范/示范内速度差异，保护夹爪事件前后0.5秒并保留末尾2秒停机数据。报告在30段示范上称速度方差下降62%。人类任务rubric、多示范偏好及时间戳反馈融合成episode质量与逐帧奖励。",
+          "limitations": "正文无确定发布日期；PDF CreationDate/服务器Last-Modified为2026-05-01，只证明文件时间旁证，不认定本周发布。100机器人和工厂吞吐量为公司报告，不是本轮独立复现；速度方差样本仅30段。报告存在sub-50ms点云更新与within100ms场景更新两种口径，不合并成端到端延迟；奖励曲线比较不等于已证明RL闭环增益。未执行机器人代码。"
+        }
+      ],
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-antgroup",
@@ -1390,7 +2206,15 @@
       "verification_status": "README正文抽查；组织迁移已记录",
       "checked_at": "2026-10-02",
       "tier": "A",
-      "note": "原antgroup/agentUniverse实际跳转agentuniverse-ai；README明确源自AntGroup金融实践。记录PEER/DOE、工具与知识组件；不把迁移后组织直接视作蚂蚁旗下法人。"
+      "note": "原antgroup/agentUniverse实际跳转agentuniverse-ai；README明确源自AntGroup金融实践。记录PEER/DOE、工具与知识组件；不把迁移后组织直接视作蚂蚁旗下法人。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-stepfun",
@@ -1406,7 +2230,15 @@
       "verification_status": "README正文抽查",
       "checked_at": "2026-10-02",
       "tier": "A",
-      "note": "官方组织联系方式为stepfun.com；已读本地模型、ADB/多设备、ReAct与MCP基础设施说明。API docs本轮访问失败；未运行或复现。"
+      "note": "官方组织联系方式为stepfun.com；已读本地模型、ADB/多设备、ReAct与MCP基础设施说明。API docs本轮访问失败；未运行或复现。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-baichuan",
@@ -1422,7 +2254,15 @@
       "verification_status": "README正文抽查；官网正文为空",
       "checked_at": "2026-10-02",
       "tier": "A",
-      "note": "官方仓库自述Baichuan Intelligent Technology开发，提供模型/推理基础。Baichuan2是历史基线，不宣称为当前最新Agent框架；Agent专门工程指南待补。"
+      "note": "官方仓库自述Baichuan Intelligent Technology开发，提供模型/推理基础。Baichuan2是历史基线，不宣称为当前最新Agent框架；Agent专门工程指南待补。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-01ai",
@@ -1438,7 +2278,22 @@
       "verification_status": "公司页与Yi README抽查",
       "checked_at": "2026-10-02",
       "tier": "A",
-      "note": "公司官网明确总部北京，描述全栈企业方案与行业智能体；Yi仓库为历史模型材料，不等同最新行业Agent训练报告。"
+      "note": "公司官网明确总部北京，描述全栈企业方案与行业智能体；Yi仓库为历史模型材料，不等同最新行业Agent训练报告。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://www.01.ai/cn1",
+            "read_status": "js_shell_or_empty",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-sensetime",
@@ -1454,7 +2309,15 @@
       "verification_status": "组织页已读；官网搜索缓存；API文档读取失败",
       "checked_at": "2026-10-02",
       "tier": "B",
-      "note": "SenseNova官网检索文本确认智能体模型、MARS及Skills入口；实时官网超时。只确认官方组织和产品/模型入口，不冒称技术报告全文已读。"
+      "note": "SenseNova官网检索文本确认智能体模型、MARS及Skills入口；实时官网超时。只确认官方组织和产品/模型入口，不冒称技术报告全文已读。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-iflytek",
@@ -1470,7 +2333,15 @@
       "verification_status": "API和开发指南正文抽查",
       "checked_at": "2026-10-02",
       "tier": "A",
-      "note": "已读工作流创建、发布、flow_id参数及流式返回；静态文档可读，星火入口为JS页。区分流程编排与自主Agent能力。"
+      "note": "已读工作流创建、发布、flow_id参数及流式返回；静态文档可读，星火入口为JS页。区分流程编排与自主Agent能力。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-kunlun",
@@ -1486,7 +2357,15 @@
       "verification_status": "帮助中心与DeepResearchAgent README抽查",
       "checked_at": "2026-10-02",
       "tier": "A",
-      "note": "天工页版权明确昆仑万维并有北京备案；Skywork GitHub组织标Singapore，按中国母公司席位计并单独记录海外研发。DeepResearchAgent已读，旧猜测Super-Agents路径404未采用。"
+      "note": "天工页版权明确昆仑万维并有北京备案；Skywork GitHub组织标Singapore，按中国母公司席位计并单独记录海外研发。DeepResearchAgent已读，旧猜测Super-Agents路径404未采用。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-360",
@@ -1502,7 +2381,15 @@
       "verification_status": "产品页仅搜索缓存；实时超时；许可协议正文已读",
       "checked_at": "2026-10-02",
       "tier": "B",
-      "note": "纳米官方许可明确360为服务提供者且含搜索智能体功能。许可协议不是工程指南；工厂页面的宣传性性能表述不作验证结论。"
+      "note": "纳米官方许可明确360为服务提供者且含搜索智能体功能。许可协议不是工程指南；工厂页面的宣传性性能表述不作验证结论。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-xiaomi",
@@ -1525,7 +2412,15 @@
           "status": "官方README直接链接；博客正文本轮未读",
           "checked_at": "2026-10-02"
         }
-      ]
+      ],
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-meituan",
@@ -1548,7 +2443,28 @@
           "status": "实时读取失败，后续重试",
           "checked_at": "2026-10-02"
         }
-      ]
+      ],
+      "recent_materials": [
+        {
+          "id": "material-33c025967da7e32b",
+          "title": "《Agent 评测白皮书》系列01：Agent 评测全览",
+          "url": "https://tech.meituan.com/2026/09/10/Agent-Evaluation-White-Paper-01.html",
+          "publication_date": "2026-09-10",
+          "classification": "old_backfill",
+          "source_type": "official_engineering_article",
+          "reading_status": "body_read",
+          "technical_summary": "把离线回测、在线评测/监控、Case 挖掘归因和 Trace 基建连接为 Agent 与评测体系两条反馈环。端到端任务检验最终交付，过程指标定位故障；固定输入/标准/环境、多次 Trial、分层门禁、影子流量与 AB 帮助区分能力变化、工程故障和用户分布漂移。",
+          "limitations": "属于业务评测工程方法，不提供通用性能提升证明；图表图片未逐像素审阅。正文把多次试验与 Pass@k/Pass Rate 相邻表述，实际项目需分别定义至少一次通过和单次通过率，避免混算；离线集覆盖有限，仍需在线对照。"
+        }
+      ],
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-kuaishou",
@@ -1564,7 +2480,15 @@
       "verification_status": "组织归属与arXiv摘要已读",
       "checked_at": "2026-10-02",
       "tier": "A",
-      "note": "组织联系邮箱为kuaishou.com；KAT-Coder-V2.5摘要说明可执行仓库、工具轨迹与post-training。报告PDF未全文审查；异常空README的KAT-Coder仓库不作为核心工程种子。"
+      "note": "组织联系邮箱为kuaishou.com；KAT-Coder-V2.5摘要说明可执行仓库、工具轨迹与post-training。报告PDF未全文审查；异常空README的KAT-Coder仓库不作为核心工程种子。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-netease",
@@ -1580,7 +2504,15 @@
       "verification_status": "README正文抽查",
       "checked_at": "2026-10-02",
       "tier": "A",
-      "note": "知识检索、文档解析与问答是Agent知识工具层，不自动等同完整自主Agent；同一网易母公司只计一个席位。"
+      "note": "知识检索、文档解析与问答是Agent知识工具层，不自动等同完整自主Agent；同一网易母公司只计一个席位。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-modelbest",
@@ -1596,7 +2528,15 @@
       "verification_status": "公司页与MiniCPM README抽查",
       "checked_at": "2026-10-02",
       "tier": "A",
-      "note": "官网北京联系地址且链接OpenBMB生态；MiniCPM为底层模型资料，未认定每个型号都支持任意工具/完整Agent。官网Technical Blog和端侧文档持续筛选。 端侧文档仅确认官方索引概览，本轮未深读协议。"
+      "note": "官网北京联系地址且链接OpenBMB生态；MiniCPM为底层模型资料，未认定每个型号都支持任意工具/完整Agent。官网Technical Blog和端侧文档持续筛选。 端侧文档仅确认官方索引概览，本轮未深读协议。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-kingsoft",
@@ -1612,7 +2552,15 @@
       "verification_status": "文档正文已读",
       "checked_at": "2026-10-02",
       "tier": "A",
-      "note": "已读WPS365 API与MCP集成说明、Host/Client/Server和应用场景。Comate产品页作辅助，不使用不明第三方WPS仿冒域。"
+      "note": "已读WPS365 API与MCP集成说明、Host/Client/Server和应用场景。Comate产品页作辅助，不使用不明第三方WPS仿冒域。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-4paradigm",
@@ -1628,7 +2576,15 @@
       "verification_status": "研究目录正文已读；SageGPT产品页仅缓存、实时失败",
       "checked_at": "2026-10-02",
       "tier": "B",
-      "note": "官方SageGPT/AIGS面向企业软件与模型管理；研究门户不少材料是传统ML，不全部纳入Agent更新。没有把投资者报告当Agent技术指南。"
+      "note": "官方SageGPT/AIGS面向企业软件与模型管理；研究门户不少材料是传统ML，不全部纳入Agent更新。没有把投资者报告当Agent技术指南。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-langboat",
@@ -1644,7 +2600,15 @@
       "verification_status": "官网与Mengzi3 README抽查",
       "checked_at": "2026-10-02",
       "tier": "A",
-      "note": "官网明确北京创立且含LangClaw、Smart Agent Builder、Document Center；Mengzi3 README是历史推理/微调基础，不等同LangClaw完整实现。"
+      "note": "官网明确北京创立且含LangClaw、Smart Agent Builder、Document Center；Mengzi3 README是历史推理/微调基础，不等同LangClaw完整实现。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-laiye",
@@ -1660,7 +2624,28 @@
       "verification_status": "平台与UiBot说明正文抽查",
       "checked_at": "2026-10-02",
       "tier": "B",
-      "note": "官网区分RPA→RPA+AI→AI Agent及平台分层；UiBot Creator文档是执行工具指南，不冒称自主Agent训练报告。排除不明laiye.ai仿冒/同名域。"
+      "note": "官网区分RPA→RPA+AI→AI Agent及平台分层；UiBot Creator文档是执行工具指南，不冒称自主Agent训练报告。排除不明laiye.ai仿冒/同名域。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 0,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://laiye.com/en",
+            "read_status": "js_shell_or_empty",
+            "http_status": 200,
+            "error": null
+          },
+          {
+            "url": "https://documents.laiye.com/rpa-creator-cn/docs/",
+            "read_status": "js_shell_or_empty",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-yingdao",
@@ -1676,7 +2661,22 @@
       "verification_status": "官方搜索缓存读到技能摘要；实时页面0行",
       "checked_at": "2026-10-02",
       "tier": "B",
-      "note": "官方标题为技能概述，搜索缓存含智能体消息步骤；实时页面0行，未读取完整指南。只计影刀一个公司，不把其他RPA厂商合并。"
+      "note": "官方标题为技能概述，搜索缓存含智能体消息步骤；实时页面0行，未读取完整指南。只计影刀一个公司，不把其他RPA厂商合并。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 0,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://www.yingdao.com/yddoc/ap/zh-CN/808299717297909760",
+            "read_status": "js_shell_or_empty",
+            "http_status": 200,
+            "error": null
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-trip",
@@ -1692,7 +2692,15 @@
       "verification_status": "发布正文已读",
       "checked_at": "2026-10-02",
       "tier": "B",
-      "note": "TripGenie公开说明LUI、行程和预订交互；属于产品/业务材料，不是技术训练报告。页面运营者为新加坡子公司，按携程中国母公司席位计并备注。2023旧文不是新发布。"
+      "note": "TripGenie公开说明LUI、行程和预订交互；属于产品/业务材料，不是技术训练报告。页面运营者为新加坡子公司，按携程中国母公司席位计并备注。2023旧文不是新发布。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-cn-indeed",
@@ -1708,7 +2716,15 @@
       "verification_status": "栏目正文与版权归属已读",
       "checked_at": "2026-10-02",
       "tier": "B",
-      "note": "官网版权为浙江实在智能；已见Agent/TARS与官方帮助入口。栏目混合营销、转载和技术，监控只取自研技术材料，不把宣传自述排名当独立验证。"
+      "note": "官网版权为浙江实在智能；已见Agent/TARS与官方帮助入口。栏目混合营销、转载和技术，监控只取自研技术材料，不把宣传自述排名当独立验证。",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-nvidia",
@@ -1727,7 +2743,15 @@
       "domain": "agent",
       "page_title": "Agents — NVIDIA NeMo Agent Toolkit",
       "hq": "Santa Clara, California",
-      "hq_source_url": "https://www.nvidia.com/en-us/contact/"
+      "hq_source_url": "https://www.nvidia.com/en-us/contact/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-ibm",
@@ -1746,7 +2770,15 @@
       "domain": "agent",
       "page_title": "Overview — IBM watsonx Orchestrate ADK",
       "hq": "Armonk, New York",
-      "hq_source_url": "https://www.ibm.com/contact/global"
+      "hq_source_url": "https://www.ibm.com/contact/global",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-oracle",
@@ -1765,7 +2797,15 @@
       "domain": "agent",
       "page_title": "Overview of AI Agent Studio",
       "hq": "Austin, Texas",
-      "hq_source_url": "https://www.oracle.com/corporate/contact/field-offices/"
+      "hq_source_url": "https://www.oracle.com/corporate/contact/field-offices/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-adobe",
@@ -1784,7 +2824,15 @@
       "domain": "agent",
       "page_title": "Adobe Experience Platform Agent Orchestrator",
       "hq": "San Jose, California",
-      "hq_source_url": "https://www.adobe.com/about-adobe/contact.html"
+      "hq_source_url": "https://www.adobe.com/about-adobe/contact.html",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-snowflake",
@@ -1803,7 +2851,15 @@
       "domain": "agent",
       "page_title": "Cortex Agents; Get started with Cortex Agents",
       "hq": "无固定总部；principal executive office: Bozeman, Montana",
-      "hq_source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000162828026004606/snow-20260128.htm"
+      "hq_source_url": "https://www.sec.gov/Archives/edgar/data/1640147/000162828026004606/snow-20260128.htm",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-palantir",
@@ -1822,7 +2878,15 @@
       "domain": "agent",
       "page_title": "AIP Chatbot Studio",
       "hq": "Aventura, Florida（2026 Q2 principal executive office）",
-      "hq_source_url": "https://investors.palantir.com/files/2026%20Q2%20PLTR%2010-Q.pdf"
+      "hq_source_url": "https://investors.palantir.com/files/2026%20Q2%20PLTR%2010-Q.pdf",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-intuit",
@@ -1841,7 +2905,28 @@
       "domain": "agent",
       "page_title": "Intuit Pioneers Done-for-You Future with Agentic AI",
       "hq": "Mountain View, California",
-      "hq_source_url": "https://www.intuit.com/company/locations/"
+      "hq_source_url": "https://www.intuit.com/company/locations/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 0,
+        "entry_coverage_status": "partial",
+        "pending_urls": [
+          {
+            "url": "https://www.intuit.com/technology/",
+            "read_status": "failed",
+            "http_status": 429,
+            "error": "HTTP 429"
+          },
+          {
+            "url": "https://quickbooks.intuit.com/learn-support/en-us/quickbooks-online/intuit-platform/",
+            "read_status": "failed",
+            "http_status": null,
+            "error": "ReadTimeout: HTTPSConnectionPool(host='quickbooks.intuit.com', port=443): Read timed out. (read timeout=22)"
+          }
+        ],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-uipath",
@@ -1860,7 +2945,15 @@
       "domain": "agent",
       "page_title": "Agents — Getting started",
       "hq": "New York, New York",
-      "hq_source_url": "https://ir.uipath.com/financials/sec-filings/content/0001734722-26-000012/path-20260131.htm"
+      "hq_source_url": "https://ir.uipath.com/financials/sec-filings/content/0001734722-26-000012/path-20260131.htm",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-workday",
@@ -1879,7 +2972,15 @@
       "domain": "agent",
       "page_title": "Concept: Workday Agent Gateway",
       "hq": "Pleasanton, California",
-      "hq_source_url": "https://www.workday.com/en-us/company/about-workday/contact-us.html"
+      "hq_source_url": "https://www.workday.com/en-us/company/about-workday/contact-us.html",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-hubspot",
@@ -1898,7 +2999,15 @@
       "domain": "agent",
       "page_title": "Set up the customer agent",
       "hq": "Cambridge, Massachusetts",
-      "hq_source_url": "https://www.hubspot.com/company/contact"
+      "hq_source_url": "https://www.hubspot.com/company/contact",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-zoom",
@@ -1917,7 +3026,15 @@
       "domain": "agent",
       "page_title": "Zoom APIs vs. MCP",
       "hq": "San Jose, California",
-      "hq_source_url": "https://www.zoom.com/en/contact/"
+      "hq_source_url": "https://www.zoom.com/en/contact/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-mongodb",
@@ -1936,7 +3053,15 @@
       "domain": "agent",
       "page_title": "Build AI Agents with MongoDB",
       "hq": "New York, New York",
-      "hq_source_url": "https://www.mongodb.com/company/office-locations"
+      "hq_source_url": "https://www.mongodb.com/company/office-locations",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-cognition",
@@ -1955,7 +3080,15 @@
       "domain": "agent",
       "page_title": "When to Use Devin",
       "hq": "San Francisco, California",
-      "hq_source_url": "https://cognition.com/about"
+      "hq_source_url": "https://cognition.com/about",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-glean",
@@ -1974,7 +3107,15 @@
       "domain": "agent",
       "page_title": "How agents work",
       "hq": "San Francisco, California",
-      "hq_source_url": "https://www.linkedin.com/company/gleanwork"
+      "hq_source_url": "https://www.linkedin.com/company/gleanwork",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-sierra",
@@ -1993,7 +3134,15 @@
       "domain": "agent",
       "page_title": "τ-Bench: A Benchmark for Tool-Agent-User Interaction",
       "hq": "San Francisco, California",
-      "hq_source_url": "https://sierra.ai/modern-slavery-statement"
+      "hq_source_url": "https://sierra.ai/modern-slavery-statement",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 3,
+        "entry_check_success_count": 3,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-replit",
@@ -2012,7 +3161,15 @@
       "domain": "agent",
       "page_title": "Replit Agent",
       "hq": "Foster City, California",
-      "hq_source_url": "https://replit.com/news/funding-announcement-series-c"
+      "hq_source_url": "https://replit.com/news/funding-announcement-series-c",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-cisco",
@@ -2031,7 +3188,15 @@
       "domain": "agent",
       "page_title": "AI Defense Management API — Introduction",
       "hq": "San Jose, California",
-      "hq_source_url": "https://www.cisco.com/site/us/en/about/index.html"
+      "hq_source_url": "https://www.cisco.com/site/us/en/about/index.html",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-langchain",
@@ -2050,7 +3215,15 @@
       "domain": "agent",
       "page_title": "LangGraph overview — Docs by LangChain",
       "hq": "San Francisco, California",
-      "hq_source_url": "https://www.linkedin.com/company/langchain/"
+      "hq_source_url": "https://www.linkedin.com/company/langchain/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-llamaindex",
@@ -2069,7 +3242,15 @@
       "domain": "agent",
       "page_title": "Agents — LlamaIndex Developer Documentation",
       "hq": "San Francisco, California",
-      "hq_source_url": "https://www.linkedin.com/company/llamaindex/"
+      "hq_source_url": "https://www.linkedin.com/company/llamaindex/",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 1,
+        "entry_check_success_count": 1,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     },
     {
       "id": "agent-us-vercel",
@@ -2088,10 +3269,18 @@
       "domain": "agent",
       "page_title": "Loop Control — AI SDK",
       "hq": "San Francisco, California",
-      "hq_source_url": "https://www.linkedin.com/company/vercel"
+      "hq_source_url": "https://www.linkedin.com/company/vercel",
+      "latest_entry_check": {
+        "checked_at": "2026-10-05T01:17:13.811686+00:00",
+        "configured_url_count": 2,
+        "entry_check_success_count": 2,
+        "entry_coverage_status": "complete",
+        "pending_urls": [],
+        "article_enumeration_complete": false
+      }
     }
   ],
-  "updated_at": "2026-10-02",
+  "updated_at": "2026-10-05",
   "version": "2.0",
   "target_counts": {
     "embodied": {
@@ -2102,5 +3291,144 @@
       "中国": 30,
       "美国": 30
     }
+  },
+  "tracked_materials": [
+    {
+      "company_id": "agent-us-amazon",
+      "title": "Introducing Strands Decider 2B: a small, open source, decision model",
+      "url": "https://strandsagents.com/blog/introducing-strands-decider/",
+      "publication_date": "2026-10-01",
+      "classification": "old_backfill",
+      "source_type": "official_engineering_article",
+      "reading_status": "body_read",
+      "technical_summary": "以 Qwen3.5-2B 为 torso，移除语言生成头，换为约百万参数 pointer head，在候选位置与 answer 位置隐藏状态之间评分，配 rank-16 LoRA。一次并行前向给固定选项和概率，正文同时报告 JevBench accuracy、Brier 校准和延迟；before_tool_call 可将小模型判定转为 Proceed/Deny/Confirm/Guide。",
+      "project_application": "用于 Agent 工具选择、简单任务路由和参数是否来自用户的调用前检查。搭建小模型与大模型混合工作流，先在真实业务代表样本上测分类准确率、校准、误拦率和端到端耗时，再确定阈值；保留复杂推理给主模型。",
+      "limitations": "固定选项决策，不生成代码/摘要；复杂问题弱于推理模型。115ms RTX3090、153ms M3 为官方小任务实验，不是本项目实测；演示阈值手设，概率不保证业务准确率。",
+      "priority": 1,
+      "id": "material-1f5ece945a261307",
+      "canonical_url": "https://strandsagents.com/blog/introducing-strands-decider",
+      "country": "美国",
+      "domain": "agent",
+      "company": "Amazon / AWS",
+      "first_discovered_at": "2026-10-05T01:17:13.811686+00:00",
+      "read_scope": "2026-10-05 归档：官方文章技术正文；未复现作者指标。"
+    },
+    {
+      "company_id": "agent-cn-meituan",
+      "title": "《Agent 评测白皮书》系列01：Agent 评测全览",
+      "url": "https://tech.meituan.com/2026/09/10/Agent-Evaluation-White-Paper-01.html",
+      "publication_date": "2026-09-10",
+      "classification": "old_backfill",
+      "source_type": "official_engineering_article",
+      "reading_status": "body_read",
+      "technical_summary": "把离线回测、在线评测/监控、Case 挖掘归因和 Trace 基建连接为 Agent 与评测体系两条反馈环。端到端任务检验最终交付，过程指标定位故障；固定输入/标准/环境、多次 Trial、分层门禁、影子流量与 AB 帮助区分能力变化、工程故障和用户分布漂移。",
+      "project_application": "适合求职 Agent 项目的上线评测章节：先做小型核心任务回归集、二元 Rubric、工具调用 Trace 和错题池；再用线上失败样本校准 Rubric，而不是只调 Prompt。将业务完成率与工具成功率分开汇报。",
+      "limitations": "属于业务评测工程方法，不提供通用性能提升证明；图表图片未逐像素审阅。正文把多次试验与 Pass@k/Pass Rate 相邻表述，实际项目需分别定义至少一次通过和单次通过率，避免混算；离线集覆盖有限，仍需在线对照。",
+      "priority": 2,
+      "id": "material-33c025967da7e32b",
+      "canonical_url": "https://tech.meituan.com/2026/09/10/Agent-Evaluation-White-Paper-01.html",
+      "country": "中国",
+      "domain": "agent",
+      "company": "美团 / LongCat",
+      "first_discovered_at": "2026-10-05T01:17:13.811686+00:00",
+      "read_scope": "2026-10-05 归档：官方文章正文；图表图片未逐像素审阅。"
+    },
+    {
+      "company_id": "agent-us-anthropic",
+      "title": "How we contain Claude across products",
+      "url": "https://www.anthropic.com/engineering/how-we-contain-claude",
+      "publication_date": "2026-05-25",
+      "classification": "old_backfill",
+      "source_type": "official_engineering_article",
+      "reading_status": "body_read",
+      "technical_summary": "按产品用户与环境采用 gVisor 临时容器、本机 OS sandbox、挂载受控工作区的 VM 三种隔离模式；把模型概率防护、执行环境边界及工具输入区分。代理身份使用宿主保存凭据、guest scoped session token；出网不只看域名，还校验请求身份和能力。Trace/OTLP用于审计，正文复盘自建代理与配置加载边界失效。",
+      "project_application": "适合具文件/浏览器/工具执行能力的 Agent 部署设计：明确运行与编排边界、工作区挂载、最小权限 token、执行代理与可观测性；用合成数据检查工具输出和持久记忆的信任边界。",
+      "limitations": "厂商自身架构和内部遥测，不应直接泛化为任意 Agent 的效果；VM 隔离牺牲宿主 EDR 可见性，pull OTLP 不等于实时监控；域名白名单、模型分类器及工具审计各自不充分。",
+      "priority": 3,
+      "id": "material-64af1d1a2fd48283",
+      "canonical_url": "https://www.anthropic.com/engineering/how-we-contain-claude",
+      "country": "美国",
+      "domain": "agent",
+      "company": "Anthropic",
+      "first_discovered_at": "2026-10-05T01:17:13.811686+00:00",
+      "read_scope": "2026-10-05 归档：官方工程文章正文；未独立验证厂商遥测。"
+    },
+    {
+      "company_id": "embodied-cn-limx",
+      "title": "已知项目的旧报告补读：FluxVLA 数据契约与评测证据边界",
+      "url": "https://arxiv.org/html/2609.17210v1",
+      "publication_date": "2026-09-15",
+      "classification": "old_backfill",
+      "source_type": "一手技术报告相关章节正文；官方README补充对照",
+      "reading_status": "body_read",
+      "technical_summary": "报告§3.1–3.2将runner与operator解耦，把完整模型状态、解析配置和推理元数据一起交付；数据使用LeRobot兼容Parquet与视频，episode窗口不跨边界，padding由mask处理，训练统计随checkpoint复用于评测/部署。§5.2–5.4明确LIBERO与RoboCasa结果不是受控模型排行榜：预训练、数据预算和协议不匹配；推理Hz不等于端到端控制Hz，随机权重head数值一致性不等于完整checkpoint闭环任务一致性。README补充动作坐标/delta/终止padding变化后重算统计的工程操作。",
+      "project_application": "VLA微调项目可以把数据版本、episode边界、action语义、mask、统计、checkpoint与评测配置绑定成可移交产物；对加速路径分别验证反归一化后动作误差、闭环任务结果与端到端时延，不用单一吞吐或演示宣称部署成功。",
+      "limitations": "已知项目的旧报告补读，v1为2026-09-15，非10月2日后发布；仅实际读取§3.1–3.2、§5.1–5.4及README相关段落，不声称通读全文。报告明确部分结果为project-reported而非独立重跑；表格训练和评测预算不齐，缺失不确定区间不能视作零方差。加速数据缺完整时序/预热/功耗等统一协议，head随机权重测试不足证明checkpoint等价；本轮未复现或执行机器人代码/真机。未读具体commit/PR，不称仓库新变更。",
+      "priority": 2,
+      "id": "material-66566f7d866b1dbf",
+      "canonical_url": "https://arxiv.org/html/2609.17210v1",
+      "country": "中国",
+      "domain": "embodied",
+      "company": "逐际动力 LimX Dynamics",
+      "first_discovered_at": "2026-10-05T01:17:13.811686+00:00",
+      "read_scope": "2026-10-05 归档：报告 §3.1–3.2、§5.1–5.4 与 README 相关段落；未通读全文，未核读具体 commit/PR，未复现。"
+    },
+    {
+      "company_id": "embodied-us-tutor",
+      "title": "Data Factory 1 Technical Report",
+      "url": "https://cdn.prod.website-files.com/68fa203de60162c631624d70/69f3b223d5ec2d664d4a497c_5441a2fae0791729c87f025e68f26443_tutor_intelligence_data_factory_1_technical_report.pdf",
+      "publication_date": null,
+      "classification": "date_unconfirmed",
+      "source_type": "官方技术报告 PDF",
+      "reading_status": "body_read",
+      "technical_summary": "DF1 以100台双臂Sonny支持1:1示范与1:N纠错监督。Ti0使用Qwen3-VL-4B及flow-matching动作头；速度归一化通过两阶段重采样处理跨示范/示范内速度差异，保护夹爪事件前后0.5秒并保留末尾2秒停机数据。报告在30段示范上称速度方差下降62%。人类任务rubric、多示范偏好及时间戳反馈融合成episode质量与逐帧奖励。",
+      "project_application": "在双臂操作学习项目中加入示范速度归一化对照实验、接触段保护及终止段保留；把成功率、周期耗时、接管次数与示范质量分别评估，并比较无权重行为克隆和按质量加权训练。",
+      "limitations": "正文无确定发布日期；PDF CreationDate/服务器Last-Modified为2026-05-01，只证明文件时间旁证，不认定本周发布。100机器人和工厂吞吐量为公司报告，不是本轮独立复现；速度方差样本仅30段。报告存在sub-50ms点云更新与within100ms场景更新两种口径，不合并成端到端延迟；奖励曲线比较不等于已证明RL闭环增益。未执行机器人代码。",
+      "priority": 1,
+      "id": "material-129bc2bc19b73840",
+      "canonical_url": "https://cdn.prod.website-files.com/68fa203de60162c631624d70/69f3b223d5ec2d664d4a497c_5441a2fae0791729c87f025e68f26443_tutor_intelligence_data_factory_1_technical_report.pdf",
+      "country": "美国",
+      "domain": "embodied",
+      "company": "Tutor Intelligence",
+      "first_discovered_at": "2026-10-05T01:17:13.811686+00:00",
+      "read_scope": "2026-10-05 归档：21 页 PDF 的 pp.1–17；正文发布日期待核；未执行机器人代码。"
+    },
+    {
+      "company_id": "us-figure",
+      "title": "Introducing Index: Building The World’s Largest and Most Diverse Physical Dataset",
+      "url": "https://www.figure.ai/news/introducing-index",
+      "publication_date": "2026-08-25",
+      "classification": "old_backfill",
+      "source_type": "官方研究工程文章",
+      "reading_status": "body_read",
+      "technical_summary": "Index从人类真实操作视频构建Helix训练数据。五阶段处理包括技术/视觉/语义过滤、用户级欺诈抽审、视频片段embedding去重、任务配额与embedding聚类再平衡、分层文本caption。文章用每千小时的任务/物体/环境多样性指标描述覆盖，而非仅计总时长。",
+      "project_application": "为具身数据工程项目建立过滤→去重→任务/环境重平衡→分层标注流水线；将任务、物体与环境覆盖和留出环境泛化评测分别报告，以避免把视频数量当学习收益。",
+      "limitations": "2026-08-25旧文补录，不是本周新发布。Figure专属管线；文章没有开放数据、权重、完整训练配方或可复现泛化增益实验；“最大”及采集规模为公司自述，不能作为独立排名。",
+      "priority": 2,
+      "id": "material-04b4433654fb4020",
+      "canonical_url": "https://www.figure.ai/news/introducing-index",
+      "country": "美国",
+      "domain": "embodied",
+      "company": "Figure",
+      "first_discovered_at": "2026-10-05T01:17:13.811686+00:00",
+      "read_scope": "2026-10-05 归档：官方文章正文，重点为 Index 与 Using Human Data for Helix Training；未复现厂商指标。"
+    }
+  ],
+  "coverage": {
+    "seats_attempted": 120,
+    "configured_urls_attempted": 182,
+    "canonical_url_keys": 180,
+    "successful_entry_seats": 101,
+    "pending_seats": 19,
+    "successful_entry_urls": 160,
+    "pending_entry_urls": 22,
+    "confirmed_new_release_count": 0,
+    "old_backfill_count": 5,
+    "date_unconfirmed_count": 1,
+    "body_read_material_count": 6,
+    "article_enumeration_complete": false,
+    "all_seats_attempted": true,
+    "all_source_reads_complete": false,
+    "checked_at": "2026-10-05T01:17:13.811686+00:00"
   }
 }

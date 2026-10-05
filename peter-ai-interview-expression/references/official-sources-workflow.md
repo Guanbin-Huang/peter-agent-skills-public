@@ -4,11 +4,11 @@
 
 `official-company-sources.json` 是技能自带的公开来源快照，包含120个公司领域席位：具身中国30/美国30，Agent中国30/美国30。它不是完整历史文章数据库，也不是严格行业排名；机器人本体、基础模型、平台、企业软件和业务应用分层使用。同一领域按公司/母公司/品牌去重，跨领域可重复。
 
-每条记录保留：`id`（稳定来源ID）、`domain`、`country`、`company`、`category`、`primary_url`、`docs_url`、`github_url`、`example_url`、`source_type`、`verification_status`、`checked_at`、`note`；可选`tier`、`supplemental_sources`及主体/总部依据。`example_url`是代表种子，不一定为最新文章。A/B及原状态是当次读取深度，不是公司可信度评分或个人掌握程度。
+每条记录保留：`id`（稳定来源ID）、`domain`、`country`、`company`、`category`、`primary_url`、`docs_url`、`github_url`、`example_url`、`source_type`、`verification_status`、`checked_at`、`note`；可选`tier`、`supplemental_sources`、`latest_entry_check`及主体/总部依据。`example_url`是代表种子，不一定为最新文章。A/B及原状态是当次读取深度，不是公司可信度评分或个人掌握程度。
 
 公开包默认使用 `references/official-company-sources.json` 的历史快照。若有自己维护的索引，可显式用 `--registry PATH` 传入，并比较更新时间与相关条目的读取状态；需要当前信息时在线核对，不把快照当成实时结论。
 
-## 2. 共享领域选择，再定问题
+## 2. 两条领域路线分开，再定问题
 
 - **Agent块**：先读 `agent-project-track.md`，筛 `domain=agent`，池内中国30＋美国30。
 - **具身智能块**：先读 `embodied-project-track.md`，筛 `domain=embodied`，池内中国30＋美国30。
@@ -35,9 +35,11 @@
 python3 scripts/select_official_sources.py --domain embodied --query 微调 --limit 5
 python3 scripts/select_official_sources.py --domain agent --company DoorDash
 python3 scripts/select_official_sources.py --domain agent --company LangChain
+python3 scripts/select_official_sources.py --kind materials --domain agent --company 美团
+python3 scripts/select_official_sources.py --kind materials --domain embodied --query 数据 --limit 3
 ```
 
-`--domain agent/embodied`必须显式指定；可选`--country 中国/美国`、`--company`（名称子串）、`--query`（分类/备注/来源类型的文本子串）、`--registry`（实际JSON路径）。筛选器只做文本匹配，空结果不表示不存在相关研究；必要时换明确公司或追官网导航。它不联网、不生成技术结论，也不改档案。
+`--domain agent/embodied`必须显式指定；可选`--country 中国/美国`、`--company`（名称子串）、`--query`（分类/备注/来源类型的文本子串）、`--registry`（实际JSON路径）。筛选器只做文本匹配，空结果不表示不存在相关研究；必要时换明确公司或追官网导航。默认 `--kind companies` 保持公司入口筛选与原输出；`--kind materials` 筛 `tracked_materials` 的标题、技术摘要、项目用途和局限，结果在 `materials`。它不联网、不生成技术结论，也不改档案。
 
 拿到入口后再实际读与问题相关的正文。论文读实验设置/消融/局限；代码定位相应实现与固定版本；工程博客提炼机制和取舍。目录/摘要、JS空页、失败、产品宣传各自记录，不能合并成“全文已核验”。官方报告自报指标也保留实验口径，不当作自己的测试结果。
 
@@ -58,7 +60,14 @@ python3 scripts/select_official_sources.py --domain agent --company LangChain
 
 只读到一家公司文章，支持“我读到/对比了”，不支持“我设计/部署/提升了”。先更新档案中C/E/S和补证任务，再同步面试稿；来源ID不塞进口述正文，放附录映射。
 
-## 5. 持续更新与交付检查
+## 5. 快照读取范围与持续更新
+
+2026-10-05 快照增加6条具体材料：5条 `old_backfill`（旧文补录）、1条 `date_unconfirmed`（发布日期待核），不是6条新发布。公开快照的 `read_scope` 记录历史已读范围；原始索引若无此字段，按 `evidence_path_or_method` 与 `limitations` 回查，不凭 `body_read` 补出全文范围。`limitations` 保留未审阅图表、章节限制及未复现状态；`reading_status=body_read` 不等于全文通读或本次重新核读。更新时间、首次发现时间、发布日期分别记录。
+
+`coverage` 保留120席位已尝试、101席位全入口成功/19部分成功、22个入口待核，以及 `article_enumeration_complete=false`、`all_source_reads_complete=false`。入口成功不等于全站文章已枚举、正文全读或厂商指标已复现；公司条目的 `latest_entry_check` 保留入口范围与失败状态。公开包没有本机取证路径、账号或任务遥测。
+
+需要把执行语义、根因排障、业务取舍转成可追问证据时，读 [项目研究深化](project-research-playbook.md)，再按来源卡映射 C/E/S。
+
 
 来源快照可以按用户需求手动更新，也可以由用户自己已有的外部同步流程更新。安装本包不创建定时任务、账号或订阅。更新仅同步公开来源目录，保留来源 ID、日期和实际读取状态；不自动改写用户已确认的简历或项目经历。
 

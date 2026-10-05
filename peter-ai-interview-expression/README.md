@@ -47,7 +47,13 @@
 ```bash
 python3 scripts/select_official_sources.py --domain embodied --company 'Physical Intelligence'
 python3 scripts/select_official_sources.py --domain agent --company LangChain
+python3 scripts/select_official_sources.py --kind materials --domain agent --company 美团
+python3 scripts/select_official_sources.py --kind materials --domain embodied --query 数据 --limit 3
 ```
+
+来源快照更新到 **2026-10-05**，新增6条已归档技术材料（5条旧文补录、1条发布日期待核），保留已读范围和局限，不代表6条新发布或120家正文全部读完。用 `--kind materials` 直接查具体材料；默认公司入口查询保持兼容。
+
+[项目研究深化](references/project-research-playbook.md) 补充 Agent 任务验收、VLA 动作队列与控制权、复现排障，以及需求/责任/资源/验收/交接证据；这些是研究方法与历史案例，不自动变成本人经历。
 
 本包交付 Markdown/文本内容与档案，未包含 ASu 的 HTML/PDF 简历编辑器、网页投递或邮件跟踪。若已有相应工具，可在用户明确需要时交接。
 
