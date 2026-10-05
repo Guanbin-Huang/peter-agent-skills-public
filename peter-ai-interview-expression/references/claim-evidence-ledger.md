@@ -1,6 +1,6 @@
 # 主张—证据账本：A/B 共享事实底稿
 
-本说明改编自 ASu 同名工作流，来源与 MIT 许可见 [第三方说明](../THIRD_PARTY_NOTICES.md)。模板见 [career-claim-ledger-template.json](../assets/career-claim-ledger-template.json)，其中事实与链接均为明确的虚构示例，使用前替换为自己的材料。
+本说明改编自 ASu 同名工作流，来源与 MIT 许可见 [第三方说明](../THIRD_PARTY_NOTICES.md)。模板见 [career-claim-ledger-template.json](../assets/career-claim-ledger-template.json)，模板保持空白，不预填候选人、岗位、经历、数字或来源链接；只从用户的真实工作材料添加记录。
 
 ## 什么时候使用
 

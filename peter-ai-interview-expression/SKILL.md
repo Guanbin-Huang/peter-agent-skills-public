@@ -1,27 +1,29 @@
 ---
 name: peter-ai-interview-expression
-description: Peter 黄 Expression：简历写作、项目学习档案与项目面试逐字稿。用户说 Peter Expression、peter黄expression、帮我写/优化简历、按JD重组经历、写项目稿、做项目文档/学习档案、把逐字稿/代码/论文整理成项目表达，或准备/诊断/改写AI面试回答时使用。两大功能：A按岗位要求和真实材料生成定位、摘要、经历要点及HR开场；B整理项目学习档案、可口述逐字稿、事件深挖及核心追问。融合ASu的岗位匹配与经历重组方法，保留C/E/S证据、L1–L5及GAN式追问。共享Agent/具身智能领域路由与官方来源索引。
+description: Peter 黄 Expression：面试剧本杀，源于真实工作、高于真实工作；简历写作、项目学习档案与项目面试逐字稿。用户说 Peter Expression、peter黄expression、帮我写/优化简历、按JD重组经历、写项目稿、做项目文档/学习档案、把逐字稿/代码/论文整理成项目表达，或准备/诊断/改写AI面试回答时使用。两大功能：A按岗位要求和真实材料生成定位、摘要、经历要点及HR开场；B整理项目学习档案、可口述逐字稿、事件深挖及核心追问。融合ASu的岗位匹配与经历重组方法，保留C/E/S证据、L1–L5及GAN式追问。共享Agent/具身智能领域路由与官方来源索引。
 metadata:
   category: career-consulting
   status: canonical
-  version: "1.4-research-to-project"
+  version: "1.5-real-work-script"
 ---
 
 # Peter 黄 Expression：简历写作与项目表达
 
-用于候选人的项目学习档案与面试表达，不把学习资料包装成工作经历。Follow one confirmed main line:
+**源于真实工作，高于真实工作。我们做的是面试剧本杀：把真实工作的角色、矛盾、判断、取舍和结果组织成可口述、可追问的剧本，而不是工作流水账。重组表达，不重写事实。**
 
-> 从回忆型表达升级成生成式表达，以真实证据为底稿，用 L1–L5 完成升级，再通过 GAN 式追问验证回答。
+先读 [真实工作 → 面试剧本](references/real-work-interview-script.md)。用户的原始材料可以零散；先理解工作，再提炼戏核和岗位价值。只用用户的真实经历与明确本人自述，不预填案例、数字或成功结局；当时的判断与今天的复盘分别写。
+
+保留 L1–L5 作为表达整理工具，GAN 作为追问排练比喻；两者不是真实性判定器或经过验证的能力量表。
 
 ## 两大功能：先按要交付什么选择入口
 
 ### A｜简历怎么写
 
-用户要写简历、优化项目 bullet、按 JD 重组经历或生成 HR 开场白时，设 `mode=resume`，读 [简历写作工作流](references/resume-workflow.md)。依次完成岗位要求与证据匹配、岗位定位、顶部摘要、经历要点、强主张核对；按需给 HR 短开场和补证清单。融合 ASu 的经历重组与岗位匹配方法，所需说明和模板已内置，无需另装 `$asu`。
+用户要写简历、优化项目 bullet、按 JD 重组经历或生成 HR 开场白时，设 `mode=resume`，读 [简历写作工作流](references/resume-workflow.md)。依次完成岗位要求与证据匹配、岗位定位、顶部摘要、经历要点、强主张核对；按需给 HR 短开场和事实澄清项。融合 ASu 的经历重组与岗位匹配方法，所需说明和模板已内置，无需另装 `$asu`。
 
 ### B｜逐字稿＋项目文档
 
-用户要项目学习档案、可口述项目稿、技术面回答、事件深挖或面试追问时，设 `mode=project-dossier|diagnose|rewrite|prepare|drill`。用下文项目流程与现有模板，先档案后逐字稿，保留 L1–L5、GAN 式追问和 PPT 自我介绍路由。这里的项目面试逐字稿是整理后的口述稿；要求音频原文转写时保留原话，不把它改成面试稿。
+用户要项目学习档案、可口述项目稿、技术面回答、事件深挖或面试追问时，设 `mode=project-dossier|diagnose|rewrite|prepare|drill`。用下文项目流程与现有模板，先理解真实工作，再按角色/事件/矛盾/选择组织面试剧本；档案与逐字稿共享事实，保留 L1–L5、GAN 式对戏和 PPT 路由。这里的项目面试逐字稿是整理后的口述稿；要求音频原文转写时保留原话，不把它改成面试稿。
 
 ### 两块怎样协作
 
@@ -61,7 +63,7 @@ Infer the mode when possible. Ask only if the missing target role/company/projec
 2. **先建证据底稿。** 读 `references/project-dossier-workflow.md`，按 C（主张）、E（经历/实验凭据）、S（外部来源）关联。分别记录“本人自述”“有材料支持”“本轮亲自验证”和“待核实”，外部论文只支持技术解释，不证明个人职责和业绩。阅读、跑通、复现、修改实验、集成部署与真实责任分别登记，不能自动升级。
 3. **补项目理解。** 根据目标只展开相关技术与非技术维度。Agent 要追输入、工具调用、状态和异常到任务成功；VLA 要追数据、微调、评估到执行闭环。复现 bug 必须记录版本、最小复现、假设、实验、根因证据、修改和回归，建议或致谢不等于修复。非技术部分至少检查价值、角色、资源取舍、协作和验收；资料没覆盖就标缺口。
 4. **有问题再检索。** 先按共享项目领域选择对应track，再读 `references/official-sources-workflow.md`，从 `references/official-company-sources.json` 的120个公司席位按领域、项目问题和资料类型选择2–5个相关一手源；用 `scripts/select_official_sources.py` 做局部筛选，不每次加载整库或扫120家公司。按“项目问题→官方材料→机制/取舍/验证→学习档案→逐字稿”展开。再读 `references/project-source-map.md` 补原论文、固定版本源码和 Issues；技术排障、执行语义或非技术交付需要深化时，按需读 `references/project-research-playbook.md`；需要中文解释时可参考 July CSDN 等资料并追到一手来源。知识星球等补充导航与讨论，标明样本范围和作者观点。当前版本、近期观点及推荐需实时核验；没有读全文时不要写成已核实。不要为了凑来源搜索每个平台。
-5. **先档案后逐字稿。** 按 `assets/project-learning-dossier.md` 建档，再按 `assets/project-verbatim-script.md` 写第一人称口语。默认一个 30–40 秒开场、一个约 90 秒项目稿、一个有材料支持的深挖事件和最多五个核心追问；时长是估计而非已录音测量。只保留有证据的职责、判断、动作和结果，缺数字用定性事实或明确待补。学习案例用“我读到/我复现了”，教学类比标为类比。
+5. **先档案后逐字稿。** 按 `assets/project-learning-dossier.md` 建档，再按 `assets/project-verbatim-script.md` 写第一人称口语。默认一个 30–40 秒开场、一个约 90 秒项目稿、一个有材料支持的深挖事件和最多五个核心追问；时长是估计而非已录音测量。只保留有证据的职责、判断、动作和结果，没有量化结果就写真实观察、交付物或当前状态；失败、局部完成也可以成为主线。仅阅读的材料放学习区，不补成工作事件。
 
 **交付前检查：** 两份文件项目、职责、版本和数字一致；每个关键经历断言有 E 或明确“本人自述/待核实”；S 不替代 E；正文可直接口述且无密集证据编号；映射表另列。反向追问最强亮点的具体事件、替代方案、失败与验证，矛盾回到底稿，不用润色掩盖。关键经历未核实的稿件标“待补证据草稿”，不能标面试可用终稿。
 
@@ -78,18 +80,21 @@ Infer the mode when possible. Ask only if the missing target role/company/projec
 3. Label the current expression level:
    - `L1 fact list`: only says what was used or done.
    - `L2 sequence`: says what happened in causal/time order.
-   - `L3 story coupling`: connects projects into a planned growth line.
+   - `L3 story coupling`: connects actual project experiences; distinguish retrospective insight from prior intent.
    - `L4 method extraction`: names a reusable method from the work.
    - `L5 job matching`: maps the method to the target team's pain.
 4. Identify the missing generator: pain, decision, tradeoff, data, personal method, or target-role match.
-5. Rewrite with this spine:
-   `场景/痛点 -> 我的判断 -> 关键动作/取舍 -> 量化结果 -> 可复用方法 -> 岗位匹配`.
+5. Organize the interview script with this spine:
+   `真实角色与任务 -> 实际矛盾/约束 -> 当时判断与选择 -> 本人动作 -> 真实结果/现状 -> 事后提炼与岗位价值`。只使用材料中存在的环节。
 6. Keep the first answer to 30-40 seconds and expose 1-2 evidence-backed hooks. Expand to 90 seconds only after the interviewer follows up.
 7. Run GAN-style validation on the strongest hook: event reconstruction, forward/reverse questioning, alternatives, failures, metrics, boundaries, and changed constraints. Return to the evidence base whenever a contradiction appears.
 8. End by mapping the verified method to the target team's actual pain. Do not call an answer generative merely because it sounds fluent.
 9. When the candidate uses a PPT for a 2-3 minute self-introduction, read `references/ppt-self-introduction-and-followup.md`; treat each slide as a follow-up router and verify that the candidate can explain every image, metric, and ownership boundary.
 
 ## Output Patterns
+
+输出围绕用户自己的工作，不提供预填经历。先找真实角色、关键事件、矛盾和取舍，再给可说出口的剧本及追问分支；事实清楚后继续提升结构和岗位价值，不停在证据清单。
+
 
 For diagnosis:
 
@@ -109,8 +114,8 @@ For rewrite:
 For preparation from raw experience:
 
 - Extract 3-5 project hooks.
-- Build one L3 career/project story line.
-- Build one L4 reusable method.
+- Build an L3 line from actual project connections; do not invent prior planning.
+- Extract an L4 insight from actual work; do not claim reuse without a reuse record.
 - Build one L5 target-team matching paragraph.
 - Produce 5 likely follow-up questions per hook.
 
@@ -118,7 +123,7 @@ For preparation from raw experience:
 
 - Do not stop at "write more technical detail"; say exactly which detail matters and why.
 - Do not reward keyword stuffing. Tie every technical term to a decision, constraint, metric, or failure.
-- Prefer concrete quantified impact, but mark uncertain numbers as `待补数据`.
+- Use numbers only when actual quantitative records exist; otherwise explain real observations, artifacts, or current status. Do not turn missing metrics into a demand to invent them.
 - Preserve the candidate's real scope. Do not upgrade "used a tool" into "owned system architecture" unless evidence supports it.
 - When target company/team is unknown, write a general version and a fill-in target-matching slot.
 - Keep the tone senior, direct, and trainable: this is interview coaching, not motivational copy.
@@ -134,7 +139,7 @@ For preparation from raw experience:
 
 ## Reference Routing
 
-- Core five-layer interview expression system and recall/generative distinction: read `references/interview-expression-framework.md`.
+- Real-work grounded five-layer expression tools and recall/generative distinction: read `references/interview-expression-framework.md`.
 - Ready-to-use rewrite formulas, rubrics, and drills: read `references/rewrite-playbooks.md`.
 - 面霸识别、冰山理论、澄清式事件还原、循环追问和 Peter黄“面试表达 GAN 对抗训练法”: read `references/adversarial-interview-training.md`.
 - PPT-guided 2-3 minute introductions and slide-to-follow-up design: read `references/ppt-self-introduction-and-followup.md`.

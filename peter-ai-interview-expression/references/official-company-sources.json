@@ -2179,7 +2179,7 @@
           "classification": "date_unconfirmed",
           "source_type": "官方技术报告 PDF",
           "reading_status": "body_read",
-          "technical_summary": "DF1 以100台双臂Sonny支持1:1示范与1:N纠错监督。Ti0使用Qwen3-VL-4B及flow-matching动作头；速度归一化通过两阶段重采样处理跨示范/示范内速度差异，保护夹爪事件前后0.5秒并保留末尾2秒停机数据。报告在30段示范上称速度方差下降62%。人类任务rubric、多示范偏好及时间戳反馈融合成episode质量与逐帧奖励。",
+          "technical_summary": "DF1 以100台双臂Sonny支持1:1示范与1:N纠错监督。Ti0使用Qwen3-VL-4B及flow-matching动作头；速度归一化通过两阶段重采样处理跨示范/示范内速度差异，夹爪开闭事件设0.5秒保护窗口并保留末尾2秒停机数据。报告在30段示范上称速度方差下降62%。人类任务rubric、多示范偏好及时间戳反馈融合成episode质量与逐帧奖励。",
           "limitations": "正文无确定发布日期；PDF CreationDate/服务器Last-Modified为2026-05-01，只证明文件时间旁证，不认定本周发布。100机器人和工厂吞吐量为公司报告，不是本轮独立复现；速度方差样本仅30段。报告存在sub-50ms点云更新与within100ms场景更新两种口径，不合并成端到端延迟；奖励曲线比较不等于已证明RL闭环增益。未执行机器人代码。"
         }
       ],
@@ -3381,7 +3381,7 @@
       "classification": "date_unconfirmed",
       "source_type": "官方技术报告 PDF",
       "reading_status": "body_read",
-      "technical_summary": "DF1 以100台双臂Sonny支持1:1示范与1:N纠错监督。Ti0使用Qwen3-VL-4B及flow-matching动作头；速度归一化通过两阶段重采样处理跨示范/示范内速度差异，保护夹爪事件前后0.5秒并保留末尾2秒停机数据。报告在30段示范上称速度方差下降62%。人类任务rubric、多示范偏好及时间戳反馈融合成episode质量与逐帧奖励。",
+      "technical_summary": "DF1 以100台双臂Sonny支持1:1示范与1:N纠错监督。Ti0使用Qwen3-VL-4B及flow-matching动作头；速度归一化通过两阶段重采样处理跨示范/示范内速度差异，夹爪开闭事件设0.5秒保护窗口并保留末尾2秒停机数据。报告在30段示范上称速度方差下降62%。人类任务rubric、多示范偏好及时间戳反馈融合成episode质量与逐帧奖励。",
       "project_application": "在双臂操作学习项目中加入示范速度归一化对照实验、接触段保护及终止段保留；把成功率、周期耗时、接管次数与示范质量分别评估，并比较无权重行为克隆和按质量加权训练。",
       "limitations": "正文无确定发布日期；PDF CreationDate/服务器Last-Modified为2026-05-01，只证明文件时间旁证，不认定本周发布。100机器人和工厂吞吐量为公司报告，不是本轮独立复现；速度方差样本仅30段。报告存在sub-50ms点云更新与within100ms场景更新两种口径，不合并成端到端延迟；奖励曲线比较不等于已证明RL闭环增益。未执行机器人代码。",
       "priority": 1,

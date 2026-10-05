@@ -1,6 +1,8 @@
 # Peter Expression｜简历写作与项目表达
 
-把真实材料整理成两类能直接使用的求职产物：**A 简历怎么写**，以及 **B 逐字稿＋项目文档**。融合 [ASu-skills](https://github.com/Hisn00w/ASu-skills) 的岗位定位、JD 匹配和经历重组方法，保留 Peter 的 C/E/S、L1–L5 与 GAN 式追问。
+**源于真实工作，高于真实工作。我们做的是面试剧本杀：重组表达，不重写事实。**
+
+把真实工作里的角色、矛盾、判断、取舍与结果提炼成可口述、可追问的剧本，而不是套一个成功故事。保留两类求职产物：**A 简历怎么写**，以及 **B 逐字稿＋项目文档**。融合 [ASu-skills](https://github.com/Hisn00w/ASu-skills) 的岗位定位、JD 匹配和经历重组方法，保留 Peter 的 C/E/S、L1–L5 与 GAN 式追问。
 
 ![Peter Expression 功能与用法](assets/workflow.png)
 
@@ -37,7 +39,7 @@
 ## Modules / Features
 
 - **岗位匹配与经历重组**：分开已匹配、表达缺口、证据不足、真实缺口与待确认，按真实动作/能力/价值/结果/个人边界重写。
-- **主张—证据账本**：附虚构示例模板，简历与口述稿共用事实；用户自述、材料支持与亲自验证分别记录。
+- **主张—证据账本**：使用空白模板，不预填经历或数字；简历与口述稿共用事实；用户自述、材料支持与亲自验证分别记录。
 - **项目学习档案**：技术链路、业务背景、取舍、实验排障、来源与下一步补证。
 - **面试逐字稿与追问**：30–40 秒开场、约 90 秒展开、有证据的事件与最多五个核心追问；时长为估计。
 - **领域与资料路由**：Agent / 具身智能资料分开；内置中美四组各 30 的来源席位历史快照，按具体问题少量选源，不等于所有正文已读或实时验证。
@@ -59,6 +61,8 @@ python3 scripts/select_official_sources.py --kind materials --domain embodied --
 
 ## 来源与许可
 
-本次 ASu 融合固定核读 commit `cb9f3080897c24305b2a888d6c363367aed53563`；模板原样保留，其余方法适配到 A/B 流程。见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 [ASu MIT 全文](licenses/ASu-skills-MIT.txt)。未复制其他私有 skill 或用户材料。
+本次 ASu 融合固定核读 commit `cb9f3080897c24305b2a888d6c363367aed53563`；原模板中的虚构候选人、PR、GPA 与示例链接已删除，改为空白结构；方法适配到 A/B 流程，署名与 MIT 许可保留。见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 [ASu MIT 全文](licenses/ASu-skills-MIT.txt)。未复制其他私有 skill 或用户材料。
+
+面试剧本流程：[真实工作 → 面试剧本](references/real-work-interview-script.md)
 
 核心入口：[SKILL.md](SKILL.md) · 简历流程：[resume-workflow.md](references/resume-workflow.md) · 项目流程：[project-dossier-workflow.md](references/project-dossier-workflow.md)
