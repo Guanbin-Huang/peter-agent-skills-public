@@ -4,7 +4,7 @@ description: Peter 黄 Expression：面试剧本杀，源于真实工作、高�
 metadata:
   category: career-consulting
   status: canonical
-  version: "1.5-real-work-script"
+  version: "1.6-source-websites"
 ---
 
 # Peter 黄 Expression：简历写作与项目表达
@@ -129,6 +129,9 @@ For preparation from raw experience:
 - Keep the tone senior, direct, and trainable: this is interview coaching, not motivational copy.
 
 ## 官方资料模块：服务项目写作，不是独立资讯任务
+
+用户问“信息来自哪些网站/有没有同步来源”时，先读 [信息源网站地图](references/information-source-map.md)：Agent与具身分开，具体URL、用途、120席位完整表及历史状态可直接回指。配图为 `assets/information-sources.png`；不要把OpenVLA/LeRobot项目或平台渠道计为额外公司席位，不把历史快照说成本轮全文验证。
+
 
 - 来源索引：`references/official-company-sources.json`，具身中国30/美国30，Agent中国30/美国30；这是分层重点观察池，不是严格排名。保留源类型、核对日期、读取状态和失败记录。
 - 问题路由与写作映射：`references/official-sources-workflow.md`。只针对具体主张或缺口选源，区分技术、非技术、复现排障与面试追问。

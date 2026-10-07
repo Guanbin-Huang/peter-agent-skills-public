@@ -2,6 +2,9 @@
 
 ## 1. 索引与版本
 
+网站总览与来源图见 [信息源网站地图](information-source-map.md)；完整公司入口表从本JSON快照展开。更新JSON后按用户需要刷新可读地图，保持日期/读取状态，不以清单容量当实际阅读覆盖。
+
+
 `official-company-sources.json` 是技能自带的公开来源快照，包含120个公司领域席位：具身中国30/美国30，Agent中国30/美国30。它不是完整历史文章数据库，也不是严格行业排名；机器人本体、基础模型、平台、企业软件和业务应用分层使用。同一领域按公司/母公司/品牌去重，跨领域可重复。
 
 每条记录保留：`id`（稳定来源ID）、`domain`、`country`、`company`、`category`、`primary_url`、`docs_url`、`github_url`、`example_url`、`source_type`、`verification_status`、`checked_at`、`note`；可选`tier`、`supplemental_sources`、`latest_entry_check`及主体/总部依据。`example_url`是代表种子，不一定为最新文章。A/B及原状态是当次读取深度，不是公司可信度评分或个人掌握程度。

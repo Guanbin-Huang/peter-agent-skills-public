@@ -59,6 +59,18 @@ python3 scripts/select_official_sources.py --kind materials --domain embodied --
 
 本包交付 Markdown/文本内容与档案，未包含 ASu 的 HTML/PDF 简历编辑器、网页投递或邮件跟踪。若已有相应工具，可在用户明确需要时交接。
 
+## 信息从哪里来：Agent / 具身智能分开
+
+![Peter Expression 信息源网站地图](assets/information-sources.png)
+
+- **Agent**：Anthropic、OpenAI Agents SDK、Google ADK、Microsoft、AWS Strands、LangChain、LlamaIndex、美团、Qwen-Agent、Coze，查工具、状态、可靠性与任务评测。
+- **具身智能**：PI/openpi、NVIDIA GR00T、Figure、DeepMind、智元、宇树、星海图、逐际，以及补充开源项目 OpenVLA/LeRobot，查数据、VLA微调、控制接口与部署。
+- **论文、源码与补充解释**：arXiv、OpenReview、GitHub、Hugging Face、July CSDN（当前具体入口偏具身）、知乎、X，以及用户已提供的 Xbotics/机友圈儿材料。
+
+[查看具体网站、用途与完整120席位清单](references/information-source-map.md) · [机器可读来源索引](references/official-company-sources.json)
+
+来源池快照为2026-10-05，Agent/具身各60（各中国30/美国30）；图显示代表入口，完整清单保留历史读取状态。个人经历来自真实工作材料，外部资料支持技术解释；入口存在不等于全文已读或本人已实现。
+
 ## 来源与许可
 
 本次 ASu 融合固定核读 commit `cb9f3080897c24305b2a888d6c363367aed53563`；原模板中的虚构候选人、PR、GPA 与示例链接已删除，改为空白结构；方法适配到 A/B 流程，署名与 MIT 许可保留。见 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) 和 [ASu MIT 全文](licenses/ASu-skills-MIT.txt)。未复制其他私有 skill 或用户材料。
