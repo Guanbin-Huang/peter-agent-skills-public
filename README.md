@@ -16,10 +16,18 @@
 
 ## Peter Expression｜简历写作与项目表达
 
-[查看功能与用法](peter-ai-interview-expression/README.md) · [Skill 入口](peter-ai-interview-expression/SKILL.md)
+[独立求职仓库](https://github.com/Guanbin-Huang/antiboomer-jobseeking-skill) · [查看功能与用法](https://github.com/Guanbin-Huang/antiboomer-jobseeking-skill/blob/main/README.md) · [Skill 入口](https://github.com/Guanbin-Huang/antiboomer-jobseeking-skill/blob/main/SKILL.md)
 
-![Peter Expression 功能与用法](peter-ai-interview-expression/assets/workflow.png)
+![Peter Expression 功能与用法](https://raw.githubusercontent.com/Guanbin-Huang/antiboomer-jobseeking-skill/main/assets/workflow.png)
 
 两大功能：**简历怎么写**（融合 ASu 的岗位匹配与经历重组），以及 **逐字稿＋项目文档**。共用事实底稿与 Agent/具身智能领域路由，保留 ASu 来源和 MIT 许可。
 
-安装时复制 `peter-ai-interview-expression` 目录到 coding agent 的 skills 目录。
+Peter Expression 的唯一维护源是独立仓库 `antiboomer-jobseeking-skill`；本仓库的 `peter-ai-interview-expression/` 是 Git submodule 索引，不维护重复副本。
+
+```bash
+git clone --recurse-submodules https://github.com/Guanbin-Huang/peter-agent-skills-public.git
+# 已克隆总仓库时：
+git submodule update --init --recursive
+```
+
+安装时复制展开后的 `peter-ai-interview-expression` 目录到 coding agent 的 skills 目录。协作者在独立求职仓库提交；独立仓库更新后，总仓库需另行提交 submodule 版本指针。

@@ -1,6 +1,0 @@
-interface:
-  display_name: "Peter Expression：真实工作面试剧本"
-  short_description: "源于真实工作，高于真实工作：简历、项目档案、面试剧本与追问对戏"
-  default_prompt: "Use $peter-ai-interview-expression to write or improve my resume for a target JD, or organize real project materials into a learning dossier and a real-work interview script with roles, events, actual tensions, decisions, and follow-up branches. Reorganize presentation, not facts; never prefill fictional experiences or results. Select the requested output, share the same facts across outputs, and use the Agent or embodied domain only as a shared dimension."
-policy:
-  allow_implicit_invocation: true
