@@ -1,3 +1,6 @@
 [submodule "peter-ai-interview-expression"]
 	path = peter-ai-interview-expression
 	url = https://github.com/Guanbin-Huang/antiboomer-jobseeking-skill.git
+[submodule "feishu-course-from-meetings"]
+	path = feishu-course-from-meetings
+	url = https://github.com/Guanbin-Huang/feishu-course-from-meetings.git
