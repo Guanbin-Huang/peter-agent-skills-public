@@ -36,8 +36,8 @@ git submodule update --init --recursive
 
 [独立仓库](https://github.com/Guanbin-Huang/feishu-course-from-meetings) · [功能与安装](https://github.com/Guanbin-Huang/feishu-course-from-meetings/blob/main/README.md) · [Skill 入口](https://github.com/Guanbin-Huang/feishu-course-from-meetings/blob/main/SKILL.md)
 
-![Feishu Course 从会议到课程](https://raw.githubusercontent.com/Guanbin-Huang/feishu-course-from-meetings/main/assets/workflow.png)
+![Feishu Course：逐字稿与视频画面双路融合](https://raw.githubusercontent.com/Guanbin-Huang/feishu-course-from-meetings/main/assets/workflow.png)
 
-把飞书课堂的完整逐字稿整理成学员版课程：找原稿、串起跨课主线、生成课程地图与逐讲笔记、附上原稿和回看入口，写入后回读正文与权限。已有课程依据清单处理新增课堂，保留原链接与手工内容。
+同时读取飞书课堂的完整逐字稿与视频画面：识别 PPT、白板、代码与操作演示，按时间对齐教学证据，再组织跨课主线、课程地图、逐讲笔记和练习。课程附关键画面说明、原稿与带时间的回看入口；记录实际阅读范围和待补画面，写入后回读正文与权限。已有课程依据清单处理新增课堂，保留原链接与手工内容。
 
 `feishu-course-from-meetings/` 是指向独立仓库的 Git submodule；公开版本在独立仓库维护，本仓库只提交版本指针。安装时使用上面的递归克隆命令，或直接克隆独立仓库到 `~/.codex/skills/feishu-course-from-meetings`。飞书 CLI 与配套 Skill 依赖见独立仓库 README。
