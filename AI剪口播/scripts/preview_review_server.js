@@ -168,8 +168,12 @@ function serveVideo(req, res, videoFile = VIDEO_FILE) {
   if (!match) {
     res.writeHead(416, { 'Content-Range': `bytes */${stat.size}` }); res.end(); return;
   }
-  const start = match[1] ? Number(match[1]) : 0;
-  const end = match[2] ? Math.min(Number(match[2]), stat.size - 1) : stat.size - 1;
+  const suffix = !match[1] && match[2] ? Number(match[2]) : null;
+  if ((!match[1] && !match[2]) || suffix === 0) {
+    res.writeHead(416, { 'Content-Range': `bytes */${stat.size}` }); res.end(); return;
+  }
+  const start = suffix !== null ? Math.max(0, stat.size - suffix) : Number(match[1]);
+  const end = suffix !== null ? stat.size - 1 : (match[2] ? Math.min(Number(match[2]), stat.size - 1) : stat.size - 1);
   if (!Number.isFinite(start) || !Number.isFinite(end) || start < 0 || start > end || start >= stat.size) {
     res.writeHead(416, { 'Content-Range': `bytes */${stat.size}` }); res.end(); return;
   }

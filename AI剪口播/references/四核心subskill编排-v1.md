@@ -12,15 +12,15 @@
 
 ## 剪辑前只读决策闸门
 
-收到逐字稿和视频后，总控先做媒体探测、WhisperX 抽样、角色/素材映射和 take 分组候选，自主判断 `single_talking_head`、`dual_role_dialogue` 或 `multi_person_interview`，再给用户一张带推荐的剪辑启动卡。用户回复“按推荐”或明确改选项后，`preedit_decision.json.status` 才从 `awaiting_user_choice` 变为 `confirmed`；此前任何分支都不得写 EDL 或渲染正式粗剪。
+收到视频后先探测媒体、复用或补必要转录、识别角色/take，并按话题归组。对“帮我剪一剪”等默认自主委托，按父skill记录 `status=confirmed`、`decision_source=standing_user_delegation`、推断形式与选题来源后，直接为每条选题建立自己的EDL和低清预览；不要求再次回复“按推荐”。具体选题/逻辑/只剪气口/先看方案等当前约束优先。仅不在既有授权范围或必要事实不足时展示对应选择卡。不得把Agent自选题记成用户已验收。
 
-启动卡同时确认 `broll.mode=none|light|structured` 和 `role_chips.enabled`。二者独立：`broll.enabled=false` 不得自动关闭双角色人物贴片。用户没有开启 B-roll 时，不启动 B-roll 分支；轻量或结构化模式都先交 3–5 个代表性样片。
+采用现有默认或用户明确选择记录 `broll.mode=none|light|structured` 和 `role_chips.enabled`，不把两个开关当作重新授权自主剪辑的理由。二者独立：`broll.enabled=false` 不得自动关闭双角色人物贴片。用户没有开启 B-roll 时，不启动 B-roll 分支；轻量或结构化模式都先交 3–5 个代表性样片。
 
 ## 串行前置
 
-素材/ASR 只读判断 → 用户确认剪辑启动卡 → 角色和最后一次完整正确 take → `douyin-rough-cut` 唯一 content EDL → 气口 0.30–0.40 秒且 <=0.5 秒 → 1.3x 一次 → 吞字/字幕文本/音画同步门禁 → 冻结不可变 `upstream_bundle` SHA。
+本页串行前置仅用于需要内容判断的新片/重排，不应用于已有工程的轻量返修。素材/ASR 只读判断 → 复用用户已明确的启动选择（缺失时才补齐）→ 角色和最后一次完整正确 take → `douyin-rough-cut` 唯一 content EDL → 按当前场景气口契约精剪 → 按本项目已确认绝对速度只应用一次 → 吞字/字幕文本/音画同步门禁 → 冻结不可变 `upstream_bundle` SHA。
 
-任何正文、时长、倍速或 timing 变化都会使三个视觉分支的旧结果失效。
+正文、时长、倍速或 timing 变化只使真正依赖这些字段的下游结果失效；依据[提速路由的失效表](质量不减的提速路由-v1.md)逐项判断。封面原图/字体等未变资产可复用，引用的时间映射和版本SHA必须更新，不能把旧同步PASS移给新时间线。
 
 ## 并行批次
 
@@ -37,4 +37,4 @@
 1. 校验三个分支引用的 EDL/media/speed/timing SHA 与 `upstream_bundle` 一致。
 2. 检查字幕、人物贴片、B-roll 与封面安全区和字体资源。
 3. 生成低清 HTML Preview，验证实际媒体 Range 与 SHA。
-4. 用户确认后只从干净原片一次生成高清版本；全部汇合验收通过后才原子切换 `active_release`，最后完整解码、源相对时序、音画同步和平台封面无黑边验收。
+4. 用户已确认的输入直接复用，只从正确源资产生成高清版本；完成本次新增风险的解码、源相对时序、音画同步和封面验收后，才原子切换 `active_release`。交付检查失败只修对应阶段，不重新构思正文。

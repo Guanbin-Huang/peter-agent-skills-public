@@ -1,6 +1,7 @@
 #!/bin/bash
 
-# 并行转录多段口播。默认使用 Seed ASR 标准版，默认 3 路、最多 4 路。
+# 历史兼容入口：仅旧项目明确选择Seed时运行；新转录按WhisperX协议。
+# 本脚本保持原行为：Seed ASR标准版，默认3路、最多4路。
 # 用法: batch_transcribe.sh <output_root> <video1> [video2 ...]
 # 可选环境变量: ASR_ENGINE=flash|v3-standard|auto  BATCH_JOBS=1..4
 # standard 资源可用 VOLCENGINE_ASR_RESOURCE_ID 覆盖，默认 volc.seedasr.auc。

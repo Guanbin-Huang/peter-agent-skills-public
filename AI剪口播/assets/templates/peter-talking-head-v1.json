@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "id": "peter-talking-head-v1",
+  "canvas": {"width": 1080, "height": 1920, "fps": 30},
+  "captions": {"font_size": 76, "x": 540, "y": 1360, "primary_color": "#FFFFFF", "shadow_opacity": 0.43529411764705883, "shadow_offset": 3, "shadow_blur": 3},
+  "protected_regions": []
+}
