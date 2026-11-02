@@ -51,11 +51,15 @@ git submodule update --init --recursive
 ## 学习方法
 
 
-### [林氏理解法（`lin-concept`）](lin-concept/)
+### [林氏理解法（`lin-concept`）](lin-concept/README.md)
+
+[功能与使用说明](lin-concept/README.md) · [Skill 入口](lin-concept/SKILL.md) · [可视化规范](lin-concept/references/visualization.md)
+
+![林氏理解法：五步讲解与机制可视化](lin-concept/assets/workflow.png)
 
 用五步理解通用复杂概念：**toy sample（最小例子）→ 同类定位 → 熟悉类比 → 完整数据流／机制链 → 细节补充**。
 
-同一例子贯穿五步，说明类比边界，区分教学设定与已核实事实，最后用迁移题检查理解。适用于技术、数学、科学、经济和管理概念。
+同一例子贯穿五步，说明类比边界，区分教学设定与已核实事实，最后用迁移题检查理解。完整讲解涉及状态变化、多步流转或复杂关系时默认配机制图；支持 Mermaid、SVG／PNG 与按需交互式可视化。适用于技术、数学、科学、经济和管理概念。
 
 安装到本地 Codex skills 目录：
 

@@ -1,4 +1,4 @@
 interface:
   display_name: "林氏理解法"
   short_description: "从最小例子到完整机制，讲懂复杂概念并检查迁移理解"
-  default_prompt: "使用 $lin-concept，按 toy sample、同类、类比、完整数据流和细节补充讲解我给出的概念。"
+  default_prompt: "使用 $lin-concept，按 toy sample、同类、类比、完整数据流和细节补充讲解我给出的概念；沿用同一组数据，在复杂关系处配机制图，并给一道迁移题。"
