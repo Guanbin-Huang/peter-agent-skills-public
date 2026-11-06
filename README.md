@@ -81,3 +81,9 @@ cp -R lin-concept ~/.codex/skills/lin-concept
   alt="Peter Huang | AI 行业求职陪跑"
   width="320"
 />
+
+## Lark Whiteboard｜飞书画板与思维导图
+
+[功能与安装](lark-whiteboard/README.md) · [Skill 入口](lark-whiteboard/SKILL.md)
+
+把知识点整理为飞书可编辑思维导图，或创建流程图、架构图等画板。支持 Mermaid / SVG / DSL，本地渲染审查后写入飞书并回读验证；飞书 CLI、授权及配套 Skill 依赖见安装说明。

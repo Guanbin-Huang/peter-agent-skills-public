@@ -1,0 +1,17 @@
+[
+  {
+    "id": "course-three-level-explicit",
+    "prompt": "按课程三层白板来，把这个项目做成总览版、模块版和详细版。",
+    "expected": "同一飞书文档内创建三个独立画板，统一编号、配色和 Pipeline，并完成本地与飞书端验证。"
+  },
+  {
+    "id": "course-pipeline-natural-language",
+    "prompt": "把这套课程 Pipeline 画成三版飞书白板，详略程度不同。",
+    "expected": "自动启用课程三层白板预设：V1 总览、V2 模块、V3 文件或行动级。"
+  },
+  {
+    "id": "course-reference-trigger",
+    "prompt": "课程白板按上次美团导购的方式做。",
+    "expected": "复用三层课程白板交付规范，同时基于当前课程资料重新确定架构和模块数量。"
+  }
+]
