@@ -74,6 +74,14 @@ cp -R lin-concept ~/.codex/skills/lin-concept
 我知道【基础】，卡在【问题】；用同一个例子贯穿五步，最后给一道迁移题。
 ```
 
+## 百度网盘夜间模式｜macOS
+
+[Skill 入口与使用方法](baidunetdisk-dark-mode/SKILL.md)
+
+为官方百度网盘生成独立夜间启动器，不修改原程序。支持普通启动对照与恢复；已在 8.10.1 验证，客户端更新后需重新检查。安装时将 `baidunetdisk-dark-mode` 目录复制到 Agent 的 skills 目录。
+
+调用示例：**“帮我给 Mac 上的百度网盘加夜间模式，保留原版入口并验证恢复。”** 本 Skill 不处理云文件管理、网页主题或 Windows 客户端。
+
 ## 联系
 
 <img
