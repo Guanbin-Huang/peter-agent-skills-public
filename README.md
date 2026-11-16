@@ -95,3 +95,9 @@ cp -R lin-concept ~/.codex/skills/lin-concept
 [功能与安装](lark-whiteboard/README.md) · [Skill 入口](lark-whiteboard/SKILL.md)
 
 把知识点整理为飞书可编辑思维导图，或创建流程图、架构图等画板。支持 Mermaid / SVG / DSL，本地渲染审查后写入飞书并回读验证；飞书 CLI、授权及配套 Skill 依赖见安装说明。
+
+## Codex Whip
+
+[Skill 入口](codex-whip/SKILL.md) · [安装与使用](codex-whip/references/setup.md)
+
+根 AI 为已授权、范围明确且有只读确定验收命令的任务自动登记，由 Stop gate 检查真实结果。Codex CLI 在同一 SID 下有界执行；失败进入根因诊断，新方案继续推进，诊断预算用尽须由用户明确追加授权。Stop hook 不派发 worker，执行与诊断由根 AI 负责；仅对已登记任务生效。
